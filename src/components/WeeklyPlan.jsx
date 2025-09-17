@@ -8,10 +8,12 @@ import {
   Save,
   Edit,
   Trash2,
+  Mail, // Added Mail icon for Send Email button
 } from "lucide-react";
 import WeeklyPlanDisplay from "./WeeklyPlanDisplay";
 import "./WeeklyPlanModal.css";
 import SmartWeeklyPlanChatbot from "./SmartWeeklyPlanChatbot";
+import axios from "axios";
 
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
@@ -20,10 +22,10 @@ const getCookie = (name) => {
 };
 
 const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
-  const credentials = btoa("ktfladm:Ktfl_Admin@2024");
+  const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
 
   // Step 1: Trigger cookie set
-  await fetch("https://ktfrancesrv2.kalyanicorp.com/internal/weekly_entry", {
+  await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
     method: "GET",
     headers: {
       Authorization: `Basic ${credentials}`,
@@ -62,7 +64,7 @@ const formatDateForBackend = (date) => {
 };
 
 // Constants
-const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const FIELD_LABELS = {
   plantCode: "Plant Code",
   productionOrderNo: "Production Order No.",
@@ -86,7 +88,7 @@ const apiService = {
   getKlnMasterDataByDie: async (dieNumber) => {
     try {
       const response = await fetch(
-        `https://ktfrancesrv2.kalyanicorp.com/internal/weekly_entry?die_no=${dieNumber}`,
+        `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${dieNumber}`,
         {
           method: "GET",
           headers: {
@@ -107,7 +109,7 @@ const apiService = {
     console.log("Calling Forge Lines API 🚀");
     try {
       const response = await fetch(
-        "https://ktfrancesrv2.kalyanicorp.com/internal/forge_lines",
+        "https://ktflceprd.kalyanicorp.com/internal/forge_lines",
         {
           method: "GET",
           headers: {
@@ -179,7 +181,7 @@ const apiService = {
       const authOptions = await getAuthHeadersWithCSRF("POST");
 
       const response = await fetch(
-        "https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           method: "POST",
           ...authOptions,
@@ -221,6 +223,67 @@ const apiService = {
     });
   },
 
+  getDieActualData: async (plantCode, dieNo) => {
+    console.log("🔍 getDieActualData called with:", { plantCode, dieNo });
+
+    try {
+      // ✅ Construct URL with proper encoding
+      const baseUrl =
+        "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual";
+      const params = new URLSearchParams({
+        plant_code: plantCode,
+        die_no: dieNo,
+      });
+      const fullUrl = `${baseUrl}?${params.toString()}`;
+
+      console.log("📡 Making request to:", fullUrl);
+
+      const response = await fetch(fullUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+        },
+      });
+
+      console.log("📡 Response status:", response.status);
+      console.log(
+        "📡 Response headers:",
+        Object.fromEntries(response.headers.entries())
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("❌ API Error Response:", errorText);
+        throw new Error(`API Error: ${response.status} - ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log("✅ API Response data:", data);
+      console.log(
+        "📊 Data type:",
+        typeof data,
+        "Is array:",
+        Array.isArray(data)
+      );
+
+      // ✅ Handle different response formats
+      if (Array.isArray(data)) {
+        return data;
+      } else if (data && data.data && Array.isArray(data.data)) {
+        return data.data;
+      } else if (data && typeof data === "object") {
+        // If single object, wrap in array
+        return [data];
+      } else {
+        console.warn("⚠️ Unexpected data format:", data);
+        return [];
+      }
+    } catch (error) {
+      console.error("❌ Error in getDieActualData:", error);
+      throw error; // Re-throw to handle in calling function
+    }
+  },
   // Get master data (presses, customers, etc.)
   getMasterData: async () => {
     // TODO: Replace with actual API call
@@ -240,6 +303,61 @@ const apiService = {
         });
       }, 300);
     });
+  },
+
+  // ✅ NEW: Create Production Order
+  createProductionOrder: async (orderData) => {
+    try {
+      const authOptions = await getAuthHeadersWithCSRF("POST");
+      const response = await fetch(
+        "https://ktflceprd.kalyanicorp.com/internal/production_order",
+        {
+          method: "POST",
+          ...authOptions,
+          body: JSON.stringify({
+            data: [orderData], // API expects array format
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`API Error: ${response.status} - ${errorText}`);
+      }
+
+      const result = await response.json();
+      return { success: true, data: result };
+    } catch (error) {
+      console.error("❌ Create production order failed:", error);
+      return { success: false, message: error.message };
+    }
+  },
+
+  // ✅ NEW: Send Email API
+  sendEmail: async () => {
+    try {
+      // Get authentication headers with CSRF token
+      const authConfig = await getAuthHeadersWithCSRF("GET", false);
+
+      const response = await fetch(
+        "https://ktflceprd.kalyanicorp.com/internal/production_report",
+        {
+          method: "GET",
+          ...authConfig, // Spread the headers and credentials
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Email API Error: ${response.status} - ${errorText}`);
+      }
+
+      const result = await response.json();
+      return { success: true, data: result };
+    } catch (error) {
+      console.error("❌ Send email failed:", error);
+      return { success: false, message: error.message };
+    }
   },
 };
 
@@ -269,17 +387,43 @@ const styles = {
     fontSize: "12px",
   },
   primaryButton: {
-    padding: "6px 12px",
-    border: "1px solid #007bff",
-    borderRadius: "4px",
-    background: "#007bff",
-    color: "white",
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundImage: "linear-gradient(93deg, #43cea2 0%, #185a9d 100%)", // Teal to Blue
+    color: "#ffffff",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
-    gap: "5px",
-    fontSize: "12px",
+    justifyContent: "center",
+    gap: "8px",
+    fontSize: "14px",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+    textTransform: "uppercase",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    transition: "all 0.3s ease-in-out",
   },
+  // ✅ NEW: Email Button Style
+  emailButton: {
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundImage: "linear-gradient(93deg, #667eea 0%, #764ba2 100%)", // Purple gradient
+    color: "#ffffff",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    fontSize: "14px",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+    textTransform: "uppercase",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    transition: "all 0.3s ease-in-out",
+  },
+
   successButton: {
     padding: "10px 20px",
     backgroundColor: "#28a745",
@@ -316,11 +460,10 @@ const styles = {
   },
   modalContent: {
     backgroundColor: "white",
-    padding: "10px",
+    padding: "0",
     borderRadius: "8px",
-    width: "97%",
+    width: "95%",
     maxWidth: "100vw",
-    height: "70vh",
     display: "flex",
     flexDirection: "column",
   },
@@ -337,10 +480,10 @@ const styles = {
   modalTableWrapper: {
     flex: 1,
     overflowX: "auto",
-    overflowY: "auto",
+    overflowY: "hidden",
     border: "1px solid #ddd",
     borderRadius: "4px",
-    maxHeight: "calc(95vh - 140px)",
+    height: "100%",
   },
   modalTable: {
     width: "100%",
@@ -351,19 +494,23 @@ const styles = {
   modalTableHeader: {
     backgroundColor: "#f8f9fa",
     border: "1px solid #dee2e6",
-    padding: "6px 2px",
+    padding: "8px 4px",
     textAlign: "center",
     fontWeight: "600",
-    fontSize: "9px",
+    fontSize: "11px",
     position: "sticky",
     top: 0,
     zIndex: 10,
     whiteSpace: "nowrap",
+    minWidth: "80px",
+    maxWidth: "120px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
   modalTableCell: {
     border: "1px solid #dee2e6",
-    padding: "2px",
-    verticalAlign: "top",
+    padding: "4px 2px",
+    verticalAlign: "middle",
     minWidth: "60px",
   },
   dayCell: {
@@ -381,7 +528,7 @@ const styles = {
     border: "1px solid #ccc",
     borderRadius: "3px",
     fontSize: "9px",
-    minHeight: "20px",
+    minHeight: "18px",
     boxSizing: "border-box",
   },
   compactSelect: {
@@ -390,7 +537,7 @@ const styles = {
     border: "1px solid #ccc",
     borderRadius: "3px",
     fontSize: "9px",
-    minHeight: "22px",
+    minHeight: "20px",
     backgroundColor: "white",
     color: "#333",
     boxSizing: "border-box",
@@ -449,14 +596,306 @@ const styles = {
   },
 };
 
+// const getFieldStyle = (record, fieldName) => {
+//   const hasError = record.fieldErrors?.[fieldName];
+//   return {
+//     ...styles.compactInput,
+//     borderRadius: "8px",
+//     border: `2px solid ${hasError ? "#f56565" : "#cbd5e0"}`,
+//     backgroundColor: hasError ? "#fed7d7" : "white",
+//     padding: "8px 12px",
+//     fontSize: "13px",
+//     transition: "all 0.2s ease",
+//     boxShadow: hasError ? "0 0 0 3px rgba(245, 101, 101, 0.2)" : "none",
+//   };
+// };
+
+// const getSelectStyle = (record, fieldName) => {
+//   const hasError = record.fieldErrors?.[fieldName];
+//   return {
+//     ...styles.compactSelect,
+//     borderRadius: "8px",
+//     border: `2px solid ${hasError ? "#f56565" : "#cbd5e0"}`,
+//     backgroundColor: hasError ? "#fed7d7" : "white",
+//     padding: "8px 12px",
+//     fontSize: "13px",
+//     transition: "all 0.2s ease",
+//     boxShadow: hasError ? "0 0 0 3px rgba(245, 101, 101, 0.2)" : "none",
+//   };
+// };
+
+// const getShiftInputStyle = (record, shiftName) => {
+//   const hasError = record.fieldErrors?.[shiftName];
+//   return {
+//     ...styles.shiftInput,
+//     borderRadius: "6px",
+//     border: `1px solid ${hasError ? "#f56565" : "#cbd5e0"}`,
+//     backgroundColor: hasError ? "#fed7d7" : "white",
+//     padding: "6px 8px",
+//     fontSize: "12px",
+//     textAlign: "center",
+//     transition: "all 0.2s ease",
+//     boxShadow: hasError ? "0 0 0 2px rgba(245, 101, 101, 0.2)" : "none",
+//   };
+// };
+
+const getConsistentInputStyle = () => ({
+  width: "100%",
+  padding: "6px 8px",
+  border: "1px solid #cbd5e0",
+  borderRadius: "6px",
+  fontSize: "12px",
+  backgroundColor: "white",
+  transition: "all 0.2s ease",
+  boxSizing: "border-box",
+  minHeight: "32px",
+});
+
+const getConsistentSelectStyle = () => ({
+  width: "100%",
+  padding: "6px 8px",
+  border: "1px solid #cbd5e0",
+  borderRadius: "6px",
+  fontSize: "12px",
+  backgroundColor: "white",
+  transition: "all 0.2s ease",
+  boxSizing: "border-box",
+  minHeight: "32px",
+});
+
 const WeeklyPlan = () => {
   // State Management
   const [weekOffset, setWeekOffset] = useState(0);
+  const [showDieActualModal, setShowDieActualModal] = useState(false);
+  const [dieActualData, setDieActualData] = useState([]);
+  const [selectedDieInfo, setSelectedDieInfo] = useState({
+    plantCode: "",
+    dieNo: "",
+  });
+  const [loadingDieActual, setLoadingDieActual] = useState(false);
   const [modalWeekOffset, setModalWeekOffset] = useState(0);
   const [plans, setPlans] = useState({});
   const [dayWiseData, setDayWiseData] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showManualEntryModal, setShowManualEntryModal] = useState(false);
+  const [manualEntryData, setManualEntryData] = useState({
+    order_id: "", // Production Order No (matches API format)
+    customer: "", // Customer name
+    amount: "", // Single quantity (not shift-wise)
+    // Keep other fields for UI but don't send to production_order API
+    plantCode: "",
+    pressId: "",
+    grade: "",
+    section: "",
+    netWt: "",
+    dieRequired: "Yes",
+    rmStatus: "Available",
+    heatCode: "",
+    remark: "",
+  });
+  const [currentManualRecord, setCurrentManualRecord] = useState({
+    day: "",
+    recordIndex: null,
+  });
+
+  // ✅ NEW: Send Email Handler
+  const handleSendEmail = async () => {
+    // Show confirmation alert
+    const confirmed = window.confirm("Do you really want to send email?");
+
+    if (!confirmed) {
+      return; // Exit if user cancels
+    }
+
+    try {
+      setLoading(true);
+
+      // Prepare email data - you can customize this based on your requirements
+      const emailData = {
+        subject: `Weekly Production Plan - ${getWeekTitle(weekOffset)}`,
+        body: `Weekly production plan for ${getWeekTitle(
+          weekOffset
+        )} has been prepared and is ready for review.`,
+        recipients: ["manager@company.com", "production@company.com"], // Add actual email addresses
+        week_offset: weekOffset,
+        plan_data: dayWiseData,
+      };
+
+      const result = await apiService.sendEmail(emailData);
+
+      if (result.success) {
+        alert("✅ Email sent successfully!");
+      } else {
+        alert("❌ Failed to send email: " + result.message);
+      }
+    } catch (error) {
+      console.error("❌ Send email error:", error);
+      alert("❌ Error sending email: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const ManualEntryModal = () => (
+    <div style={styles.modal}>
+      <div style={{ ...styles.modalContent, maxWidth: "400px", width: "90%" }}>
+        {/* Modal Header */}
+        <div
+          style={{
+            ...styles.modalHeader,
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            color: "white",
+            borderRadius: "12px 12px 0 0",
+            padding: "12px 20px",
+          }}
+        >
+          <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600" }}>
+            Create New Production Order
+          </h3>
+          <button
+            onClick={() => setShowManualEntryModal(false)}
+            style={{
+              background: "rgba(255, 255, 255, 0.2)",
+              border: "none",
+              cursor: "pointer",
+              padding: "6px",
+              borderRadius: "6px",
+              color: "white",
+            }}
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Modal Body */}
+        <div
+          style={{
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "15px",
+          }}
+        >
+          {/* ✅ Plant Code */}
+          <div>
+            <label
+              style={{
+                fontSize: "12px",
+                color: "#666",
+                marginBottom: "4px",
+                display: "block",
+              }}
+            >
+              Plant Code *
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Plant Code"
+              value={manualEntryData.plant_code || ""}
+              onChange={(e) =>
+                setManualEntryData({
+                  ...manualEntryData,
+                  plant_code: e.target.value, // always keep as string
+                })
+              }
+              style={getConsistentInputStyle()}
+            />
+          </div>
+
+          {/* ✅ Die No */}
+          <div>
+            <label
+              style={{
+                fontSize: "12px",
+                color: "#666",
+                marginBottom: "4px",
+                display: "block",
+              }}
+            >
+              Die No *
+            </label>
+            <input
+              type="text"
+              placeholder="Enter Die Number"
+              value={manualEntryData.die_no || ""}
+              onChange={(e) =>
+                setManualEntryData({
+                  ...manualEntryData,
+                  die_no: e.target.value,
+                })
+              }
+              style={getConsistentInputStyle()}
+            />
+          </div>
+
+          {/* ✅ Order Quantity */}
+          <div>
+            <label
+              style={{
+                fontSize: "12px",
+                color: "#666",
+                marginBottom: "4px",
+                display: "block",
+              }}
+            >
+              Order Quantity *
+            </label>
+            <input
+              type="number"
+              placeholder="Enter Order Quantity"
+              value={manualEntryData.order_qty || ""}
+              onChange={(e) =>
+                setManualEntryData({
+                  ...manualEntryData,
+                  order_qty: e.target.value, // keep as string while typing
+                })
+              }
+              style={getConsistentInputStyle()}
+            />
+          </div>
+        </div>
+
+        {/* Modal Footer */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "12px",
+            padding: "15px 20px",
+            borderTop: "1px solid #e2e8f0",
+            background: "#f8f9fa",
+            borderRadius: "0 0 12px 12px",
+          }}
+        >
+          <button
+            onClick={() => setShowManualEntryModal(false)}
+            style={{
+              ...styles.button,
+              backgroundColor: "#6c757d",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              padding: "10px 20px",
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleManualEntrySubmit}
+            style={{
+              ...styles.successButton,
+              borderRadius: "8px",
+              padding: "10px 20px",
+            }}
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   const [masterData, setMasterData] = useState({
     presses: [],
     customers: [],
@@ -474,7 +913,7 @@ const WeeklyPlan = () => {
 
     currentMonday.setDate(today.getDate() + daysToMonday + offset * 7);
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       const date = new Date(currentMonday);
       date.setDate(currentMonday.getDate() + i);
       dates.push({
@@ -494,7 +933,7 @@ const WeeklyPlan = () => {
   const getWeekTitle = (offset = weekOffset) => {
     const dates = getWeekDates(offset);
     const startDate = dates[0].fullDate;
-    const endDate = dates[5].fullDate;
+    const endDate = dates[6].fullDate;
     const startStr = startDate.toLocaleDateString("en-GB", {
       day: "2-digit",
       month: "short",
@@ -505,6 +944,86 @@ const WeeklyPlan = () => {
       year: "numeric",
     });
     return `${startStr} - ${endStr}`;
+  };
+
+  // 🔥 NEW: Handle Die Required click
+  const handleDieRequiredClick = async (record) => {
+    console.log("🔥 Die Required clicked for record:", record);
+
+    // 1. ✅ Better validation with detailed logging
+    if (!record.plantCode || !record.dieNo?.[0]) {
+      console.error("❌ Missing required data:", {
+        plantCode: record.plantCode,
+        dieNo: record.dieNo,
+        fullRecord: record,
+      });
+      alert("⚠️ Please select Plant Code and Die Number first!");
+      return;
+    }
+
+    // 2. ✅ Set loading state and modal info
+    const plantCode = record.plantCode.toString().trim();
+    const dieNo = record.dieNo[0].toString().trim();
+
+    console.log("📡 Making API call with:", { plantCode, dieNo });
+
+    setSelectedDieInfo({
+      plantCode: plantCode,
+      dieNo: dieNo,
+    });
+
+    setLoadingDieActual(true);
+    setShowDieActualModal(true);
+    setDieActualData([]); // Clear previous data
+
+    try {
+      // 3. ✅ Enhanced API call with better error handling
+      console.log("📡 Calling getDieActualData API...");
+      const dieData = await apiService.getDieActualData(plantCode, dieNo);
+
+      console.log("✅ API Response received:", dieData);
+      console.log(
+        "📊 Response type:",
+        typeof dieData,
+        "Length:",
+        dieData?.length
+      );
+
+      // 4. ✅ Better data validation
+      if (!dieData) {
+        console.warn("⚠️ API returned null/undefined");
+        setDieActualData([]);
+        return;
+      }
+
+      if (!Array.isArray(dieData)) {
+        console.warn("⚠️ API response is not an array:", dieData);
+        setDieActualData([]);
+        return;
+      }
+
+      if (dieData.length === 0) {
+        console.warn("⚠️ API returned empty array");
+        setDieActualData([]);
+        return;
+      }
+
+      console.log("✅ Setting die actual data:", dieData);
+      setDieActualData(dieData);
+    } catch (error) {
+      console.error("❌ Failed to fetch die actual data:", error);
+      console.error("❌ Error details:", {
+        message: error.message,
+        stack: error.stack,
+        plantCode,
+        dieNo,
+      });
+
+      alert(`❌ Failed to fetch die actual data: ${error.message}`);
+      setDieActualData([]);
+    } finally {
+      setLoadingDieActual(false);
+    }
   };
 
   const getWeekStatus = (offset = weekOffset) => {
@@ -589,7 +1108,7 @@ const WeeklyPlan = () => {
     setDayWiseData(newData);
   };
 
-  // 🔥 UPDATED handleDieNoChange function
+  // Updated handleDieNoChange function
   const handleDieNoChange = async (day, recordIndex, value) => {
     if (!value || value.trim() === "") {
       // Reset fields
@@ -602,6 +1121,7 @@ const WeeklyPlan = () => {
                 dieNo: [value],
                 dieNoError: false,
                 dieNoErrorMessage: "",
+                showCreateLink: false, // ✅ NEW: Hide create link
                 productionOrderNo: "",
                 customer: "",
                 grade: "",
@@ -615,7 +1135,7 @@ const WeeklyPlan = () => {
                 plantOptions: [],
                 productionOrderOptions: [],
                 dieResults: [],
-                hasMultipleOptions: false, // ✅ Reset on error
+                hasMultipleOptions: false,
               }
             : record
         ),
@@ -623,11 +1143,12 @@ const WeeklyPlan = () => {
       return;
     }
 
+    // ✅ REMOVED: 4 digit minimum check - now API call happens for any value
     try {
       const results = await apiService.getKlnMasterDataByDie(value);
 
       if (!results || results.length === 0) {
-        // No matching die number
+        // ✅ NEW: Show hyperlink instead of opening modal immediately
         setDayWiseData((prev) => ({
           ...prev,
           [day]: prev[day].map((record, idx) =>
@@ -637,6 +1158,7 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: true,
                   dieNoErrorMessage: `No data found for Die No. ${value}`,
+                  showCreateLink: true, // ✅ NEW: Show create production order link
                   productionOrderNo: "",
                   customer: "",
                   grade: "",
@@ -650,8 +1172,7 @@ const WeeklyPlan = () => {
                   plantOptions: [],
                   productionOrderOptions: [],
                   dieResults: [],
-                  hasMultipleOptions: false, // ✅ Reset flag
-                  hasMultipleOptions: false, // ✅ Reset flag
+                  hasMultipleOptions: false,
                 }
               : record
           ),
@@ -665,7 +1186,7 @@ const WeeklyPlan = () => {
       ];
       const uniquePressIds = [...new Set(results.map((r) => r.forge_press))];
 
-      // 🔥 NEW: Always get the first result for auto-filling
+      // Always get the first result for auto-filling
       const firstResult = results[0];
       const plantCodeValue =
         firstResult.plant_code ||
@@ -675,7 +1196,7 @@ const WeeklyPlan = () => {
         "";
 
       if (results.length === 1) {
-        // Single result - auto-fill all fields (existing logic)
+        // Single result - auto-fill all fields
         setDayWiseData((prev) => ({
           ...prev,
           [day]: prev[day].map((record, idx) =>
@@ -685,6 +1206,7 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: false,
                   dieNoErrorMessage: "",
+                  showCreateLink: false, // ✅ NEW: Hide create link
                   productionOrderNo: firstResult.prod_order || "",
                   plantCode: plantCodeValue,
                   pressId: firstResult.forge_press || "",
@@ -700,13 +1222,13 @@ const WeeklyPlan = () => {
                   plantOptions: [],
                   productionOrderOptions: [],
                   dieResults: results,
-                  hasMultipleOptions: false, // ✅ Single result, no dropdown needed
+                  hasMultipleOptions: false,
                 }
               : record
           ),
         }));
       } else {
-        // 🔥 UPDATED: Multiple results - show dropdowns with first value auto-selected
+        // Multiple results - show dropdowns with first value auto-selected
         setDayWiseData((prev) => ({
           ...prev,
           [day]: prev[day].map((record, idx) =>
@@ -716,9 +1238,9 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: false,
                   dieNoErrorMessage: "",
-                  // 🔥 AUTO-SELECT FIRST VALUES (but keep dropdowns enabled)
-                  productionOrderNo: firstResult.prod_order || "", // ✅ Auto-select first production order
-                  pressId: firstResult.forge_press || "", // ✅ Auto-select first press ID
+                  showCreateLink: false, // ✅ NEW: Hide create link
+                  productionOrderNo: firstResult.prod_order || "",
+                  pressId: firstResult.forge_press || "",
                   plantCode: plantCodeValue,
                   customer: firstResult.customer || "",
                   netWt: firstResult.net_wt || 0,
@@ -726,14 +1248,12 @@ const WeeklyPlan = () => {
                   grade: firstResult.rm_grade || "N/A",
                   dieRequired: firstResult.die_req ? "Yes" : "No",
                   rmStatus: firstResult.rm_status || "No",
-                  // ✅ IMPORTANT: Provide ALL options for dropdowns so user can change
                   customerOptions: [...new Set(results.map((r) => r.customer))],
-                  pressOptions: uniquePressIds, // ✅ All available press options
+                  pressOptions: uniquePressIds,
                   gradeOptions: [...new Set(results.map((r) => r.rm_grade))],
                   plantOptions: [...new Set(results.map((r) => r.plant_code))],
-                  productionOrderOptions: uniqueProductionOrders, // ✅ All available production orders
+                  productionOrderOptions: uniqueProductionOrders,
                   dieResults: results,
-                  // 🔥 NEW: Flag to indicate this record has multiple options available
                   hasMultipleOptions: true,
                 }
               : record
@@ -751,6 +1271,7 @@ const WeeklyPlan = () => {
                 dieNo: [value],
                 dieNoError: true,
                 dieNoErrorMessage: "Error fetching die data",
+                showCreateLink: true, // ✅ NEW: Show create link on API error too
                 productionOrderOptions: [],
                 dieResults: [],
               }
@@ -759,6 +1280,261 @@ const WeeklyPlan = () => {
       }));
     }
   };
+
+  // ✅ NEW: Function to handle create production order link click
+  const handleCreateProductionOrderClick = (day, recordIndex) => {
+    setCurrentManualRecord({ day, recordIndex });
+    setShowManualEntryModal(true);
+  };
+  // 🔥 UPDATED handleDieNoChange function
+  //   const handleDieNoChange = async (day, recordIndex, value) => {
+  //     if (!value || value.trim() === "") {
+  //       // Reset fields
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: false,
+  //                 dieNoErrorMessage: "",
+  //                 showCreateLink: false,
+  //                 productionOrderNo: "",
+  //                 customer: "",
+  //                 grade: "",
+  //                 pressId: "",
+  //                 plantCode: "",
+  //                 section: "",
+  //                 netWt: "",
+  //                 customerOptions: [],
+  //                 pressOptions: [],
+  //                 gradeOptions: [],
+  //                 plantOptions: [],
+  //                 productionOrderOptions: [],
+  //                 dieResults: [],
+  //                 hasMultipleOptions: false, // ✅ Reset on error
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //       return;
+  //     }
+
+  //     try {
+  //       const results = await apiService.getKlnMasterDataByDie(value);
+
+  //       if (!results || results.length === 0) {
+  //         // No matching die number
+  //         setShowManualEntryModal(true); // ✅ Manual Entry Modal khulega
+  //         setCurrentManualRecord({ day, recordIndex }); // ✅ Track karega kaha insert karna hai
+  //         const confirmCreate = window.confirm(
+  //           `No Production Order is available for this Die No. (${value}).
+  // Do you want to create one?
+  // `
+  //         );
+
+  //         if (confirmCreate) {
+  //           setShowManualEntryModal(true); // ✅ Manual Entry Modal khulega
+  //           setCurrentManualRecord({ day, recordIndex });
+  //         }
+
+  //         setDayWiseData((prev) => ({
+  //           ...prev,
+  //           [day]: prev[day].map((record, idx) =>
+  //             idx === recordIndex
+  //               ? {
+  //                   ...record,
+  //                   dieNo: [value],
+  //                   dieNoError: true,
+  //                   dieNoErrorMessage: `No data found for Die No. ${value}`,
+  //                   productionOrderNo: "",
+  //                   customer: "",
+  //                   grade: "",
+  //                   pressId: "",
+  //                   plantCode: "",
+  //                   section: "",
+  //                   netWt: "",
+  //                   customerOptions: [],
+  //                   pressOptions: [],
+  //                   gradeOptions: [],
+  //                   plantOptions: [],
+  //                   productionOrderOptions: [],
+  //                   dieResults: [],
+  //                   hasMultipleOptions: false, // ✅ Reset flag
+  //                   hasMultipleOptions: false, // ✅ Reset flag
+  //                 }
+  //               : record
+  //           ),
+  //         }));
+  //         return;
+  //       }
+
+  //       // Get unique production orders and press IDs
+  //       const uniqueProductionOrders = [
+  //         ...new Set(results.map((r) => r.prod_order)),
+  //       ];
+  //       const uniquePressIds = [...new Set(results.map((r) => r.forge_press))];
+
+  //       // 🔥 NEW: Always get the first result for auto-filling
+  //       const firstResult = results[0];
+  //       const plantCodeValue =
+  //         firstResult.plant_code ||
+  //         firstResult.plantCode ||
+  //         firstResult.plant ||
+  //         firstResult.Plant_Code ||
+  //         "";
+
+  //       if (results.length === 1) {
+  //         // Single result - auto-fill all fields (existing logic)
+  //         setDayWiseData((prev) => ({
+  //           ...prev,
+  //           [day]: prev[day].map((record, idx) =>
+  //             idx === recordIndex
+  //               ? {
+  //                   ...record,
+  //                   dieNo: [value],
+  //                   dieNoError: false,
+  //                   dieNoErrorMessage: "",
+  //                   productionOrderNo: firstResult.prod_order || "",
+  //                   plantCode: plantCodeValue,
+  //                   pressId: firstResult.forge_press || "",
+  //                   customer: firstResult.customer || "",
+  //                   netWt: firstResult.net_wt || 0,
+  //                   section: firstResult.section || "",
+  //                   grade: firstResult.rm_grade || "N/A",
+  //                   dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                   rmStatus: firstResult.rm_status || "No",
+  //                   customerOptions: [],
+  //                   pressOptions: [],
+  //                   gradeOptions: [],
+  //                   plantOptions: [],
+  //                   productionOrderOptions: [],
+  //                   dieResults: results,
+  //                   hasMultipleOptions: false,
+  //                 }
+  //               : record
+  //           ),
+  //         }));
+  //       } else {
+  //         // 🔥 UPDATED: Multiple results - show dropdowns with first value auto-selected
+  //         setDayWiseData((prev) => ({
+  //           ...prev,
+  //           [day]: prev[day].map((record, idx) =>
+  //             idx === recordIndex
+  //               ? {
+  //                   ...record,
+  //                   dieNo: [value],
+  //                   dieNoError: false,
+  //                   dieNoErrorMessage: "",
+  //                   // 🔥 AUTO-SELECT FIRST VALUES (but keep dropdowns enabled)
+  //                   productionOrderNo: firstResult.prod_order || "", // ✅ Auto-select first production order
+  //                   pressId: firstResult.forge_press || "", // ✅ Auto-select first press ID
+  //                   plantCode: plantCodeValue,
+  //                   customer: firstResult.customer || "",
+  //                   netWt: firstResult.net_wt || 0,
+  //                   section: firstResult.section || "",
+  //                   grade: firstResult.rm_grade || "N/A",
+  //                   dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                   rmStatus: firstResult.rm_status || "No",
+  //                   // ✅ IMPORTANT: Provide ALL options for dropdowns so user can change
+  //                   customerOptions: [...new Set(results.map((r) => r.customer))],
+  //                   pressOptions: uniquePressIds, // ✅ All available press options
+  //                   gradeOptions: [...new Set(results.map((r) => r.rm_grade))],
+  //                   plantOptions: [...new Set(results.map((r) => r.plant_code))],
+  //                   productionOrderOptions: uniqueProductionOrders, // ✅ All available production orders
+  //                   dieResults: results,
+  //                   // 🔥 NEW: Flag to indicate this record has multiple options available
+  //                   hasMultipleOptions: true,
+  //                 }
+  //               : record
+  //           ),
+  //         }));
+  //       }
+  //     } catch (error) {
+  //       console.error("API error:", error);
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: true,
+  //                 dieNoErrorMessage: "Error fetching die data",
+  //                 productionOrderOptions: [],
+  //                 dieResults: [],
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //     }
+  //   };
+
+  const handleManualEntrySubmit = async () => {
+    try {
+      const payload = {
+        data: [
+          {
+            plant_code: manualEntryData.plant_code,
+            die_no: manualEntryData.die_no,
+            order_qty: Number(manualEntryData.order_qty), // ensure numeric
+          },
+        ],
+      };
+
+      await axios.post(
+        "https://ktflceprd.kalyanicorp.com/production_order",
+        payload
+      );
+
+      alert("Production order created successfully!");
+      setShowManualEntryModal(false);
+      setManualEntryData({ plant_code: "", die_no: "", order_qty: "" });
+    } catch (error) {
+      console.error("Error creating production order:", error);
+      alert("Failed to create production order.");
+    }
+  };
+
+  // const handleManualEntrySubmit = async () => {
+  //   try {
+  //     const payload = {
+  //       prod_order: manualEntryData.productionOrderNo,
+  //       plant_code: parseInt(manualEntryData.plantCode),
+  //       die_no:
+  //         dayWiseData[currentManualRecord.day][currentManualRecord.recordIndex]
+  //           .dieNo[0],
+  //       shift1_qty: parseInt(manualEntryData.qty.shift1 || 0),
+  //       shift2_qty: parseInt(manualEntryData.qty.shift2 || 0),
+  //       shift3_qty: parseInt(manualEntryData.qty.shift3 || 0),
+  //     };
+
+  //     const authOptions = await getAuthHeadersWithCSRF("POST");
+  //     const response = await fetch(
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       {
+  //         method: "POST",
+  //         ...authOptions,
+  //         body: JSON.stringify([payload]), // API bulk format ke liye array bhejna
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error(await response.text());
+  //     }
+
+  //     alert("✅ Manual entry saved successfully!");
+  //     setShowManualEntryModal(false);
+  //     setManualEntryData({
+  //       productionOrderNo: "",
+  //       plantCode: "",
+  //       qty: "",
+  //     });
+  //   } catch (error) {
+  //     alert("❌ Failed to save manual entry: " + error.message);
+  //   }
+  // };
 
   // 🔥 UPDATED handleProductionOrderChange function
   const handleProductionOrderChange = (day, recordIndex, selectedProdOrder) => {
@@ -910,84 +1686,176 @@ const WeeklyPlan = () => {
     try {
       const validatedPlans = [];
       const allProdOrders = new Set();
+      let hasValidData = false; // ✅ Track if at least one complete record exists
+      const incompleteRecords = []; // ✅ Track incomplete records for highlighting
+
+      // ✅ First pass: Reset all error highlights
+      setDayWiseData((prev) => {
+        const resetData = { ...prev };
+        Object.keys(resetData).forEach((day) => {
+          resetData[day] = resetData[day].map((record) => ({
+            ...record,
+            fieldErrors: {}, // Reset field errors
+          }));
+        });
+        return resetData;
+      });
 
       for (const [day, records] of Object.entries(dayWiseData)) {
-        for (const rec of records) {
+        for (let recordIndex = 0; recordIndex < records.length; recordIndex++) {
+          const rec = records[recordIndex];
           const qty = rec.qty || {};
 
-          const isAnyFieldEmpty =
-            !rec.productionOrderNo ||
-            !rec.pressId ||
-            !rec.dieRequired ||
-            !rec.rmStatus ||
-            !rec.dieNo?.[0] ||
-            !rec.customer ||
-            rec.section === "" ||
-            rec.grade === "" ||
-            rec.plantCode === "" ||
-            qty.shift1 === "" ||
-            qty.shift2 === "" ||
-            qty.shift3 === "";
+          // ✅ Check if this record has ANY data filled
+          const hasAnyData =
+            rec.productionOrderNo?.trim() ||
+            rec.pressId?.trim() ||
+            rec.dieNo?.[0]?.trim() ||
+            rec.customer?.trim() ||
+            rec.plantCode?.toString().trim() ||
+            qty.shift1?.toString().trim() ||
+            qty.shift2?.toString().trim() ||
+            qty.shift3?.toString().trim() ||
+            rec.heatCode?.trim() ||
+            rec.remark?.trim();
 
-          if (isAnyFieldEmpty) {
-            alert("⚠️ Please fill all fields before saving the plan.");
-            setLoading(false);
-            return;
+          // ✅ Skip completely empty records
+          if (!hasAnyData) {
+            continue;
           }
 
-          // 🚨 Check for duplicate Production Order No.
-          // if (allProdOrders.has(rec.productionOrderNo)) {
-          //   alert(
-          //     `⚠️ Duplicate Production Order "${rec.productionOrderNo}" found!`
-          //   );
-          //   setLoading(false);
-          //   return;
-          // }
-          // allProdOrders.add(rec.productionOrderNo);
+          // ✅ If record has some data, validate all required fields
+          const fieldErrors = {};
+          let isIncomplete = false;
 
-          // ✅ Convert record.date ("16/07/2025") → "16.07.2025 00:00:00"
-          const dateParts = rec.date.split("/");
-          const weekDateStr = `${dateParts[0]}.${dateParts[1]}.${dateParts[2]} 00:00:00`;
+          // Check required fields
+          if (!rec.productionOrderNo?.trim()) {
+            fieldErrors.productionOrderNo = true;
+            isIncomplete = true;
+          }
+          if (!rec.pressId?.trim()) {
+            fieldErrors.pressId = true;
+            isIncomplete = true;
+          }
+          if (!rec.dieNo?.[0]?.trim()) {
+            fieldErrors.dieNo = true;
+            isIncomplete = true;
+          }
+          if (!rec.customer?.trim()) {
+            fieldErrors.customer = true;
+            isIncomplete = true;
+          }
+          if (!rec.plantCode?.toString().trim()) {
+            fieldErrors.plantCode = true;
+            isIncomplete = true;
+          }
+          if (!qty.shift1?.toString().trim()) {
+            fieldErrors.shift1 = true;
+            isIncomplete = true;
+          }
+          if (!qty.shift2?.toString().trim()) {
+            fieldErrors.shift2 = true;
+            isIncomplete = true;
+          }
+          if (!qty.shift3?.toString().trim()) {
+            fieldErrors.shift3 = true;
+            isIncomplete = true;
+          }
+          if (rec.section?.toString().trim() === "") {
+            fieldErrors.section = true;
+            isIncomplete = true;
+          }
+          if (rec.grade?.toString().trim() === "") {
+            fieldErrors.grade = true;
+            isIncomplete = true;
+          }
+          if (!rec.dieRequired?.toString().trim()) {
+            fieldErrors.dieRequired = true;
+            isIncomplete = true;
+          }
+          if (!rec.rmStatus?.toString().trim()) {
+            fieldErrors.rmStatus = true;
+            isIncomplete = true;
+          }
 
-          validatedPlans.push({
-            week_prod_date: weekDateStr,
-            prod_order: rec.productionOrderNo,
-            forge_press: rec.pressId,
-            heat_code: rec.heatCode,
-            shift1_qty: parseInt(qty.shift1),
-            shift2_qty: parseInt(qty.shift2),
-            shift3_qty: parseInt(qty.shift3),
+          if (isIncomplete) {
+            incompleteRecords.push({
+              day,
+              recordIndex,
+              fieldErrors,
+            });
+          } else {
+            // ✅ Record is complete - add to validated plans
+            hasValidData = true;
 
-            rm_status: rec.rmStatus,
-            prod_tonn: parseFloat(rec.prodTonn) || 0,
-            remark: rec.remark,
-            die_no: rec.dieNo[0],
-            customer: rec.customer,
-            section: parseInt(rec.section),
-            rm_grade: rec.grade === "N/A" ? "" : rec.grade,
-            die_req:
-              rec.dieRequired === "N/A" || rec.dieRequired === "No" ? 0 : 1,
+            const dateParts = rec.date.split("/");
+            const weekDateStr = `${dateParts[0]}.${dateParts[1]}.${dateParts[2]} 00:00:00`;
 
-            plant_code: parseInt(rec.plantCode),
-          });
+            validatedPlans.push({
+              week_prod_date: weekDateStr,
+              prod_order: rec.productionOrderNo,
+              forge_press: rec.pressId,
+              heat_code: rec.heatCode || "None",
+              shift1_qty: parseInt(qty.shift1),
+              shift2_qty: parseInt(qty.shift2),
+              shift3_qty: parseInt(qty.shift3),
+              rm_status: rec.rmStatus,
+              prod_tonn: parseFloat(rec.prodTonn) || 0,
+              remark: rec.remark || "None",
+              die_no: rec.dieNo[0],
+              customer: rec.customer,
+              section: parseInt(rec.section),
+              rm_grade: rec.grade === "N/A" ? "" : rec.grade,
+              die_req:
+                rec.dieRequired === "N/A" || rec.dieRequired === "No" ? 0 : 1,
+              plant_code: parseInt(rec.plantCode),
+            });
+          }
         }
       }
 
-      const payload = validatedPlans;
+      // ✅ If there are incomplete records, highlight them and show error
+      if (incompleteRecords.length > 0) {
+        // Highlight incomplete fields
+        setDayWiseData((prev) => {
+          const updatedData = { ...prev };
+          incompleteRecords.forEach(({ day, recordIndex, fieldErrors }) => {
+            if (updatedData[day] && updatedData[day][recordIndex]) {
+              updatedData[day][recordIndex] = {
+                ...updatedData[day][recordIndex],
+                fieldErrors,
+              };
+            }
+          });
+          return updatedData;
+        });
 
+        alert("⚠️ Please fill all highlighted fields before saving the plan.");
+        setLoading(false);
+        return;
+      }
+
+      // ✅ Check if at least one complete record exists
+      if (!hasValidData) {
+        alert("⚠️ Please fill at least one complete record to save the plan.");
+        setLoading(false);
+        return;
+      }
+
+      const payload = validatedPlans;
       console.log("📦 Final Payload Being Sent:", payload);
 
-      // ✅ FIXED: Use getAuthHeadersWithCSRF properly
+      // ✅ API call remains the same
       const authOptions = await getAuthHeadersWithCSRF("POST");
-
       const response = await fetch(
-        "https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           method: "POST",
-          ...authOptions, // This includes headers with CSRF token and credentials
+          ...authOptions,
           body: JSON.stringify(payload),
         }
       );
+
       if (!response.ok) {
         const errMsg = await response.text();
         throw new Error(errMsg);
@@ -995,8 +1863,8 @@ const WeeklyPlan = () => {
 
       alert("✅ Plan submitted successfully!");
       setShowModal(false);
-      setDayWiseData({}); // Clear modal data
-      setModalWeekOffset(weekOffset); // Reset modal week offset
+      setDayWiseData({});
+      setModalWeekOffset(weekOffset);
     } catch (error) {
       console.error("❌ Save plan failed:", error);
       alert("❌ Error saving plan: " + error.message);
@@ -1004,6 +1872,109 @@ const WeeklyPlan = () => {
       setLoading(false);
     }
   };
+
+  // const handleSavePlan = async () => {
+  //   setLoading(true);
+
+  //   try {
+  //     const validatedPlans = [];
+  //     const allProdOrders = new Set();
+  //     let hasValidData = false; // ✅ Track if at least one complete record exists
+  //     const incompleteRecords = []; // ✅ Track incomplete records for highlighting
+
+  //     for (const [day, records] of Object.entries(dayWiseData)) {
+  //       for (const rec of records) {
+  //         const qty = rec.qty || {};
+
+  //         const isAnyFieldEmpty =
+  //           !rec.productionOrderNo ||
+  //           !rec.pressId ||
+  //           !rec.dieRequired ||
+  //           !rec.rmStatus ||
+  //           !rec.dieNo?.[0] ||
+  //           !rec.customer ||
+  //           rec.section === "" ||
+  //           rec.grade === "" ||
+  //           rec.plantCode === "" ||
+  //           qty.shift1 === "" ||
+  //           qty.shift2 === "" ||
+  //           qty.shift3 === "";
+
+  //         if (isAnyFieldEmpty) {
+  //           alert("⚠️ Please fill all fields before saving the plan.");
+  //           setLoading(false);
+  //           return;
+  //         }
+
+  //         // 🚨 Check for duplicate Production Order No.
+  //         // if (allProdOrders.has(rec.productionOrderNo)) {
+  //         //   alert(
+  //         //     `⚠️ Duplicate Production Order "${rec.productionOrderNo}" found!`
+  //         //   );
+  //         //   setLoading(false);
+  //         //   return;
+  //         // }
+  //         // allProdOrders.add(rec.productionOrderNo);
+
+  //         // ✅ Convert record.date ("16/07/2025") → "16.07.2025 00:00:00"
+  //         const dateParts = rec.date.split("/");
+  //         const weekDateStr = `${dateParts[0]}.${dateParts[1]}.${dateParts[2]} 00:00:00`;
+
+  //         validatedPlans.push({
+  //           week_prod_date: weekDateStr,
+  //           prod_order: rec.productionOrderNo,
+  //           forge_press: rec.pressId,
+  //           heat_code: rec.heatCode,
+  //           shift1_qty: parseInt(qty.shift1),
+  //           shift2_qty: parseInt(qty.shift2),
+  //           shift3_qty: parseInt(qty.shift3),
+
+  //           rm_status: rec.rmStatus,
+  //           prod_tonn: parseFloat(rec.prodTonn) || 0,
+  //           remark: rec.remark,
+  //           die_no: rec.dieNo[0],
+  //           customer: rec.customer,
+  //           section: parseInt(rec.section),
+  //           rm_grade: rec.grade === "N/A" ? "" : rec.grade,
+  //           die_req:
+  //             rec.dieRequired === "N/A" || rec.dieRequired === "No" ? 0 : 1,
+
+  //           plant_code: parseInt(rec.plantCode),
+  //         });
+  //       }
+  //     }
+
+  //     const payload = validatedPlans;
+
+  //     console.log("📦 Final Payload Being Sent:", payload);
+
+  //     // ✅ FIXED: Use getAuthHeadersWithCSRF properly
+  //     const authOptions = await getAuthHeadersWithCSRF("POST");
+
+  //     const response = await fetch(
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       {
+  //         method: "POST",
+  //         ...authOptions, // This includes headers with CSRF token and credentials
+  //         body: JSON.stringify(payload),
+  //       }
+  //     );
+  //     if (!response.ok) {
+  //       const errMsg = await response.text();
+  //       throw new Error(errMsg);
+  //     }
+
+  //     alert("✅ Plan submitted successfully!");
+  //     setShowModal(false);
+  //     setDayWiseData({}); // Clear modal data
+  //     setModalWeekOffset(weekOffset); // Reset modal week offset
+  //   } catch (error) {
+  //     console.error("❌ Save plan failed:", error);
+  //     alert("❌ Error saving plan: " + error.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const openModal = () => {
     setModalWeekOffset(weekOffset);
@@ -1080,36 +2051,115 @@ const WeeklyPlan = () => {
           <button onClick={openModal} style={styles.primaryButton}>
             <Plus size={16} /> Enter Plan
           </button>
+          {/* ✅ NEW: Send Email Button */}
+          <button
+            onClick={handleSendEmail}
+            style={styles.emailButton}
+            disabled={loading}
+          >
+            <Mail size={16} /> {loading ? "Sending..." : "Send Email"}
+          </button>
         </div>
       </div>
 
       {showModal && (
-        <div style={styles.modal}>
-          <div style={styles.modalContent}>
+        <div
+          style={{
+            ...styles.modal,
+            background: "rgba(0, 0, 0, 0.6)",
+            backdropFilter: "blur(8px)",
+            animation: "fadeIn 0.3s ease-out",
+          }}
+        >
+          <div
+            style={{
+              ...styles.modalContent,
+              background: "white",
+              borderRadius: "12px",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.2)",
+              border: "1px solid #e2e8f0",
+            }}
+          >
             {/* Modal Header */}
-            <div style={styles.modalHeader}>
-              <h3 style={styles.modalTitle}>Weekly Plan Entry</h3>
+            <div
+              style={{
+                ...styles.modalHeader,
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                color: "white",
+                borderRadius: "12px 12px 0 0",
+                padding: "12px 20px",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+                flexShrink: 0,
+                minHeight: "50px",
+              }}
+            >
+              <h3
+                style={{
+                  margin: 0,
+                  fontSize: "18px",
+                  fontWeight: "600",
+                  color: "white",
+                }}
+              >
+                Weekly Plan Entry
+              </h3>
               <button
                 onClick={closeModal}
                 style={{
-                  background: "none",
+                  background: "rgba(255, 255, 255, 0.2)",
                   border: "none",
                   cursor: "pointer",
-                  padding: "3px",
+                  padding: "6px",
+                  borderRadius: "6px",
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s ease",
+                  minWidth: "28px",
+                  minHeight: "28px",
                 }}
               >
-                <X size={window.innerWidth >= 768 ? 20 : 16} />
+                <X size={18} />
               </button>
             </div>
 
             {/* Week Navigation */}
-            <div style={styles.weekNav}>
+            <div
+              style={{
+                ...styles.weekNav,
+                padding: "8px 16px",
+                background: "#f8f9fa",
+                borderBottom: "1px solid #e2e8f0",
+                flexShrink: 0,
+                minHeight: "45px",
+              }}
+            >
               <button
                 onClick={() => handleModalWeekChange(modalWeekOffset - 1)}
+                disabled={modalWeekOffset <= 0} // ✅ Previous week disable करने के लिए
                 style={{
                   ...styles.button,
-                  background: "white",
+                  background:
+                    modalWeekOffset <= 0
+                      ? "linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%)" // Disabled background
+                      : "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)", // Normal background
                   fontSize: window.innerWidth >= 768 ? "14px" : "11px",
+                  border: "1px solid rgba(102, 126, 234, 0.2)",
+                  borderRadius: "10px",
+                  padding: "10px 16px",
+                  color: modalWeekOffset <= 0 ? "#a0aec0" : "#667eea", // Disabled color
+                  fontWeight: "500",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  transition: "all 0.2s ease",
+                  boxShadow:
+                    modalWeekOffset <= 0
+                      ? "none"
+                      : "0 2px 4px rgba(0, 0, 0, 0.05)",
+                  cursor: modalWeekOffset <= 0 ? "not-allowed" : "pointer", // Disabled cursor
+                  opacity: modalWeekOffset <= 0 ? 0.6 : 1, // Disabled opacity
                 }}
               >
                 <ChevronLeft size={window.innerWidth >= 768 ? 16 : 14} />
@@ -1121,35 +2171,56 @@ const WeeklyPlan = () => {
                   Previous
                 </span>
               </button>
-
               <div
                 style={{
                   fontSize: window.innerWidth >= 768 ? "16px" : "12px",
-                  fontWeight: "bold",
-                  color: "#333",
+                  fontWeight: "700",
+                  color: "#2d3748",
                   textAlign: "center",
                   flex: "1",
                   minWidth: "120px",
+                  padding: "0 16px",
                 }}
               >
-                <div>{getWeekTitle(modalWeekOffset)}</div>
+                <div
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {getWeekTitle(modalWeekOffset)}
+                </div>
                 <div
                   style={{
                     fontSize: window.innerWidth >= 768 ? "14px" : "10px",
-                    color: "#666",
-                    marginTop: "2px",
+                    color: "#718096",
+                    marginTop: "4px",
+                    fontWeight: "500",
                   }}
                 >
                   {getWeekStatus(modalWeekOffset)}
                 </div>
               </div>
-
               <button
                 onClick={() => handleModalWeekChange(modalWeekOffset + 1)}
                 style={{
                   ...styles.button,
-                  background: "white",
+                  background:
+                    "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)",
                   fontSize: window.innerWidth >= 768 ? "14px" : "11px",
+                  border: "1px solid rgba(102, 126, 234, 0.2)",
+                  borderRadius: "10px",
+                  padding: "10px 16px",
+                  color: "#667eea",
+                  fontWeight: "500",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  transition: "all 0.2s ease",
+                  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
                 }}
               >
                 <span
@@ -1164,446 +2235,672 @@ const WeeklyPlan = () => {
             </div>
 
             {/* Table Wrapper */}
-            <div style={styles.modalTableWrapper}>
-              <table style={styles.modalTable}>
-                <thead>
+            <div
+              style={{
+                ...styles.modalTableWrapper,
+                background: "white",
+                borderRadius: "0",
+                overflowY: "auto",
+                overflowX: "auto",
+                flex: 1,
+                maxHeight: "calc(80vh - 160px)",
+              }}
+            >
+              <table
+                style={{
+                  ...styles.modalTable,
+                  borderCollapse: "separate",
+                  borderSpacing: 0,
+                }}
+              >
+                <thead
+                  style={{
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 10,
+                  }}
+                >
                   <tr>
                     <th
-                      style={{ ...styles.modalTableHeader, ...styles.dayCell }}
+                      style={{
+                        ...styles.modalTableHeader,
+                        ...styles.dayCell,
+                        background:
+                          "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)",
+                        color: "white",
+                        textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                        borderRight: "1px solid rgba(255, 255, 255, 0.1)",
+                      }}
                     >
                       Day & Date
                     </th>
-                    {Object.keys(FIELD_LABELS).map((field) => (
-                      <th key={field} style={styles.modalTableHeader}>
+                    {Object.keys(FIELD_LABELS).map((field, index) => (
+                      <th
+                        key={field}
+                        style={{
+                          ...styles.modalTableHeader,
+                          background:
+                            "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)",
+                          color: "white",
+                          textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                          borderRight:
+                            index < Object.keys(FIELD_LABELS).length - 1
+                              ? "1px solid rgba(255, 255, 255, 0.1)"
+                              : "none",
+                        }}
+                      >
                         {window.innerWidth >= 768
                           ? FIELD_LABELS[field]
-                          : FIELD_LABELS[field].length > 12
-                          ? FIELD_LABELS[field].substring(0, 12) + "..."
+                          : FIELD_LABELS[field].length > 10
+                          ? FIELD_LABELS[field].substring(0, 10) + "..."
                           : FIELD_LABELS[field]}
                       </th>
                     ))}
-                    <th style={styles.modalTableHeader}>Actions</th>
+                    <th
+                      style={{
+                        ...styles.modalTableHeader,
+                        background:
+                          "linear-gradient(135deg, #4a5568 0%, #2d3748 100%)",
+                        color: "white",
+                        textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {getWeekDates(modalWeekOffset).map(({ dayName, date }) =>
-                    dayWiseData[dayName]?.map((record, recordIndex) => (
-                      <tr key={`${dayName}-${recordIndex}`}>
-                        <td
+                  {getWeekDates(modalWeekOffset).map(
+                    ({ dayName, date }, dayIndex) =>
+                      dayWiseData[dayName]?.map((record, recordIndex) => (
+                        <tr
+                          key={`${dayName}-${recordIndex}`}
                           style={{
-                            ...styles.modalTableCell,
-                            ...styles.dayCell,
+                            background:
+                              dayIndex % 2 === 0 ? "#ffffff" : "#f8f9fa",
+                            transition: "all 0.2s ease",
+                            "&:hover": {
+                              background: "#e3f2fd",
+                              transform: "translateY(-1px)",
+                            },
                           }}
                         >
-                          <div style={{ fontWeight: "600" }}>{dayName}</div>
-                          <div
+                          <td
                             style={{
-                              fontSize:
-                                window.innerWidth >= 768 ? "10px" : "8px",
-                              color: "#666",
+                              ...styles.modalTableCell,
+                              ...styles.dayCell,
+                              background:
+                                dayIndex % 2 === 0
+                                  ? "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)"
+                                  : "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                              borderRight: "2px solid #e9ecef",
+                              fontWeight: "600",
                             }}
                           >
-                            {window.innerWidth >= 480
-                              ? date
-                              : date.split("/").slice(0, 2).join("/")}
-                          </div>
-                          {recordIndex > 0 && (
+                            <div
+                              style={{
+                                fontWeight: "700",
+                                color: "#2d3748",
+                                fontSize:
+                                  window.innerWidth >= 768 ? "14px" : "12px",
+                              }}
+                            >
+                              {dayName}
+                            </div>
                             <div
                               style={{
                                 fontSize:
-                                  window.innerWidth >= 768 ? "9px" : "7px",
-                                color: "#999",
+                                  window.innerWidth >= 768 ? "11px" : "9px",
+                                color: "#718096",
+                                marginTop: "2px",
                               }}
                             >
-                              #{recordIndex + 1}
+                              {window.innerWidth >= 480
+                                ? date
+                                : date.split("/").slice(0, 2).join("/")}
                             </div>
-                          )}
-                        </td>
+                            {recordIndex > 0 && (
+                              <div
+                                style={{
+                                  fontSize:
+                                    window.innerWidth >= 768 ? "9px" : "7px",
+                                  color: "#a0aec0",
+                                  background: "#667eea",
+                                  color: "white",
+                                  padding: "2px 6px",
+                                  borderRadius: "10px",
+                                  display: "inline-block",
+                                  marginTop: "4px",
+                                }}
+                              >
+                                #{recordIndex + 1}
+                              </div>
+                            )}
+                          </td>
 
-                        {/* All data fields */}
-                        {Object.keys(FIELD_LABELS).map((field) => (
-                          <td
-                            key={`${dayName}-${recordIndex}-${field}`}
-                            style={styles.modalTableCell}
-                          >
-                            {field === "dieNo" ? (
-                              <div>
+                          {/* All data fields */}
+                          {Object.keys(FIELD_LABELS).map((field) => (
+                            <td
+                              key={`${dayName}-${recordIndex}-${field}`}
+                              style={{
+                                ...styles.modalTableCell,
+                                borderRight: "1px solid #e2e8f0",
+                              }}
+                            >
+                              {field === "dieNo" ? (
+                                <div>
+                                  <input
+                                    type="text"
+                                    value={record.dieNo?.[0] || ""}
+                                    onChange={(e) =>
+                                      handleDieNoChange(
+                                        dayName,
+                                        recordIndex,
+                                        e.target.value
+                                      )
+                                    }
+                                    style={getConsistentInputStyle()}
+                                    placeholder={
+                                      window.innerWidth >= 768
+                                        ? "Die No"
+                                        : "Die"
+                                    }
+                                  />
+                                  {record.dieNoError && (
+                                    <div
+                                      style={{
+                                        color: "#f56565",
+                                        fontSize:
+                                          window.innerWidth >= 768
+                                            ? "10px"
+                                            : "8px",
+                                        marginTop: "4px",
+                                        fontWeight: "500",
+                                      }}
+                                    >
+                                      {window.innerWidth >= 768
+                                        ? record.dieNoErrorMessage
+                                        : "Error"}
+                                    </div>
+                                  )}
+                                  {/* ✅ NEW: Show create production order hyperlink */}
+                                  {record.showCreateLink && (
+                                    <div style={{ marginTop: "6px" }}>
+                                      <button
+                                        onClick={() =>
+                                          handleCreateProductionOrderClick(
+                                            dayName,
+                                            recordIndex
+                                          )
+                                        }
+                                        style={{
+                                          background: "none",
+                                          border: "none",
+                                          color: "#3182ce",
+                                          fontSize:
+                                            window.innerWidth >= 768
+                                              ? "11px"
+                                              : "9px",
+                                          textDecoration: "underline",
+                                          cursor: "pointer",
+                                          padding: "0",
+                                          fontWeight: "500",
+                                          transition: "color 0.2s ease",
+                                        }}
+                                        onMouseOver={(e) => {
+                                          e.target.style.color = "#2c5aa0";
+                                        }}
+                                        onMouseOut={(e) => {
+                                          e.target.style.color = "#3182ce";
+                                        }}
+                                      >
+                                        ➕ Create New Production Order
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              ) : field === "qty" ? (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "3px",
+                                    flexDirection: "row",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: "100%",
+                                  }}
+                                >
+                                  <input
+                                    type="number"
+                                    placeholder="S1"
+                                    value={record.qty?.shift1 || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "qty",
+                                        {
+                                          ...record.qty,
+                                          shift1: e.target.value,
+                                        }
+                                      )
+                                    }
+                                    style={{
+                                      ...getConsistentInputStyle(),
+                                      width: "55px",
+                                      textAlign: "center",
+                                    }}
+                                  />
+                                  <input
+                                    type="number"
+                                    placeholder="S2"
+                                    value={record.qty?.shift2 || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "qty",
+                                        {
+                                          ...record.qty,
+                                          shift2: e.target.value,
+                                        }
+                                      )
+                                    }
+                                    style={{
+                                      ...getConsistentInputStyle(),
+                                      width: "55px",
+                                      textAlign: "center",
+                                    }}
+                                  />
+                                  <input
+                                    type="number"
+                                    placeholder="S3"
+                                    value={record.qty?.shift3 || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "qty",
+                                        {
+                                          ...record.qty,
+                                          shift3: e.target.value,
+                                        }
+                                      )
+                                    }
+                                    style={{
+                                      ...getConsistentInputStyle(),
+                                      width: "55px",
+                                      textAlign: "center",
+                                    }}
+                                  />
+                                </div>
+                              ) : field === "plantCode" ? (
+                                record.plantOptions &&
+                                record.plantOptions.length > 1 ? (
+                                  <select
+                                    value={record.plantCode || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "plantCode",
+                                        e.target.value
+                                      )
+                                    }
+                                    style={getConsistentSelectStyle()}
+                                  >
+                                    <option value="">Select Plant Code</option>
+                                    {record.plantOptions.map((plant, idx) => (
+                                      <option key={idx} value={plant}>
+                                        {plant}
+                                      </option>
+                                    ))}
+                                  </select>
+                                ) : (
+                                  <input
+                                    type="text"
+                                    value={record.plantCode || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "plantCode",
+                                        e.target.value
+                                      )
+                                    }
+                                    style={getConsistentInputStyle()}
+                                    placeholder="Plant Code"
+                                  />
+                                )
+                              ) : field === "productionOrderNo" ? (
+                                record.productionOrderOptions &&
+                                record.productionOrderOptions.length > 1 ? (
+                                  <select
+                                    value={record.productionOrderNo || ""}
+                                    onChange={(e) =>
+                                      handleProductionOrderChange(
+                                        dayName,
+                                        recordIndex,
+                                        e.target.value
+                                      )
+                                    }
+                                    style={getConsistentSelectStyle()}
+                                  >
+                                    <option value="">
+                                      Select Production Order
+                                    </option>
+                                    {record.productionOrderOptions.map(
+                                      (prodOrder, idx) => (
+                                        <option key={idx} value={prodOrder}>
+                                          {prodOrder}
+                                        </option>
+                                      )
+                                    )}
+                                  </select>
+                                ) : (
+                                  <input
+                                    type="text"
+                                    value={record.productionOrderNo || ""}
+                                    onChange={(e) =>
+                                      handleDayWiseChange(
+                                        dayName,
+                                        recordIndex,
+                                        "productionOrderNo",
+                                        e.target.value
+                                      )
+                                    }
+                                    style={getConsistentInputStyle()}
+                                    placeholder="Production Order No."
+                                  />
+                                )
+                              ) : field === "section" || field === "grade" ? (
                                 <input
                                   type="text"
-                                  value={record.dieNo?.[0] || ""}
+                                  value={record[field] || ""}
+                                  readOnly
+                                  style={{
+                                    ...getConsistentInputStyle(),
+                                    backgroundColor: "#f7fafc",
+                                    color: "#718096",
+                                  }}
+                                  placeholder={
+                                    field === "section" ? "Section" : "Grade"
+                                  }
+                                />
+                              ) : field === "pressId" ? (
+                                <select
+                                  value={record.pressId || ""}
                                   onChange={(e) =>
-                                    handleDieNoChange(
+                                    handleDayWiseChange(
                                       dayName,
                                       recordIndex,
+                                      "pressId",
+                                      e.target.value
+                                    )
+                                  }
+                                  style={getConsistentSelectStyle()}
+                                >
+                                  <option value="">Select Press</option>
+                                  {record.pressOptions?.map((press, idx) => (
+                                    <option
+                                      key={`dynamic-${idx}`}
+                                      value={press}
+                                    >
+                                      {press}
+                                    </option>
+                                  ))}
+                                  {masterData.presses
+                                    ?.filter(
+                                      (press) =>
+                                        !record.pressOptions?.includes(press.id)
+                                    )
+                                    ?.map((press) => (
+                                      <option key={press.id} value={press.id}>
+                                        {press.name}
+                                      </option>
+                                    ))}
+                                </select>
+                              ) : field === "customer_name" ? (
+                                <select
+                                  value={record.customer_name || ""}
+                                  onChange={(e) =>
+                                    handleDayWiseChange(
+                                      dayName,
+                                      recordIndex,
+                                      "customer_name",
                                       e.target.value
                                     )
                                   }
                                   style={{
-                                    ...styles.compactInput,
-                                    borderColor: record.dieNoError
-                                      ? "#dc3545"
-                                      : "#ccc",
-                                    backgroundColor: record.dieNoError
-                                      ? "#fff5f5"
-                                      : "white",
+                                    ...styles.compactSelect,
+                                    borderRadius: "8px",
+                                    border: "2px solid #cbd5e0",
+                                    padding: "8px 12px",
+                                    fontSize: "13px",
+                                    background: "white",
+                                    transition: "all 0.2s ease",
+                                  }}
+                                >
+                                  <option value="" disabled>
+                                    {window.innerWidth >= 768
+                                      ? "Select Customer"
+                                      : "Customer"}
+                                  </option>
+                                  {(
+                                    record.customer_nameOptions ||
+                                    masterData.customer_names.map((c) => c.name)
+                                  ).map((cust, idx) => (
+                                    <option key={idx} value={cust}>
+                                      {window.innerWidth >= 768
+                                        ? cust
+                                        : cust.length > 15
+                                        ? cust.substring(0, 15) + "..."
+                                        : cust}
+                                    </option>
+                                  ))}
+                                </select>
+                              ) : field === "dieRequired" ? (
+                                <div>
+                                  <button
+                                    onClick={() =>
+                                      handleDieRequiredClick(record)
+                                    }
+                                    style={{
+                                      ...getConsistentInputStyle(),
+                                      background:
+                                        record.dieRequired === "Yes"
+                                          ? "linear-gradient(135deg, #48bb78 0%, #38a169 100%)"
+                                          : "linear-gradient(135deg, #e53e3e 0%, #c53030 100%)",
+                                      color: "white",
+                                      border: "none",
+                                      cursor: "pointer",
+                                      display: "flex",
+                                      alignItems: "center",
+                                      justifyContent: "center",
+                                      gap: "4px",
+                                      fontWeight: "600",
+                                      transition: "all 0.2s ease",
+                                    }}
+                                    disabled={
+                                      !record.plantCode || !record.dieNo?.[0]
+                                    }
+                                  >
+                                    {record.dieRequired || "Check"}
+                                    {record.plantCode && record.dieNo?.[0] && (
+                                      <span style={{ fontSize: "10px" }}>
+                                        📊
+                                      </span>
+                                    )}
+                                  </button>
+                                </div>
+                              ) : field === "rmStatus" ? (
+                                <input
+                                  type="text"
+                                  value={record[field] ?? ""}
+                                  readOnly
+                                  style={{
+                                    ...getConsistentInputStyle(),
+                                    backgroundColor: "#f7fafc",
+                                    color: "#718096",
                                   }}
                                   placeholder={
-                                    window.innerWidth >= 768 ? "Die No" : "Die"
+                                    window.innerWidth >= 768
+                                      ? "RM Status"
+                                      : "RM"
                                   }
                                 />
-                                {record.dieNoError && (
-                                  <div
-                                    style={{
-                                      color: "#dc3545",
-                                      fontSize:
-                                        window.innerWidth >= 768
-                                          ? "9px"
-                                          : "7px",
-                                      marginTop: "1px",
-                                    }}
-                                  >
-                                    {window.innerWidth >= 768
-                                      ? record.dieNoErrorMessage
-                                      : "Error"}
-                                  </div>
-                                )}
-                              </div>
-                            ) : field === "qty" ? (
-                              <div style={styles.shiftInputs}>
+                              ) : field === "prodTonn" ? (
                                 <input
                                   type="number"
-                                  placeholder="S1"
-                                  value={record.qty?.shift1 || ""}
-                                  onChange={(e) =>
-                                    handleDayWiseChange(
-                                      dayName,
-                                      recordIndex,
-                                      "qty",
-                                      {
-                                        ...record.qty,
-                                        shift1: e.target.value,
-                                      }
-                                    )
+                                  value={record.prodTonn || ""}
+                                  readOnly
+                                  style={{
+                                    ...getConsistentInputStyle(),
+                                    backgroundColor: "#f7fafc",
+                                    color: "#718096",
+                                  }}
+                                  placeholder={
+                                    window.innerWidth >= 768
+                                      ? "Production Tonnage"
+                                      : "Prod"
                                   }
-                                  style={styles.shiftInput}
                                 />
-                                <input
-                                  type="number"
-                                  placeholder="S2"
-                                  value={record.qty?.shift2 || ""}
-                                  onChange={(e) =>
-                                    handleDayWiseChange(
-                                      dayName,
-                                      recordIndex,
-                                      "qty",
-                                      {
-                                        ...record.qty,
-                                        shift2: e.target.value,
-                                      }
-                                    )
-                                  }
-                                  style={styles.shiftInput}
-                                />
-                                <input
-                                  type="number"
-                                  placeholder="S3"
-                                  value={record.qty?.shift3 || ""}
-                                  onChange={(e) =>
-                                    handleDayWiseChange(
-                                      dayName,
-                                      recordIndex,
-                                      "qty",
-                                      {
-                                        ...record.qty,
-                                        shift3: e.target.value,
-                                      }
-                                    )
-                                  }
-                                  style={styles.shiftInput}
-                                />
-                              </div>
-                            ) : field === "plantCode" ? (
-                              record.plantOptions &&
-                              record.plantOptions.length > 1 ? (
-                                <select
-                                  value={record.plantCode || ""}
-                                  onChange={(e) =>
-                                    handleDayWiseChange(
-                                      dayName,
-                                      recordIndex,
-                                      "plantCode",
-                                      e.target.value
-                                    )
-                                  }
-                                  style={styles.compactSelect}
-                                >
-                                  <option value="">Select Plant Code</option>
-                                  {record.plantOptions.map((plant, idx) => (
-                                    <option key={idx} value={plant}>
-                                      {plant}
-                                    </option>
-                                  ))}
-                                </select>
                               ) : (
                                 <input
-                                  type="text"
-                                  value={record.plantCode || ""}
+                                  type={
+                                    ["qty", "netWt"].includes(field)
+                                      ? "number"
+                                      : "text"
+                                  }
+                                  value={record[field] || ""}
                                   onChange={(e) =>
                                     handleDayWiseChange(
                                       dayName,
                                       recordIndex,
-                                      "plantCode",
+                                      field,
                                       e.target.value
                                     )
                                   }
-                                  style={styles.compactInput}
-                                  placeholder="Plant Code"
-                                />
-                              )
-                            ) : field === "productionOrderNo" ? (
-                              record.productionOrderOptions &&
-                              record.productionOrderOptions.length > 1 ? (
-                                <select
-                                  value={record.productionOrderNo || ""}
-                                  onChange={(e) =>
-                                    handleProductionOrderChange(
-                                      dayName,
-                                      recordIndex,
-                                      e.target.value
-                                    )
-                                  }
-                                  style={styles.compactSelect}
-                                >
-                                  <option value="">
-                                    Select Production Order
-                                  </option>
-                                  {record.productionOrderOptions.map(
-                                    (prodOrder, idx) => (
-                                      <option key={idx} value={prodOrder}>
-                                        {prodOrder}
-                                      </option>
-                                    )
-                                  )}
-                                </select>
-                              ) : (
-                                <input
-                                  type="text"
-                                  value={record.productionOrderNo || ""}
-                                  onChange={(e) =>
-                                    handleDayWiseChange(
-                                      dayName,
-                                      recordIndex,
-                                      "productionOrderNo",
-                                      e.target.value
-                                    )
-                                  }
-                                  style={styles.compactInput}
-                                  placeholder="Production Order No."
-                                />
-                              )
-                            ) : field === "section" || field === "grade" ? (
-                              <input
-                                type="text"
-                                value={record[field] || ""}
-                                readOnly
-                                style={{
-                                  ...styles.compactInput,
-                                  backgroundColor: "#f8f9fa",
-                                  color: "#6c757d",
-                                }}
-                                placeholder={
-                                  field === "section" ? "Section" : "Grade"
-                                }
-                              />
-                            ) : // Modal table mein ye part find karein (around line 800+):
-                            field === "pressId" ? (
-                              <select
-                                value={record.pressId || ""}
-                                onChange={(e) =>
-                                  handleDayWiseChange(
-                                    dayName,
-                                    recordIndex,
-                                    "pressId",
-                                    e.target.value
-                                  )
-                                }
-                                style={styles.compactSelect}
-                              >
-                                <option value="">Select Press</option>
-
-                                {/* ✅ Pehle dynamic options add karein (API se aaye hue) */}
-                                {record.pressOptions?.map((press, idx) => (
-                                  <option key={`dynamic-${idx}`} value={press}>
-                                    {press}
-                                  </option>
-                                ))}
-
-                                {/* ✅ Phir master data options add karein (duplicates avoid karein) */}
-                                {masterData.presses
-                                  ?.filter(
-                                    (press) =>
-                                      !record.pressOptions?.includes(press.id)
-                                  )
-                                  ?.map((press) => (
-                                    <option key={press.id} value={press.id}>
-                                      {press.name}
-                                    </option>
-                                  ))}
-                              </select>
-                            ) : field === "customer_name" ? (
-                              <select
-                                value={record.customer_name || ""}
-                                onChange={(e) =>
-                                  handleDayWiseChange(
-                                    dayName,
-                                    recordIndex,
-                                    "customer_name",
-                                    e.target.value
-                                  )
-                                }
-                                style={styles.compactSelect}
-                              >
-                                <option value="" disabled>
-                                  {window.innerWidth >= 768
-                                    ? "Select Customer"
-                                    : "Customer"}
-                                </option>
-                                {(
-                                  record.customer_nameOptions ||
-                                  masterData.customer_names.map((c) => c.name)
-                                ).map((cust, idx) => (
-                                  <option key={idx} value={cust}>
-                                    {window.innerWidth >= 768
-                                      ? cust
-                                      : cust.length > 15
-                                      ? cust.substring(0, 15) + "..."
-                                      : cust}
-                                  </option>
-                                ))}
-                              </select>
-                            ) : field === "dieRequired" ||
-                              field === "rmStatus" ? (
-                              <input
-                                type="text"
-                                value={record[field] ?? ""}
-                                readOnly
-                                style={{
-                                  ...styles.compactInput,
-                                  backgroundColor: "#f8f9fa",
-                                  color: "#6c757d",
-                                }}
-                                placeholder={
-                                  field === "dieRequired"
-                                    ? window.innerWidth >= 768
-                                      ? "Die Req"
-                                      : "Die"
-                                    : window.innerWidth >= 768
-                                    ? "RM Status"
-                                    : "RM"
-                                }
-                              />
-                            ) : field === "prodTonn" ? (
-                              <input
-                                type="number"
-                                value={record.prodTonn || ""}
-                                readOnly
-                                style={{
-                                  ...styles.compactInput,
-                                  backgroundColor: "#f8f9fa",
-                                  color: "#6c757d",
-                                }}
-                                placeholder={
-                                  window.innerWidth >= 768
-                                    ? "Production Tonnage"
-                                    : "Prod"
-                                }
-                              />
-                            ) : (
-                              <input
-                                type={
-                                  ["qty", "netWt"].includes(field)
-                                    ? "number"
-                                    : "text"
-                                }
-                                value={record[field] || ""}
-                                onChange={(e) =>
-                                  handleDayWiseChange(
-                                    dayName,
-                                    recordIndex,
-                                    field,
-                                    e.target.value
-                                  )
-                                }
-                                style={styles.compactInput}
-                                placeholder={
-                                  window.innerWidth >= 768
-                                    ? field === "productionOrderNo"
-                                      ? "Production Order No."
+                                  style={getConsistentInputStyle()}
+                                  placeholder={
+                                    window.innerWidth >= 768
+                                      ? field === "productionOrderNo"
+                                        ? "Production Order No."
+                                        : field === "netWt"
+                                        ? "Net Weight"
+                                        : field === "heatCode"
+                                        ? "Heat Code"
+                                        : field === "remark"
+                                        ? "Remark"
+                                        : FIELD_LABELS[field]
+                                      : field === "productionOrderNo"
+                                      ? "Prod Order"
                                       : field === "netWt"
-                                      ? "Net Weight"
+                                      ? "Weight"
                                       : field === "heatCode"
-                                      ? "Heat Code"
+                                      ? "Heat"
                                       : field === "remark"
                                       ? "Remark"
-                                      : FIELD_LABELS[field]
-                                    : field === "productionOrderNo"
-                                    ? "Prod Order"
-                                    : field === "netWt"
-                                    ? "Weight"
-                                    : field === "heatCode"
-                                    ? "Heat"
-                                    : field === "remark"
-                                    ? "Remark"
-                                    : FIELD_LABELS[field].substring(0, 8)
-                                }
-                              />
-                            )}
-                          </td>
-                        ))}
-
-                        {/* Action buttons */}
-                        <td style={styles.modalTableCell}>
-                          <div style={styles.actionButtons}>
-                            {recordIndex ===
-                              dayWiseData[dayName].length - 1 && (
-                              <button
-                                onClick={() => addNewRowForDay(dayName)}
-                                style={{
-                                  ...styles.smallButton,
-                                  background: "#28a745",
-                                  color: "white",
-                                }}
-                              >
-                                {window.innerWidth >= 768 ? "+ Add" : "+"}
-                              </button>
-                            )}
-                            {dayWiseData[dayName].length > 1 && (
-                              <button
-                                onClick={() =>
-                                  removeRowFromDay(dayName, recordIndex)
-                                }
-                                style={{
-                                  ...styles.smallButton,
-                                  background: "#dc3545",
-                                  color: "white",
-                                }}
-                              >
-                                <Trash2
-                                  size={window.innerWidth >= 768 ? 10 : 8}
+                                      : FIELD_LABELS[field].substring(0, 8)
+                                  }
                                 />
-                              </button>
-                            )}
-                          </div>
-                        </td>
-                      </tr>
-                    ))
+                              )}
+                            </td>
+                          ))}
+
+                          {/* Action buttons */}
+                          <td
+                            style={{
+                              ...styles.modalTableCell,
+                              textAlign: "center",
+                            }}
+                          >
+                            <div
+                              style={{
+                                ...styles.actionButtons,
+                                display: "flex",
+                                gap: "6px",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              {recordIndex ===
+                                dayWiseData[dayName].length - 1 && (
+                                <button
+                                  onClick={() => addNewRowForDay(dayName)}
+                                  style={{
+                                    ...styles.smallButton,
+                                    background:
+                                      "linear-gradient(135deg, #48bb78 0%, #38a169 100%)",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "8px 12px",
+                                    fontSize: "12px",
+                                    fontWeight: "600",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "4px",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease",
+                                    boxShadow:
+                                      "0 2px 4px rgba(72, 187, 120, 0.3)",
+                                  }}
+                                >
+                                  {window.innerWidth >= 768 ? "+ Add" : "+"}
+                                </button>
+                              )}
+                              {dayWiseData[dayName].length > 1 && (
+                                <button
+                                  onClick={() =>
+                                    removeRowFromDay(dayName, recordIndex)
+                                  }
+                                  style={{
+                                    ...styles.smallButton,
+                                    background:
+                                      "linear-gradient(135deg, #f56565 0%, #e53e3e 100%)",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "8px",
+                                    padding: "8px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease",
+                                    boxShadow:
+                                      "0 2px 4px rgba(245, 101, 101, 0.3)",
+                                  }}
+                                >
+                                  <Trash2
+                                    size={window.innerWidth >= 768 ? 12 : 10}
+                                  />
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      ))
                   )}
                 </tbody>
               </table>
             </div>
 
             {/* Modal Footer */}
-            <div style={styles.modalFooter}>
+            <div
+              style={{
+                ...styles.modalFooter,
+                padding: "10px 20px",
+                background: "#f8f9fa",
+                borderTop: "1px solid #e2e8f0",
+                borderRadius: "0 0 12px 12px",
+                display: "flex",
+                gap: "12px",
+                justifyContent: "flex-end",
+                flexShrink: 0,
+                minHeight: "50px",
+              }}
+            >
               <button
                 onClick={closeModal}
                 style={{
@@ -1611,6 +2908,14 @@ const WeeklyPlan = () => {
                   backgroundColor: "#6c757d",
                   color: "white",
                   borderColor: "#6c757d",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "12px 24px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: "0 2px 4px rgba(108, 117, 125, 0.3)",
                 }}
               >
                 Cancel
@@ -1620,9 +2925,20 @@ const WeeklyPlan = () => {
                 disabled={loading}
                 style={{
                   ...styles.modalFooterButton,
-                  backgroundColor: loading ? "#6c757d" : "#28a745",
-                  borderColor: loading ? "#6c757d" : "#28a745",
+                  backgroundColor: loading ? "#a0aec0" : "#48bb78",
+                  borderColor: loading ? "#a0aec0" : "#48bb78",
                   color: "white",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "12px 24px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  transition: "all 0.2s ease",
+                  boxShadow: loading
+                    ? "none"
+                    : "0 2px 4px rgba(72, 187, 120, 0.3)",
+                  opacity: loading ? 0.7 : 1,
                 }}
               >
                 {loading
@@ -1635,6 +2951,476 @@ const WeeklyPlan = () => {
           </div>
         </div>
       )}
+
+      {showDieActualModal && (
+        <div style={styles.modal}>
+          <div
+            style={{
+              ...styles.modalContent,
+              maxWidth: "800px",
+              maxHeight: "600px",
+            }}
+          >
+            {/* Modal Header */}
+            <div
+              style={{
+                ...styles.modalHeader,
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                color: "white",
+                borderRadius: "12px 12px 0 0",
+                padding: "12px 20px",
+              }}
+            >
+              <h3 style={{ margin: 0, fontSize: "18px", fontWeight: "600" }}>
+                Die Actual Status - Plant: {selectedDieInfo.plantCode} | Die:{" "}
+                {selectedDieInfo.dieNo}
+              </h3>
+              <button
+                onClick={() => setShowDieActualModal(false)}
+                style={{
+                  background: "rgba(255, 255, 255, 0.2)",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "6px",
+                  borderRadius: "6px",
+                  color: "white",
+                }}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div style={{ padding: "20px", flex: 1, overflow: "auto" }}>
+              {loadingDieActual ? (
+                <div style={{ textAlign: "center", padding: "40px" }}>
+                  <div style={{ fontSize: "16px", color: "#666" }}>
+                    Loading die actual data...
+                  </div>
+                </div>
+              ) : dieActualData.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "40px" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      color: "#e53e3e",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    No die actual data found
+                  </div>
+                  <div style={{ fontSize: "14px", color: "#666" }}>
+                    Plant Code: {selectedDieInfo.plantCode} | Die Number:{" "}
+                    {selectedDieInfo.dieNo}
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div
+                    style={{
+                      marginBottom: "15px",
+                      fontSize: "14px",
+                      color: "#2d3748",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Found {dieActualData.length} record(s):
+                  </div>
+
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                      fontSize: "13px",
+                      border: "1px solid #e2e8f0",
+                      borderRadius: "8px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <thead>
+                      <tr
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)",
+                        }}
+                      >
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "left",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Plant
+                        </th>
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "left",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Die Number
+                        </th>
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "left",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Element
+                        </th>
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "center",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Required Set
+                        </th>
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "center",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Actual Set
+                        </th>
+                        <th
+                          style={{
+                            padding: "12px 8px",
+                            textAlign: "center",
+                            fontWeight: "600",
+                            color: "#2d3748",
+                            border: "1px solid #e2e8f0",
+                          }}
+                        >
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {dieActualData.map((item, index) => (
+                        <tr
+                          key={index}
+                          style={{
+                            background: index % 2 === 0 ? "#ffffff" : "#f8f9fa",
+                            transition: "background-color 0.2s ease",
+                          }}
+                        >
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              color: "#4a5568",
+                            }}
+                          >
+                            {item.plant}
+                          </td>
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              color: "#4a5568",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {item.die_number}
+                          </td>
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              color: "#4a5568",
+                            }}
+                          >
+                            {item.element}
+                          </td>
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              textAlign: "center",
+                              color: "#4a5568",
+                              fontWeight: "600",
+                            }}
+                          >
+                            {item.required_set}
+                          </td>
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              textAlign: "center",
+                              color:
+                                item.actual_set === item.required_set
+                                  ? "#38a169"
+                                  : "#e53e3e",
+                              fontWeight: "700",
+                            }}
+                          >
+                            {item.actual_set}
+                          </td>
+                          <td
+                            style={{
+                              padding: "10px 8px",
+                              border: "1px solid #e2e8f0",
+                              textAlign: "center",
+                            }}
+                          >
+                            <span
+                              style={{
+                                padding: "4px 12px",
+                                borderRadius: "20px",
+                                fontSize: "11px",
+                                fontWeight: "600",
+                                background:
+                                  item.die_status === "Ready"
+                                    ? "linear-gradient(135deg, #48bb78 0%, #38a169 100%)"
+                                    : "linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)",
+                                color: "white",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.5px",
+                              }}
+                            >
+                              {item.die_status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {/* Summary */}
+                  <div
+                    style={{
+                      marginTop: "20px",
+                      padding: "15px",
+                      background:
+                        "linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%)",
+                      borderRadius: "8px",
+                      border: "1px solid #e2e8f0",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: "600",
+                        color: "#2d3748",
+                        marginBottom: "8px",
+                      }}
+                    >
+                      📊 Summary:
+                    </div>
+                    <div
+                      style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}
+                    >
+                      <div>
+                        <span style={{ color: "#4a5568" }}>
+                          Total Elements:{" "}
+                        </span>
+                        <span style={{ fontWeight: "600", color: "#2d3748" }}>
+                          {dieActualData.length}
+                        </span>
+                      </div>
+                      <div>
+                        <span style={{ color: "#4a5568" }}>Ready Status: </span>
+                        <span style={{ fontWeight: "600", color: "#38a169" }}>
+                          {
+                            dieActualData.filter(
+                              (item) => item.die_status === "Ready"
+                            ).length
+                          }
+                        </span>
+                      </div>
+                      <div>
+                        <span style={{ color: "#4a5568" }}>
+                          Completion Rate:{" "}
+                        </span>
+                        <span style={{ fontWeight: "600", color: "#2d3748" }}>
+                          {dieActualData.length > 0
+                            ? Math.round(
+                                (dieActualData.filter(
+                                  (item) => item.actual_set >= item.required_set
+                                ).length /
+                                  dieActualData.length) *
+                                  100
+                              )
+                            : 0}
+                          %
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div
+              style={{
+                padding: "10px 20px",
+                background: "#f8f9fa",
+                borderTop: "1px solid #e2e8f0",
+                borderRadius: "0 0 12px 12px",
+                display: "flex",
+                justifyContent: "flex-end",
+              }}
+            >
+              <button
+                onClick={() => setShowDieActualModal(false)}
+                style={{
+                  backgroundColor: "#6c757d",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "10px",
+                  padding: "12px 24px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showManualEntryModal && <ManualEntryModal />}
+
+      {/* {showManualEntryModal && (
+        <div style={styles.modal}>
+          <div
+            style={{
+              ...styles.modalContent,
+              maxWidth: "400px", // ✅ Reduced from default width
+              width: "90%", // ✅ Responsive width
+              maxHeight: "500px", // ✅ Optional: control height too
+            }}
+          >
+            <div
+              style={{
+                ...styles.modalHeader,
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                color: "white",
+                borderRadius: "12px 12px 0 0",
+                padding: "12px 20px",
+              }}
+            >
+              <h3 style={{ margin: 0, fontSize: "16px", fontWeight: "600" }}>
+                Enter Production Order Details
+              </h3>
+              <button
+                onClick={() => setShowManualEntryModal(false)}
+                style={{
+                  background: "rgba(255, 255, 255, 0.2)",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "6px",
+                  borderRadius: "6px",
+                  color: "white",
+                }}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div
+              style={{
+                padding: "20px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+              }}
+            >
+              <input
+                placeholder="Production Order No."
+                value={manualEntryData.productionOrderNo}
+                onChange={(e) =>
+                  setManualEntryData({
+                    ...manualEntryData,
+                    productionOrderNo: e.target.value,
+                  })
+                }
+                style={getConsistentInputStyle()}
+              />
+              <input
+                placeholder="Plant Code"
+                value={manualEntryData.plantCode}
+                onChange={(e) =>
+                  setManualEntryData({
+                    ...manualEntryData,
+                    plantCode: e.target.value,
+                  })
+                }
+                style={getConsistentInputStyle()}
+              />
+              <input
+                placeholder="Qty"
+                value={manualEntryData.qty.shift1}
+                onChange={(e) =>
+                  setManualEntryData({
+                    ...manualEntryData,
+                    qty: { ...manualEntryData.qty, shift1: e.target.value },
+                  })
+                }
+                style={getConsistentInputStyle()}
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "12px",
+                padding: "15px 20px",
+                borderTop: "1px solid #e2e8f0",
+                background: "#f8f9fa",
+                borderRadius: "0 0 12px 12px",
+              }}
+            >
+              <button
+                onClick={() => setShowManualEntryModal(false)}
+                style={{
+                  ...styles.button,
+                  backgroundColor: "#6c757d",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "10px 20px",
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleManualEntrySubmit}
+                style={{
+                  ...styles.successButton,
+                  borderRadius: "8px",
+                  padding: "10px 20px",
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )} */}
 
       {!showModal && (
         <WeeklyPlanDisplay

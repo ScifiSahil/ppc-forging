@@ -103,24 +103,6 @@ const mapApiDataToComponentFormat = (apiData) => {
   }));
 };
 
-// ✅ Keep only one most recent entry per day
-const filterLatestPerDay = (data) => {
-  const latestByDay = {};
-
-  data.forEach((item) => {
-    const dateKey = new Date(item.week_prod_date).toDateString();
-
-    if (!latestByDay[dateKey]) {
-      latestByDay[dateKey] = item;
-    } else {
-      if ((item.id ?? 0) > (latestByDay[dateKey].id ?? 0)) {
-        latestByDay[dateKey] = item;
-      }
-    }
-  });
-
-  return Object.values(latestByDay);
-};
 
 // Function to format quantity display
 const formatQuantity = (shift1, shift2, shift3) => {
@@ -130,24 +112,7 @@ const formatQuantity = (shift1, shift2, shift3) => {
 
   return `${s1}, ${s2}, ${s3}`;
 };
-// Deduplicate by production order or die number (keep latest entry)
-const deduplicateLatest = (data) => {
-  const uniqueMap = new Map();
 
-  data.forEach((item) => {
-    const key = `${item.main_prod_no}-${item.week_prod_date}`; // ← यहाँ duplicate filter हो रहा है
-    if (!uniqueMap.has(key)) {
-      uniqueMap.set(key, item);
-    } else {
-      const existing = uniqueMap.get(key);
-      if ((item.id ?? 0) > (existing.id ?? 0)) {
-        uniqueMap.set(key, item);
-      }
-    }
-  });
-
-  return Array.from(uniqueMap.values());
-};
 // Function to group data by day of week
 const groupDataByDay = (mappedData) => {
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -212,8 +177,6 @@ const WeeklyPlanDisplay = () => {
   const [message, setMessage] = useState({ type: "", text: "" });
   const [saving, setSaving] = useState(false);
   const [validationErrors, setValidationErrors] = useState([]);
-  const [dieOptions, setDieOptions] = useState([]);
-  const [showDieOptions, setShowDieOptions] = useState(false);
   const [matchingDieOptions, setMatchingDieOptions] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -227,11 +190,11 @@ const WeeklyPlanDisplay = () => {
   };
 
   const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
-    const credentials = btoa("ktfladm:Ktfl_Admin@2024");
-    console.log("📡 Fetching CSRF token with credentials:", credentials)
+    const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
+    console.log("📡 Fetching CSRF token with credentials:", credentials);
 
     // Step 1: Trigger cookie set
-    await fetch("https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan", {
+    await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
       method: "GET",
       headers: {
         Authorization: `Basic ${credentials}`,
@@ -260,8 +223,45 @@ const WeeklyPlanDisplay = () => {
       credentials: "include",
     };
   };
- 
- 
+
+  const containerStyle = {
+    background: "rgba(255, 255, 255, 0.95)",
+    backdropfilter: "blur(20px)",
+    borderRadius: "20px",
+    padding: "20px",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    border: "1px solid rgba(255, 255, 255, 0.2)",
+  };
+
+  const tableStyle = {
+    width: "100%",
+    borderCollapse: "separate",
+    borderSpacing: "0",
+    fontSize: "0.9rem",
+  };
+
+  const thStyle = {
+    position: "sticky",
+    left: 0,
+    zindex: 5,
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    color: "white",
+    padding: "1rem 0.75rem",
+    textAlign: "left",
+    fontWeight: "600",
+    fontSize: "0.85rem",
+    textTransform: "uppercase",
+    letterSpacing: "0.05em",
+  };
+
+  const tdStyle = {
+    padding: "1rem 0.75rem",
+    borderBottom: "1px solid rgba(102, 126, 234, 0.1)",
+    background: "rgba(255, 255, 255, 0.8)",
+    transition: "all 0.3s ease",
+  };
+
+
   const fetchWeeklyPlan = async (start, end) => {
     try {
       setLoading(true);
@@ -292,7 +292,7 @@ const WeeklyPlanDisplay = () => {
       const formattedEnd = formatDate(end);
 
       const query = `start_date=${formattedStart}&end_date=${formattedEnd}`;
-      const apiUrl = `https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan?${query}`;
+      const apiUrl = `https://ktflceprd.kalyanicorp.com/internal/weekly_plan?${query}`;
 
       console.log("📡 API Call →", apiUrl);
       console.log("📅 Date Range:", formattedStart, "to", formattedEnd);
@@ -422,16 +422,13 @@ const WeeklyPlanDisplay = () => {
   useEffect(() => {
     const fetchForgeLines = async () => {
       try {
-        const res = await fetch(
-          "https://ktfrancesrv2.kalyanicorp.com/internal/forge_lines",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
-            },
-          }
-        );
+        const res = await fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+          },
+        });
 
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -473,6 +470,18 @@ const WeeklyPlanDisplay = () => {
 
   // Handle edit button click
   const handleEditClick = (dayName, planIndex, plan) => {
+    const planDate = new Date(plan.date);
+    const today = new Date();
+
+    // Set time to 00:00:00 for accurate comparison
+    planDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    // ✅ If plan date is before today, don't allow editing
+    if (planDate < today) {
+      alert("⚠️ Previous week's plans cannot be edited!");
+      return;
+    }
     const rowKey = `${dayName}-${planIndex}`;
     setEditingRow(rowKey);
     setValidationErrors([]);
@@ -628,9 +637,8 @@ const WeeklyPlanDisplay = () => {
       const options = await getAuthHeadersWithCSRF("PUT");
 
       // Make API call to update
-      // Make API call to update
       const response = await fetch(
-        "https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           ...options,
           method: "PUT",
@@ -698,7 +706,7 @@ const WeeklyPlanDisplay = () => {
   //   const fetchDieDetails = async () => {
   //     try {
   //       const res = await fetch(
-  //         `https://ktfrancesrv2.kalyanicorp.com/https://ktfrancesrv2.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`
   //       );
@@ -754,7 +762,7 @@ const WeeklyPlanDisplay = () => {
         console.log("📡 Fetching die details for:", dieNo);
 
         const res = await fetch(
-          `https://ktfrancesrv2.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
+          `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
             dieNo
           )}`,
           {
@@ -930,7 +938,7 @@ const WeeklyPlanDisplay = () => {
       const uniqueOptions = [
         ...new Set(
           matchingDieOptions.map((item) => {
-            if (field === "prod_order") return item.main_prod_no;
+            if (field === "prod_order") return item.prod_order;
             if (field === "forge_press" || field === "main_forge_press")
               return item.main_forge_press;
             if (field === "customer") return item.customer_name;
@@ -1177,7 +1185,7 @@ const WeeklyPlanDisplay = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="weekly-plan-container">
+      <div style={containerStyle}>
         <div className="loading-state">
           <div className="large-icon mb-10">⏳</div>
           <h4>Loading Weekly Plan...</h4>
@@ -1188,15 +1196,46 @@ const WeeklyPlanDisplay = () => {
   }
 
   return (
-    <div className="weekly-plan-container">
-      <div className="week-header">
-        <button onClick={() => handleWeekChange(-1)} className="week-nav-btn">
+    <div style={containerStyle}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "2rem",
+        }}
+      >
+        <button
+          onClick={() => handleWeekChange(-1)}
+          style={{
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            color: "white",
+            border: "none",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "50px",
+            fontWeight: "600",
+            cursor: "pointer",
+          }}
+        >
           ← Previous Week
         </button>
 
-        <h3 className="week-title">Weekly Plan Preview - {weekTitle}</h3>
+        <h3 style={{ fontSize: "1.8rem", fontWeight: "700", color: "#667eea" }}>
+          Weekly Plan Preview - {weekTitle}
+        </h3>
 
-        <button onClick={() => handleWeekChange(1)} className="week-nav-btn">
+        <button
+          onClick={() => handleWeekChange(1)}
+          style={{
+            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+            color: "white",
+            border: "none",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "50px",
+            fontWeight: "600",
+            cursor: "pointer",
+          }}
+        >
           Next Week →
         </button>
       </div>
@@ -1225,39 +1264,40 @@ const WeeklyPlanDisplay = () => {
 
       {Object.values(groupedPlans).flat().length > 0 ? (
         <div className="table-container">
-          <div className="filter-container">
+          <div style={{ position: "relative", marginBottom: "2rem" }}>
             <input
               type="text"
-              placeholder="🔍 Search..."
+              placeholder="Search..."
               className="search-input"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
-
-          <table className="weekly-plan-table">
-            <thead>
-              <tr>
-                <th className="weekly-plan-th">Day</th>
-                <th className="weekly-plan-th">Plant Code</th>
-                <th className="weekly-plan-th max-90">Production Order No</th>
-                <th className="weekly-plan-th">Press</th>
-                <th className="weekly-plan-th">Customer</th>
-                <th className="weekly-plan-th">Net Wt</th>
-                <th className="weekly-plan-th">Die No</th>
-                <th className="weekly-plan-th">Qty (S1, S2, S3)</th>
-                <th className="weekly-plan-th">Prod Tonn</th>
-                <th className="weekly-plan-th">Section</th>
-                <th className="weekly-plan-th">Grade</th>
-                <th className="weekly-plan-th">Die Required</th>
-                <th className="weekly-plan-th">RM Status</th>
-                <th className="weekly-plan-th">Heat Code</th>
-                <th className="weekly-plan-th">Remark</th>
-                <th className="weekly-plan-th">Action</th>
-              </tr>
-            </thead>
-            <tbody>{renderTableRows()}</tbody>
-          </table>
+          <div style={{ overflowX: "auto" }}>
+            <table style={tableStyle}>
+              <thead>
+                <tr>
+                  <th style={thStyle}>Day</th>
+                  <th style={thStyle}>Plant Code</th>
+                  <th style={thStyle}>Production Order No</th>
+                  <th style={thStyle}>Press</th>
+                  <th style={thStyle}>Customer</th>
+                  <th style={thStyle}>Net Wt</th>
+                  <th style={thStyle}>Die No</th>
+                  <th style={thStyle}>Qty (S1, S2, S3)</th>
+                  <th style={thStyle}>Prod Tonn</th>
+                  <th style={thStyle}>Section</th>
+                  <th style={thStyle}>Grade</th>
+                  <th style={thStyle}>Die Required</th>
+                  <th style={thStyle}>RM Status</th>
+                  <th style={thStyle}>Heat Code</th>
+                  <th style={thStyle}>Remark</th>
+                  <th style={thStyle}>Action</th>
+                </tr>
+              </thead>
+              <tbody>{renderTableRows()}</tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <div className="no-plan-message">

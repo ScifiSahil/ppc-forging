@@ -199,7 +199,7 @@ const SmartWeeklyPlanChatbot = () => {
     if (step === "idle") {
       if (userInput === "view") {
         try {
-          const res = await fetch("https://ktfrancesrv2.kalyanicorp.com/https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan");
+          const res = await fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
           const data = await res.json();
 
           const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -288,7 +288,7 @@ const SmartWeeklyPlanChatbot = () => {
       if (!nextField) {
         try {
           const res = await fetch(
-            "https://ktfrancesrv2.kalyanicorp.com/https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan",
+            "https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -320,7 +320,7 @@ const SmartWeeklyPlanChatbot = () => {
       }
     } else if (step === "update_ask_prod_no") {
       try {
-        const res = await fetch("https://ktfrancesrv2.kalyanicorp.com/https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan");
+        const res = await fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
         const data = await res.json();
         setAllData(data);
         const order = data.find((item) => item.main_prod_no === userInput);
@@ -370,7 +370,7 @@ const SmartWeeklyPlanChatbot = () => {
         [currentField]: userInput,
       };
       try {
-        const res = await fetch("https://ktfrancesrv2.kalyanicorp.com/https://ktfrancesrv2.kalyanicorp.com/internal/weekly_plan", {
+        const res = await fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(patchData),

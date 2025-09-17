@@ -14,6 +14,17 @@
   box-sizing: border-box;
 }
 
+/* 🔥 NUMBER INPUT SPINNER REMOVAL - MAIN FIX */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 /* Main Container */
 .weekly-plan-main-container {
   background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 50%, #0369A1 100%);
@@ -634,11 +645,11 @@
   background: linear-gradient(135deg, #5a67d8, #6b46c1);
 }
 
-/* Responsive Design */
+/* 🔥 IMPROVED RESPONSIVE DESIGN FOR BETTER MOBILE EXPERIENCE */
 @media (max-width: 1200px) {
   .weekly-plan-modal-content {
     width: 95%;
-    height: 85vh;
+    height: 88vh;
   }
   
   .weekly-plan-modal-table {
@@ -657,15 +668,16 @@
   }
 }
 
+/* 🔥 MAJOR MOBILE IMPROVEMENTS */
 @media (max-width: 768px) {
   .weekly-plan-main-container {
     background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 50%, #0369A1 100%);
     position: relative;
-    padding: 10px;
+    padding: 5px; /* 🔥 Reduced padding for more space */
   }
   
   .weekly-plan-header {
-    padding: 15px 20px;
+    padding: 12px 15px; /* 🔥 Reduced padding */
     flex-direction: column;
     align-items: stretch;
   }
@@ -675,63 +687,134 @@
   }
   
   .weekly-plan-btn {
-    padding: 10px 16px;
-    font-size: 12px;
+    padding: 8px 12px; /* 🔥 Compact buttons */
+    font-size: 11px;
+  }
+  
+  /* 🔥 MODAL TAKES ALMOST FULL SCREEN ON MOBILE */
+  .weekly-plan-modal-overlay {
+    padding: 2px; /* 🔥 Minimal padding */
   }
   
   .weekly-plan-modal-content {
-    width: 100%;
-    height: 95vh;
-    margin: 5px;
-    border-radius: 16px;
+    width: 100%; /* 🔥 Full width */
+    height: 98vh; /* 🔥 Almost full height */
+    border-radius: 12px; /* 🔥 Smaller border radius */
+    margin: 0;
   }
   
   .weekly-plan-modal-header {
-    padding: 15px 20px;
+    padding: 12px 15px; /* 🔥 Reduced padding */
   }
   
   .weekly-plan-modal-title {
-    font-size: 16px;
+    font-size: 14px; /* 🔥 Smaller title */
+  }
+  
+  /* 🔥 MODAL WEEK NAV COMPACT */
+  .weekly-plan-modal-week-nav {
+    padding: 10px 15px; /* 🔥 Compact padding */
+  }
+  
+  .weekly-plan-modal-nav-btn {
+    padding: 6px 10px; /* 🔥 Smaller buttons */
+    font-size: 11px;
+  }
+  
+  .weekly-plan-modal-week-title {
+    font-size: 12px; /* 🔥 Smaller title */
+  }
+  
+  .weekly-plan-modal-week-status {
+    font-size: 10px; /* 🔥 Smaller status */
+  }
+  
+  /* 🔥 TABLE WRAPPER TAKES MORE SPACE */
+  .weekly-plan-modal-table-wrapper {
+    margin: 8px; /* 🔥 Reduced margin */
+    border-radius: 8px;
   }
   
   .weekly-plan-modal-table {
-    font-size: 10px;
+    font-size: 9px; /* 🔥 Smaller font for better fit */
+    min-width: 1000px; /* 🔥 Slightly reduced min-width */
   }
   
   .weekly-plan-modal-table-header {
-    padding: 8px 4px;
-    font-size: 9px;
+    padding: 6px 3px; /* 🔥 Compact header padding */
+    font-size: 8px; /* 🔥 Smaller header font */
   }
   
   .weekly-plan-modal-table-cell {
-    padding: 4px 2px;
-    min-width: 60px;
+    padding: 3px 2px; /* 🔥 Minimal cell padding */
+    min-width: 50px; /* 🔥 Smaller minimum width */
+  }
+  
+  .weekly-plan-modal-day-cell {
+    min-width: 70px; /* 🔥 Compact day cell */
+    font-size: 9px;
+  }
+  
+  /* 🔥 COMPACT INPUT STYLES */
+  .weekly-plan-compact-input,
+  .weekly-plan-compact-select {
+    padding: 3px 5px; /* 🔥 Minimal padding */
+    font-size: 9px; /* 🔥 Smaller font */
+    border-radius: 4px; /* 🔥 Smaller border radius */
+  }
+  
+  .weekly-plan-shift-input {
+    padding: 2px 4px; /* 🔥 Very compact shift inputs */
+    font-size: 8px; /* 🔥 Small font for shift inputs */
+    border-radius: 3px;
+  }
+  
+  .weekly-plan-small-btn {
+    padding: 2px 4px; /* 🔥 Very compact buttons */
+    font-size: 8px;
+  }
+  
+  /* 🔥 COMPACT FOOTER */
+  .weekly-plan-modal-footer {
+    padding: 12px 15px; /* 🔥 Reduced footer padding */
+    flex-direction: row; /* 🔥 Keep buttons in row on mobile */
+    gap: 8px; /* 🔥 Smaller gap */
+  }
+  
+  .weekly-plan-modal-footer-btn {
+    padding: 8px 12px; /* 🔥 Compact footer buttons */
+    font-size: 11px;
+    flex: 1; /* 🔥 Buttons take equal width */
+    text-align: center;
+  }
+}
+
+/* 🔥 EXTRA SMALL SCREENS (320px and below) */
+@media (max-width: 480px) {
+  .weekly-plan-modal-table {
+    font-size: 8px; /* 🔥 Even smaller font */
+    min-width: 900px; /* 🔥 Further reduced */
+  }
+  
+  .weekly-plan-modal-table-header {
+    padding: 4px 2px; /* 🔥 Ultra compact */
+    font-size: 7px;
+  }
+  
+  .weekly-plan-modal-table-cell {
+    padding: 2px 1px; /* 🔥 Ultra minimal */
+    min-width: 40px;
   }
   
   .weekly-plan-compact-input,
   .weekly-plan-compact-select {
-    padding: 4px 6px;
-    font-size: 10px;
+    font-size: 8px; /* 🔥 Ultra small */
+    padding: 2px 4px;
   }
   
   .weekly-plan-shift-input {
-    padding: 3px 6px;
-    font-size: 9px;
-  }
-  
-  .weekly-plan-small-btn {
-    padding: 3px 6px;
-    font-size: 9px;
-  }
-  
-  .weekly-plan-modal-footer {
-    padding: 15px 20px;
-    flex-direction: column;
-  }
-  
-  .weekly-plan-modal-footer-btn {
-    padding: 10px 20px;
-    font-size: 12px;
+    font-size: 7px; /* 🔥 Ultra small shift inputs */
+    padding: 1px 3px;
   }
 }
 
@@ -786,4 +869,152 @@
   font-weight: 600;
   border: 1px solid #feb2b2;
   box-shadow: 0 4px 15px rgba(116, 42, 42, 0.1);
+}
+
+/* 🔥 ADDITIONAL MOBILE OPTIMIZATIONS */
+@media (max-width: 768px) {
+  /* 🔥 Better scrollbar for mobile */
+  .weekly-plan-modal-table-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .weekly-plan-modal-table-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #0EA5E9, #0284C7);
+    border-radius: 3px;
+  }
+}
+
+/* 🔥 LANDSCAPE ORIENTATION IMPROVEMENTS */
+@media (max-width: 768px) and (orientation: landscape) {
+  .weekly-plan-modal-content {
+    height: 95vh; /* 🔥 Better use of landscape space */
+  }
+  
+  .weekly-plan-modal-header {
+    padding: 8px 12px; /* 🔥 Even more compact in landscape */
+  }
+  
+  .weekly-plan-modal-week-nav {
+    padding: 6px 12px; /* 🔥 Ultra compact navigation */
+  }
+  
+  .weekly-plan-modal-footer {
+    padding: 8px 12px; /* 🔥 Compact footer */
+  }
+}
+
+/* 🔥 TOUCH-FRIENDLY IMPROVEMENTS */
+@media (hover: none) and (pointer: coarse) {
+  .weekly-plan-compact-input,
+  .weekly-plan-compact-select,
+  .weekly-plan-shift-input {
+    min-height: 32px; /* 🔥 Touch-friendly minimum height */
+  }
+  
+  .weekly-plan-small-btn {
+    min-height: 28px; /* 🔥 Touch-friendly buttons */
+    min-width: 28px;
+  }
+  
+  .weekly-plan-modal-close {
+    width: 44px; /* 🔥 Bigger close button for touch */
+    height: 44px;
+  }
+}
+
+
+
+/* Change #1: Modal content even smaller on mobile */
+@media (max-width: 768px) {
+  .weekly-plan-modal-content {
+    width: 100%;
+    height: 99vh; /* 🔥 Almost full screen */
+    border-radius: 8px; /* 🔥 Even smaller radius */
+    margin: 0;
+  }
+}
+
+/* Change #2: Ultra compact header */
+@media (max-width: 768px) {
+  .weekly-plan-modal-header {
+    padding: 8px 12px; /* 🔥 Very minimal padding */
+  }
+  
+  .weekly-plan-modal-title {
+    font-size: 12px; /* 🔥 Smaller title */
+  }
+  
+  .weekly-plan-modal-close {
+    width: 32px; /* 🔥 Smaller close button */
+    height: 32px;
+  }
+}
+
+/* Change #3: Super compact navigation */
+@media (max-width: 768px) {
+  .weekly-plan-modal-week-nav {
+    padding: 6px 10px; /* 🔥 Minimal nav padding */
+  }
+  
+  .weekly-plan-modal-nav-btn {
+    padding: 4px 8px; /* 🔥 Tiny nav buttons */
+    font-size: 10px;
+  }
+  
+  .weekly-plan-modal-week-title {
+    font-size: 11px; /* 🔥 Smaller week title */
+  }
+  
+  .weekly-plan-modal-week-status {
+    font-size: 9px; /* 🔥 Tiny status text */
+  }
+}
+
+/* Change #4: Table wrapper with minimal margins */
+@media (max-width: 768px) {
+  .weekly-plan-modal-table-wrapper {
+    margin: 4px; /* 🔥 Ultra minimal margin */
+    border-radius: 6px;
+  }
+}
+
+/* Change #5: Ultra compact footer */
+@media (max-width: 768px) {
+  .weekly-plan-modal-footer {
+    padding: 8px 10px; /* 🔥 Minimal footer padding */
+  }
+  
+  .weekly-plan-modal-footer-btn {
+    padding: 6px 10px; /* 🔥 Smaller footer buttons */
+    font-size: 10px;
+  }
+}
+
+/* NEW ADDITION: Extra small screens (below 480px) */
+@media (max-width: 480px) {
+  .weekly-plan-modal-overlay {
+    padding: 0; /* 🔥 Zero padding for full screen effect */
+  }
+  
+  .weekly-plan-modal-content {
+    width: 100vw; /* 🔥 Full viewport width */
+    height: 100vh; /* 🔥 Full viewport height */
+    border-radius: 0; /* 🔥 No border radius for full screen */
+  }
+  
+  .weekly-plan-modal-header {
+    padding: 6px 8px; /* 🔥 Ultra compact header */
+  }
+  
+  .weekly-plan-modal-week-nav {
+    padding: 4px 8px; /* 🔥 Ultra compact navigation */
+  }
+  .weekly-plan-modal-table-wrapper {
+    margin: 2px; /* 🔥 Minimal margin */
+  }
+  
+  .weekly-plan-modal-footer {
+    padding: 6px 8px; /* 🔥 Ultra compact footer */
+  }
 }

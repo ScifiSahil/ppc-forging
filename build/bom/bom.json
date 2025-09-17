@@ -3,9 +3,9 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
   "version": 1,
-  "serialNumber": "urn:uuid:ae569edb-acd6-4654-8068-af1736b706c9",
+  "serialNumber": "urn:uuid:e81980c4-03b9-4bdb-a1dc-e0d0abe6338f",
   "metadata": {
-    "timestamp": "2025-08-01T08:17:27.159Z",
+    "timestamp": "2025-09-17T03:33:38.059Z",
     "tools": [
       {
         "vendor": "@cyclonedx",
@@ -103,6 +103,72 @@
     },
     {
       "type": "library",
+      "name": "axios",
+      "version": "1.12.2",
+      "bom-ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "author": "Matt Zabriskie",
+      "description": "Promise based HTTP client for the browser and node.js",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/axios/axios.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://axios-http.com",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/axios/axios/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "recharts",
+      "version": "2.15.4",
+      "bom-ref": "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
+      "author": "recharts group",
+      "description": "React charts",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/recharts/recharts.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/recharts/recharts",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/recharts/recharts/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
       "name": "style-loader",
       "version": "3.3.2",
       "bom-ref": "pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git",
@@ -166,6 +232,893 @@
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
       ]
+    },
+    {
+      "type": "library",
+      "name": "lodash",
+      "version": "4.17.21",
+      "bom-ref": "pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git",
+      "author": "John-David Dalton",
+      "description": "Lodash modular utilities.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lodash/lodash.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://lodash.com/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lodash/lodash/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "victory-vendor",
+      "version": "36.9.2",
+      "bom-ref": "pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git",
+      "author": "Formidable",
+      "description": "Vendored dependencies for Victory",
+      "licenses": [
+        {
+          "license": {
+            "name": "MIT AND ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/FormidableLabs/victory.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://commerce.nearform.com/open-source/victory",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/FormidableLabs/victory/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "clsx",
+      "version": "2.1.1",
+      "bom-ref": "pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git",
+      "author": "Luke Edwards",
+      "description": "A tiny (239B) utility for constructing className strings conditionally.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/lukeed/clsx.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/lukeed/clsx#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/lukeed/clsx/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-smooth",
+      "version": "4.0.4",
+      "bom-ref": "pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git",
+      "author": "JasonHzq",
+      "description": "react animation library",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/recharts/react-smooth.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/recharts/react-smooth#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/recharts/react-smooth/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "buffer",
+      "version": "6.0.3",
+      "bom-ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "author": "Feross Aboukhadijeh",
+      "description": "Node.js Buffer API, for the browser",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/feross/buffer.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/feross/buffer",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/feross/buffer/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-is",
+      "version": "18.3.1",
+      "bom-ref": "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+      "description": "Brand checking of React Elements.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/react.git#packages/react-is",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://reactjs.org/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "recharts-scale",
+      "version": "0.4.5",
+      "bom-ref": "pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git",
+      "author": "recharts group",
+      "description": "Scale of Cartesian Coordinates",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/recharts/recharts-scale.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/recharts/recharts-scale",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/recharts/recharts-scale/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-shape",
+      "version": "3.2.0",
+      "bom-ref": "pkg:npm/d3-shape@3.2.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-shape.git",
+      "author": "Mike Bostock",
+      "description": "Graphical primitives for visualization, such as lines and areas.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-shape@3.2.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-shape.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-shape.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-shape/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-shape/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-scale",
+      "version": "4.0.2",
+      "bom-ref": "pkg:npm/d3-scale@4.0.2?vcs_url=git%2Bhttps%3A//github.com/d3/d3-scale.git",
+      "author": "Mike Bostock",
+      "description": "Encodings that map abstract data to visual representation.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-scale@4.0.2?vcs_url=git%2Bhttps%3A//github.com/d3/d3-scale.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-scale.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-scale/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-scale/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "bom-ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
+      "author": "Feross Aboukhadijeh",
+      "description": "Read/write IEEE754 floating point numbers from/to a Buffer or array-like object",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/feross/ieee754.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/feross/ieee754#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/feross/ieee754/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "bom-ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+      "author": "T. Jameson Little",
+      "description": "Base64 encoding/decoding in pure JS",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/beatgammit/base64-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "eventemitter3",
+      "version": "4.0.7",
+      "bom-ref": "pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git",
+      "author": "Arnout Kazemier",
+      "description": "EventEmitter3 focuses on performance while maintaining a Node.js AND browser compatible interface.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/primus/eventemitter3.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/primus/eventemitter3#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/primus/eventemitter3/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "prop-types",
+      "version": "15.8.1",
+      "bom-ref": "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
+      "description": "Runtime type checking for React props and similar objects.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/prop-types.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://facebook.github.io/react/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/prop-types/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-transition-group",
+      "version": "4.4.5",
+      "bom-ref": "pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git",
+      "description": "A react component toolset for managing animations",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/reactjs/react-transition-group.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/reactjs/react-transition-group#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/reactjs/react-transition-group/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "fast-equals",
+      "version": "5.2.2",
+      "bom-ref": "pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git",
+      "author": "tony_quetano@planttheidea.com",
+      "description": "A blazing fast equality comparison, either shallow or deep",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/planttheidea/fast-equals.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/planttheidea/fast-equals#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/planttheidea/fast-equals/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "decimal.js-light",
+      "version": "2.5.1",
+      "bom-ref": "pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git",
+      "author": "Michael Mclaughlin",
+      "description": "An arbitrary-precision Decimal type for JavaScript.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/MikeMcl/decimal.js-light.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/MikeMcl/decimal.js-light#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/MikeMcl/decimal.js-light/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-array",
+      "version": "3.2.4",
+      "bom-ref": "pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git",
+      "author": "Mike Bostock",
+      "description": "Array manipulation, ordering, searching, summarizing, etc.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-array.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-array/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-array/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-format",
+      "version": "3.1.0",
+      "bom-ref": "pkg:npm/d3-format@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-format.git",
+      "author": "Mike Bostock",
+      "description": "Format numbers for human consumption.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-format@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-format.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-format.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-format/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-format/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-interpolate",
+      "version": "3.0.1",
+      "bom-ref": "pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git",
+      "author": "Mike Bostock",
+      "description": "Interpolate numbers, colors, strings, arrays, objects, whatever!",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-interpolate.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-interpolate/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-interpolate/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-time",
+      "version": "3.1.0",
+      "bom-ref": "pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git",
+      "author": "Mike Bostock",
+      "description": "A calculator for humanity’s peculiar conventions of time.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-time.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-time/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-time/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-time-format",
+      "version": "4.1.0",
+      "bom-ref": "pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git",
+      "author": "Mike Bostock",
+      "description": "A JavaScript time formatter and parser inspired by strftime and strptime.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-time-format.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-time-format/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-time-format/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "react-is",
+      "version": "16.13.1",
+      "bom-ref": "pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+      "description": "Brand checking of React Elements.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/facebook/react.git#packages/react-is",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\" and \"repository.directory\""
+        },
+        {
+          "url": "https://reactjs.org/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/facebook/react/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-path",
+      "version": "3.1.0",
+      "bom-ref": "pkg:npm/d3-path@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-path.git",
+      "author": "Mike Bostock",
+      "description": "Serialize Canvas path commands to SVG.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-path@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-path.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-path.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-path/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-path/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "object-assign",
+      "version": "4.1.1",
+      "bom-ref": "pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git",
+      "author": "Sindre Sorhus",
+      "description": "ES2015 `Object.assign()` ponyfill",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/sindresorhus/object-assign.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/sindresorhus/object-assign#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/sindresorhus/object-assign/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "internmap",
+      "version": "2.0.3",
+      "bom-ref": "pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git",
+      "author": "Mike Bostock",
+      "description": "Map and Set with automatic key interning",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/mbostock/internmap.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/mbostock/internmap/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/mbostock/internmap/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "dom-helpers",
+      "version": "5.2.1",
+      "bom-ref": "pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git",
+      "author": "Jason Quense",
+      "description": "tiny modular DOM lib for ie9+",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/react-bootstrap/dom-helpers.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/react-bootstrap/dom-helpers#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/react-bootstrap/dom-helpers/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "d3-color",
+      "version": "3.1.0",
+      "bom-ref": "pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git",
+      "author": "Mike Bostock",
+      "description": "Color spaces! RGB, HSL, Cubehelix, Lab and HCL (Lch).",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "purl": "pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/d3/d3-color.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://d3js.org/d3-color/",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/d3/d3-color/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
     }
   ],
   "dependencies": [
@@ -173,6 +1126,8 @@
       "ref": "pkg:npm/kalyani-iot-ppc-forging@0.0.1",
       "dependsOn": [
         "pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react",
+        "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+        "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
         "pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git",
         "pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"
       ]
@@ -181,10 +1136,156 @@
       "ref": "pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react"
     },
     {
+      "ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "dependsOn": [
+        "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
+      "dependsOn": [
+        "pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git",
+        "pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git",
+        "pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git",
+        "pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git",
+        "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+        "pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git",
+        "pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git"
+      ]
+    },
+    {
       "ref": "pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"
     },
     {
       "ref": "pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"
+    },
+    {
+      "ref": "pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git"
+    },
+    {
+      "ref": "pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git",
+      "dependsOn": [
+        "pkg:npm/d3-shape@3.2.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-shape.git",
+        "pkg:npm/d3-scale@4.0.2?vcs_url=git%2Bhttps%3A//github.com/d3/d3-scale.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git"
+    },
+    {
+      "ref": "pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git",
+      "dependsOn": [
+        "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
+        "pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git",
+        "pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "dependsOn": [
+        "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+        "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"
+    },
+    {
+      "ref": "pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git",
+      "dependsOn": [
+        "pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/d3-shape@3.2.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-shape.git",
+      "dependsOn": [
+        "pkg:npm/d3-path@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-path.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/d3-scale@4.0.2?vcs_url=git%2Bhttps%3A//github.com/d3/d3-scale.git",
+      "dependsOn": [
+        "pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git",
+        "pkg:npm/d3-format@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-format.git",
+        "pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git",
+        "pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git",
+        "pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git",
+        "pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
+    },
+    {
+      "ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"
+    },
+    {
+      "ref": "pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git"
+    },
+    {
+      "ref": "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
+      "dependsOn": [
+        "pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
+        "pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git",
+      "dependsOn": [
+        "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
+        "pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git"
+    },
+    {
+      "ref": "pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git"
+    },
+    {
+      "ref": "pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git",
+      "dependsOn": [
+        "pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/d3-format@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-format.git"
+    },
+    {
+      "ref": "pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git",
+      "dependsOn": [
+        "pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git",
+      "dependsOn": [
+        "pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git",
+      "dependsOn": [
+        "pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"
+    },
+    {
+      "ref": "pkg:npm/d3-path@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-path.git"
+    },
+    {
+      "ref": "pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git"
+    },
+    {
+      "ref": "pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"
+    },
+    {
+      "ref": "pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git"
+    },
+    {
+      "ref": "pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"
     }
   ]
 }
