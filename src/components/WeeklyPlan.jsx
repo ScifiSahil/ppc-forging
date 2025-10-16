@@ -25,7 +25,7 @@ const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
   const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
 
   // Step 1: Trigger cookie set
-  await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
+  await fetch("http://localhost:8080/internal/weekly_entry", {
     method: "GET",
     headers: {
       Authorization: `Basic ${credentials}`,
@@ -88,7 +88,7 @@ const apiService = {
   getKlnMasterDataByDie: async (dieNumber) => {
     try {
       const response = await fetch(
-        `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${dieNumber}`,
+        `http://localhost:8080/internal/weekly_entry?die_no=${dieNumber}`,
         {
           method: "GET",
           headers: {
@@ -109,7 +109,7 @@ const apiService = {
     console.log("Calling Forge Lines API 🚀");
     try {
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/forge_lines",
+        "http://localhost:8080/internal/forge_lines",
         {
           method: "GET",
           headers: {
@@ -181,7 +181,7 @@ const apiService = {
       const authOptions = await getAuthHeadersWithCSRF("POST");
 
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+        "http://localhost:8080/internal/weekly_plan",
         {
           method: "POST",
           ...authOptions,
@@ -228,8 +228,7 @@ const apiService = {
 
     try {
       // ✅ Construct URL with proper encoding
-      const baseUrl =
-        "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual";
+      const baseUrl = "http://localhost:8080/internal/kln_dms_dieactual";
       const params = new URLSearchParams({
         plant_code: plantCode,
         die_no: dieNo,
@@ -310,7 +309,7 @@ const apiService = {
     try {
       const authOptions = await getAuthHeadersWithCSRF("POST");
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/production_order",
+        "http://localhost:8080/internal/production_order",
         {
           method: "POST",
           ...authOptions,
@@ -340,7 +339,7 @@ const apiService = {
       const authConfig = await getAuthHeadersWithCSRF("GET", false);
 
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/production_report",
+        "http://localhost:8080/internal/production_report",
         {
           method: "GET",
           ...authConfig, // Spread the headers and credentials
@@ -375,6 +374,60 @@ const styles = {
     flexWrap: "wrap",
     gap: "10px",
   },
+  // ✅ NEW: Month Report Button Style
+  monthReportButton: {
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundImage: "linear-gradient(93deg, #764ba2 0%, #667eea 100%)", // Reverse gradient
+    color: "#ffffff",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    fontSize: "14px",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+    textTransform: "uppercase",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    transition: "all 0.3s ease-in-out",
+  },
+
+  // ✅ NEW: KPI Card Style
+  kpiCard: {
+    padding: "8px 12px",
+    borderRadius: "6px",
+    background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+    border: "1px solid #dee2e6",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "2px",
+    minWidth: "70px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
+  },
+
+  kpiDay: {
+    fontSize: "10px",
+    fontWeight: "700",
+    color: "#6c757d",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px",
+  },
+
+  kpiValue: {
+    fontSize: "14px",
+    fontWeight: "700",
+    color: "#2d3748",
+  },
+
+  kpiLabel: {
+    fontSize: "8px",
+    color: "#6c757d",
+    textTransform: "uppercase",
+  },
+
   button: {
     padding: "6px 12px",
     border: "1px solid #ddd",
@@ -387,41 +440,63 @@ const styles = {
     fontSize: "12px",
   },
   primaryButton: {
-    padding: "12px 24px",
+    padding: "8px 16px", // ✅ Reduced padding
     border: "none",
-    borderRadius: "8px",
-    backgroundImage: "linear-gradient(93deg, #43cea2 0%, #185a9d 100%)", // Teal to Blue
+    borderRadius: "6px", // ✅ Smaller radius
+    backgroundImage: "linear-gradient(93deg, #43cea2 0%, #185a9d 100%)",
     color: "#ffffff",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
-    fontSize: "14px",
+    gap: "6px", // ✅ Smaller gap
+    fontSize: "12px", // ✅ Smaller font
     fontWeight: "600",
-    letterSpacing: "0.5px",
+    letterSpacing: "0.3px",
     textTransform: "uppercase",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease-in-out",
+    whiteSpace: "nowrap",
   },
   // ✅ NEW: Email Button Style
   emailButton: {
-    padding: "12px 24px",
+    padding: "8px 16px", // ✅ Reduced
     border: "none",
-    borderRadius: "8px",
-    backgroundImage: "linear-gradient(93deg, #667eea 0%, #764ba2 100%)", // Purple gradient
+    borderRadius: "6px",
+    backgroundImage: "linear-gradient(93deg, #667eea 0%, #764ba2 100%)",
     color: "#ffffff",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
-    fontSize: "14px",
+    gap: "6px",
+    fontSize: "12px",
     fontWeight: "600",
-    letterSpacing: "0.5px",
+    letterSpacing: "0.3px",
     textTransform: "uppercase",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease-in-out",
+    whiteSpace: "nowrap",
+  },
+
+  monthReportButton: {
+    padding: "8px 16px", // ✅ Reduced
+    border: "none",
+    borderRadius: "6px",
+    backgroundImage: "linear-gradient(93deg, #f093fb 0%, #f5576c 100%)",
+    color: "#ffffff",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "6px",
+    fontSize: "12px",
+    fontWeight: "600",
+    letterSpacing: "0.3px",
+    textTransform: "uppercase",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease-in-out",
+    whiteSpace: "nowrap",
   },
 
   successButton: {
@@ -664,8 +739,23 @@ const getConsistentSelectStyle = () => ({
 });
 
 const WeeklyPlan = () => {
-  // State Management
   const [weekOffset, setWeekOffset] = useState(0);
+  // 🔥 NEW: Daily Tonnage State
+  const [dailyTonnage, setDailyTonnage] = useState({
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0,
+  });
+
+  // 🔥 NEW: Callback to receive daily tonnage from WeeklyPlanDisplay
+  const handleDailyTonnageUpdate = (totals) => {
+    console.log("📊 Received daily tonnage:", totals);
+    setDailyTonnage(totals);
+  };
   const [showDieActualModal, setShowDieActualModal] = useState(false);
   const [dieActualData, setDieActualData] = useState([]);
   const [selectedDieInfo, setSelectedDieInfo] = useState({
@@ -737,6 +827,46 @@ const WeeklyPlan = () => {
     }
   };
 
+  // ✅ NEW: Send Month Report Handler
+  const handleSendMonthReport = async () => {
+    // Show confirmation alert
+    const confirmed = window.confirm(
+      "Do you really want to send monthly report?"
+    );
+
+    if (!confirmed) {
+      return; // Exit if user cancels
+    }
+
+    try {
+      setLoading(true);
+
+      // Call API for monthly report
+      const authConfig = await getAuthHeadersWithCSRF("GET", false);
+
+      const response = await fetch(
+        "http://localhost:8080/internal/monthly_report", // ✅ NEW URL
+        {
+          method: "GET",
+          ...authConfig,
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Email API Error: ${response.status} - ${errorText}`);
+      }
+
+      const result = await response.json();
+      alert("✅ Monthly report sent successfully!");
+    } catch (error) {
+      console.error("❌ Send monthly report failed:", error);
+      alert("❌ Error sending monthly report: " + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  // ✅ UPDATED: Manual Entry Modal - Removed Plant Code Input
   const ManualEntryModal = () => (
     <div style={styles.modal}>
       <div style={{ ...styles.modalContent, maxWidth: "400px", width: "90%" }}>
@@ -777,7 +907,7 @@ const WeeklyPlan = () => {
             gap: "15px",
           }}
         >
-          {/* ✅ Plant Code */}
+          {/* ✅ Die No - READ ONLY */}
           <div>
             <label
               style={{
@@ -787,49 +917,24 @@ const WeeklyPlan = () => {
                 display: "block",
               }}
             >
-              Plant Code *
+              Die No * (Auto-filled)
             </label>
             <input
               type="text"
-              placeholder="Enter Plant Code"
-              value={manualEntryData.plant_code || ""}
-              onChange={(e) =>
-                setManualEntryData({
-                  ...manualEntryData,
-                  plant_code: e.target.value, // always keep as string
-                })
-              }
-              style={getConsistentInputStyle()}
-            />
-          </div>
-
-          {/* ✅ Die No */}
-          <div>
-            <label
-              style={{
-                fontSize: "12px",
-                color: "#666",
-                marginBottom: "4px",
-                display: "block",
-              }}
-            >
-              Die No *
-            </label>
-            <input
-              type="text"
-              placeholder="Enter Die Number"
               value={manualEntryData.die_no || ""}
-              onChange={(e) =>
-                setManualEntryData({
-                  ...manualEntryData,
-                  die_no: e.target.value,
-                })
-              }
-              style={getConsistentInputStyle()}
+              readOnly
+              style={{
+                ...getConsistentInputStyle(),
+                backgroundColor: "#f7fafc",
+                color: "#2d3748",
+                cursor: "not-allowed",
+                fontWeight: "600",
+              }}
+              placeholder="Die Number"
             />
           </div>
 
-          {/* ✅ Order Quantity */}
+          {/* ✅ FIXED: Order Quantity */}
           <div>
             <label
               style={{
@@ -845,13 +950,16 @@ const WeeklyPlan = () => {
               type="number"
               placeholder="Enter Order Quantity"
               value={manualEntryData.order_qty || ""}
-              onChange={(e) =>
-                setManualEntryData({
-                  ...manualEntryData,
-                  order_qty: e.target.value, // keep as string while typing
-                })
-              }
+              onChange={(e) => {
+                // ✅ FIX: Directly update only order_qty field
+                setManualEntryData((prev) => ({
+                  ...prev,
+                  order_qty: e.target.value,
+                }));
+              }}
               style={getConsistentInputStyle()}
+              min="1"
+              step="1"
             />
           </div>
         </div>
@@ -1108,20 +1216,26 @@ const WeeklyPlan = () => {
     setDayWiseData(newData);
   };
 
-  // Updated handleDieNoChange function
   const handleDieNoChange = async (day, recordIndex, value) => {
+    // ✅ If die_no is removed/cleared, reset all autofilled fields
     if (!value || value.trim() === "") {
-      // Reset fields
+      console.log("🧹 Die No removed - clearing autofilled fields");
+
       setDayWiseData((prev) => ({
         ...prev,
         [day]: prev[day].map((record, idx) =>
           idx === recordIndex
             ? {
                 ...record,
+                // ✅ Clear die number
                 dieNo: [value],
+
+                // ✅ Reset error states
                 dieNoError: false,
                 dieNoErrorMessage: "",
-                showCreateLink: false, // ✅ NEW: Hide create link
+                showCreateLink: false,
+
+                // ✅ Clear ALL autofilled fields
                 productionOrderNo: "",
                 customer: "",
                 grade: "",
@@ -1129,6 +1243,10 @@ const WeeklyPlan = () => {
                 plantCode: "",
                 section: "",
                 netWt: "",
+                dieRequired: "",
+                rmStatus: "",
+
+                // ✅ Clear all dropdown options
                 customerOptions: [],
                 pressOptions: [],
                 gradeOptions: [],
@@ -1136,6 +1254,12 @@ const WeeklyPlan = () => {
                 productionOrderOptions: [],
                 dieResults: [],
                 hasMultipleOptions: false,
+
+                // ✅ Keep these fields (user might have manually entered)
+                qty: record.qty || { shift1: "", shift2: "", shift3: "" },
+                heatCode: record.heatCode || "",
+                remark: record.remark || "",
+                prodTonn: "", // Reset production tonnage
               }
             : record
         ),
@@ -1143,12 +1267,11 @@ const WeeklyPlan = () => {
       return;
     }
 
-    // ✅ REMOVED: 4 digit minimum check - now API call happens for any value
+    // ✅ Rest of your existing API call logic remains same
     try {
       const results = await apiService.getKlnMasterDataByDie(value);
 
       if (!results || results.length === 0) {
-        // ✅ NEW: Show hyperlink instead of opening modal immediately
         setDayWiseData((prev) => ({
           ...prev,
           [day]: prev[day].map((record, idx) =>
@@ -1158,7 +1281,9 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: true,
                   dieNoErrorMessage: `No data found for Die No. ${value}`,
-                  showCreateLink: true, // ✅ NEW: Show create production order link
+                  showCreateLink: true,
+
+                  // ✅ Clear fields on error too
                   productionOrderNo: "",
                   customer: "",
                   grade: "",
@@ -1166,6 +1291,8 @@ const WeeklyPlan = () => {
                   plantCode: "",
                   section: "",
                   netWt: "",
+                  dieRequired: "",
+                  rmStatus: "",
                   customerOptions: [],
                   pressOptions: [],
                   gradeOptions: [],
@@ -1180,13 +1307,11 @@ const WeeklyPlan = () => {
         return;
       }
 
-      // Get unique production orders and press IDs
+      // ✅ Your existing logic for single/multiple results...
       const uniqueProductionOrders = [
         ...new Set(results.map((r) => r.prod_order)),
       ];
       const uniquePressIds = [...new Set(results.map((r) => r.forge_press))];
-
-      // Always get the first result for auto-filling
       const firstResult = results[0];
       const plantCodeValue =
         firstResult.plant_code ||
@@ -1206,7 +1331,7 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: false,
                   dieNoErrorMessage: "",
-                  showCreateLink: false, // ✅ NEW: Hide create link
+                  showCreateLink: false,
                   productionOrderNo: firstResult.prod_order || "",
                   plantCode: plantCodeValue,
                   pressId: firstResult.forge_press || "",
@@ -1223,6 +1348,11 @@ const WeeklyPlan = () => {
                   productionOrderOptions: [],
                   dieResults: results,
                   hasMultipleOptions: false,
+                  // ✅ Recalculate production tonnage
+                  prodTonn: calculateProdTonn(
+                    record.qty,
+                    firstResult.net_wt || 0
+                  ),
                 }
               : record
           ),
@@ -1238,7 +1368,7 @@ const WeeklyPlan = () => {
                   dieNo: [value],
                   dieNoError: false,
                   dieNoErrorMessage: "",
-                  showCreateLink: false, // ✅ NEW: Hide create link
+                  showCreateLink: false,
                   productionOrderNo: firstResult.prod_order || "",
                   pressId: firstResult.forge_press || "",
                   plantCode: plantCodeValue,
@@ -1255,6 +1385,11 @@ const WeeklyPlan = () => {
                   productionOrderOptions: uniqueProductionOrders,
                   dieResults: results,
                   hasMultipleOptions: true,
+                  // ✅ Recalculate production tonnage
+                  prodTonn: calculateProdTonn(
+                    record.qty,
+                    firstResult.net_wt || 0
+                  ),
                 }
               : record
           ),
@@ -1271,7 +1406,18 @@ const WeeklyPlan = () => {
                 dieNo: [value],
                 dieNoError: true,
                 dieNoErrorMessage: "Error fetching die data",
-                showCreateLink: true, // ✅ NEW: Show create link on API error too
+                showCreateLink: true,
+
+                // ✅ Clear fields on error
+                productionOrderNo: "",
+                customer: "",
+                grade: "",
+                pressId: "",
+                plantCode: "",
+                section: "",
+                netWt: "",
+                dieRequired: "",
+                rmStatus: "",
                 productionOrderOptions: [],
                 dieResults: [],
               }
@@ -1280,12 +1426,196 @@ const WeeklyPlan = () => {
       }));
     }
   };
+  // // Updated handleDieNoChange function
+  // const handleDieNoChange = async (day, recordIndex, value) => {
+  //   if (!value || value.trim() === "") {
+  //     // Reset fields
+  //     setDayWiseData((prev) => ({
+  //       ...prev,
+  //       [day]: prev[day].map((record, idx) =>
+  //         idx === recordIndex
+  //           ? {
+  //               ...record,
+  //               dieNo: [value],
+  //               dieNoError: false,
+  //               dieNoErrorMessage: "",
+  //               showCreateLink: false, // ✅ NEW: Hide create link
+  //               productionOrderNo: "",
+  //               customer: "",
+  //               grade: "",
+  //               pressId: "",
+  //               plantCode: "",
+  //               section: "",
+  //               netWt: "",
+  //               dieRequired: "", // ✅ ADD THIS
+  //               rmStatus: "", // ✅ ADD THIS
+  //               customerOptions: [],
+  //               pressOptions: [],
+  //               gradeOptions: [],
+  //               plantOptions: [],
+  //               productionOrderOptions: [],
+  //               dieResults: [],
+  //               hasMultipleOptions: false,
+  //             }
+  //           : record
+  //       ),
+  //     }));
+  //     return;
+  //   }
+
+  //   // ✅ REMOVED: 4 digit minimum check - now API call happens for any value
+  //   try {
+  //     const results = await apiService.getKlnMasterDataByDie(value);
+
+  //     if (!results || results.length === 0) {
+  //       // ✅ NEW: Show hyperlink instead of opening modal immediately
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: true,
+  //                 dieNoErrorMessage: `No data found for Die No. ${value}`,
+  //                 showCreateLink: true, // ✅ NEW: Show create production order link
+  //                 productionOrderNo: "",
+  //                 customer: "",
+  //                 grade: "",
+  //                 pressId: "",
+  //                 plantCode: "",
+  //                 section: "",
+  //                 netWt: "",
+  //                 customerOptions: [],
+  //                 pressOptions: [],
+  //                 gradeOptions: [],
+  //                 plantOptions: [],
+  //                 productionOrderOptions: [],
+  //                 dieResults: [],
+  //                 hasMultipleOptions: false,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //       return;
+  //     }
+
+  //     // Get unique production orders and press IDs
+  //     const uniqueProductionOrders = [
+  //       ...new Set(results.map((r) => r.prod_order)),
+  //     ];
+  //     const uniquePressIds = [...new Set(results.map((r) => r.forge_press))];
+
+  //     // Always get the first result for auto-filling
+  //     const firstResult = results[0];
+  //     const plantCodeValue =
+  //       firstResult.plant_code ||
+  //       firstResult.plantCode ||
+  //       firstResult.plant ||
+  //       firstResult.Plant_Code ||
+  //       "";
+
+  //     if (results.length === 1) {
+  //       // Single result - auto-fill all fields
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: false,
+  //                 dieNoErrorMessage: "",
+  //                 showCreateLink: false, // ✅ NEW: Hide create link
+  //                 productionOrderNo: firstResult.prod_order || "",
+  //                 plantCode: plantCodeValue,
+  //                 pressId: firstResult.forge_press || "",
+  //                 customer: firstResult.customer || "",
+  //                 netWt: firstResult.net_wt || 0,
+  //                 section: firstResult.section || "",
+  //                 grade: firstResult.rm_grade || "N/A",
+  //                 dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                 rmStatus: firstResult.rm_status || "No",
+  //                 customerOptions: [],
+  //                 pressOptions: [],
+  //                 gradeOptions: [],
+  //                 plantOptions: [],
+  //                 productionOrderOptions: [],
+  //                 dieResults: results,
+  //                 hasMultipleOptions: false,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //     } else {
+  //       // Multiple results - show dropdowns with first value auto-selected
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: false,
+  //                 dieNoErrorMessage: "",
+  //                 showCreateLink: false, // ✅ NEW: Hide create link
+  //                 productionOrderNo: firstResult.prod_order || "",
+  //                 pressId: firstResult.forge_press || "",
+  //                 plantCode: plantCodeValue,
+  //                 customer: firstResult.customer || "",
+  //                 netWt: firstResult.net_wt || 0,
+  //                 section: firstResult.section || "",
+  //                 grade: firstResult.rm_grade || "N/A",
+  //                 dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                 rmStatus: firstResult.rm_status || "No",
+  //                 customerOptions: [...new Set(results.map((r) => r.customer))],
+  //                 pressOptions: uniquePressIds,
+  //                 gradeOptions: [...new Set(results.map((r) => r.rm_grade))],
+  //                 plantOptions: [...new Set(results.map((r) => r.plant_code))],
+  //                 productionOrderOptions: uniqueProductionOrders,
+  //                 dieResults: results,
+  //                 hasMultipleOptions: true,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //     }
+  //   } catch (error) {
+  //     console.error("API error:", error);
+  //     setDayWiseData((prev) => ({
+  //       ...prev,
+  //       [day]: prev[day].map((record, idx) =>
+  //         idx === recordIndex
+  //           ? {
+  //               ...record,
+  //               dieNo: [value],
+  //               dieNoError: true,
+  //               dieNoErrorMessage: "Error fetching die data",
+  //               showCreateLink: true, // ✅ NEW: Show create link on API error too
+  //               productionOrderOptions: [],
+  //               dieResults: [],
+  //             }
+  //           : record
+  //       ),
+  //     }));
+  //   }
+  // };
 
   // ✅ NEW: Function to handle create production order link click
   const handleCreateProductionOrderClick = (day, recordIndex) => {
+    const record = dayWiseData[day][recordIndex];
+
+    // Pre-fill die number and plant code from the current record
+    setManualEntryData({
+      die_no: record.dieNo?.[0] || "",
+      plant_code: record.plantCode || "", // Get plant code from main record
+      order_qty: "",
+    });
+
     setCurrentManualRecord({ day, recordIndex });
     setShowManualEntryModal(true);
   };
+
   // 🔥 UPDATED handleDieNoChange function
   //   const handleDieNoChange = async (day, recordIndex, value) => {
   //     if (!value || value.trim() === "") {
@@ -1474,26 +1804,49 @@ const WeeklyPlan = () => {
   const handleManualEntrySubmit = async () => {
     try {
       const payload = {
-        data: [
-          {
-            plant_code: manualEntryData.plant_code,
-            die_no: manualEntryData.die_no,
-            order_qty: Number(manualEntryData.order_qty), // ensure numeric
-          },
-        ],
+        die_no: manualEntryData.die_no,
+        order_qty: Number(manualEntryData.order_qty),
       };
 
-      await axios.post(
-        "https://ktflceprd.kalyanicorp.com/production_order",
+      console.log("📦 Sending payload:", payload);
+
+      const response = await axios.post(
+        "http://localhost:8080/internal/production_order",
         payload
       );
 
-      alert("Production order created successfully!");
+      // ✅ Check if backend returned an error in the response
+      if (response.data && response.data.error) {
+        alert("❌ Error: " + response.data.error);
+        return;
+      }
+
+      // ✅ Success case
+      alert("✅ Production order created successfully!");
       setShowManualEntryModal(false);
       setManualEntryData({ plant_code: "", die_no: "", order_qty: "" });
     } catch (error) {
-      console.error("Error creating production order:", error);
-      alert("Failed to create production order.");
+      console.error("❌ Error creating production order:", error);
+
+      // ✅ Extract backend error message
+      let errorMessage = "Failed to create production order.";
+
+      if (error.response && error.response.data) {
+        // Backend ne error field return kiya hai
+        if (error.response.data.error) {
+          errorMessage = error.response.data.error;
+        }
+        // Ya phir string format mein error aaya
+        else if (typeof error.response.data === "string") {
+          errorMessage = error.response.data;
+        }
+      }
+      // Network error ya generic error
+      else if (error.message) {
+        errorMessage = error.message;
+      }
+
+      alert("❌ Error: " + errorMessage);
     }
   };
 
@@ -1512,7 +1865,7 @@ const WeeklyPlan = () => {
 
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
   //     const response = await fetch(
-  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       "http://localhost:8080/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions,
@@ -1848,7 +2201,7 @@ const WeeklyPlan = () => {
       // ✅ API call remains the same
       const authOptions = await getAuthHeadersWithCSRF("POST");
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+        "http://localhost:8080/internal/weekly_plan",
         {
           method: "POST",
           ...authOptions,
@@ -1952,7 +2305,7 @@ const WeeklyPlan = () => {
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
 
   //     const response = await fetch(
-  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       "http://localhost:8080/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions, // This includes headers with CSRF token and credentials
@@ -2043,22 +2396,87 @@ const WeeklyPlan = () => {
   return (
     <div style={styles.container}>
       {/* Header */}
-      <div style={styles.header}>
-        <div style={{ display: "flex", gap: "10px" }}>
-          {/* <button style={styles.button}>
-            <Filter size={16} /> Filter
-          </button> */}
+      {/* Header */}
+      <div
+        style={{
+          ...styles.header,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "15px",
+          flexWrap: "wrap",
+          padding: "15px",
+          background: "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)",
+          borderRadius: "8px",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+        }}
+      >
+        {/* Left Side - Action Buttons */}
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           <button onClick={openModal} style={styles.primaryButton}>
-            <Plus size={16} /> Enter Plan
+            <Plus size={14} /> Enter Plan
           </button>
-          {/* ✅ NEW: Send Email Button */}
           <button
             onClick={handleSendEmail}
             style={styles.emailButton}
             disabled={loading}
           >
-            <Mail size={16} /> {loading ? "Sending..." : "Send Email"}
+            <Mail size={14} /> {loading ? "Sending..." : "Send Week"}
           </button>
+          <button
+            onClick={handleSendMonthReport}
+            style={styles.monthReportButton}
+            disabled={loading}
+          >
+            <Mail size={14} /> {loading ? "Sending..." : "Send Month"}
+          </button>
+        </div>
+
+        {/* Right Side - Day-wise KPI Cards */}
+        {/* <div
+          style={{
+            display: "flex",
+
+            gap: "8px",
+            flexWrap: "wrap",
+            flex: 1,
+            justifyContent: "flex-end",
+          }}
+        >
+          {getWeekDates(weekOffset).map(({ dayName, date }) => {
+            // Calculate total tonnage for this day
+            const dayPlans = plans[dayName] || [];
+            const totalTonnage = dayPlans.reduce((sum, plan) => {
+              return sum + (parseFloat(plan.prodTonn) || 0);
+            }, 0);
+
+            return (
+              <div key={dayName} style={styles.kpiCard}>
+                <div style={styles.kpiDay}>{dayName}</div>
+                <div style={styles.kpiValue}>{totalTonnage.toFixed(1)}</div>
+                <div style={styles.kpiLabel}>Tons</div>
+              </div>
+            );
+          })}
+        </div> */}
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap",
+            flex: 1,
+            justifyContent: "flex-end",
+          }}
+        >
+          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((dayName) => (
+            <div key={dayName} style={styles.kpiCard}>
+              <div style={styles.kpiDay}>{dayName}</div>
+              <div style={styles.kpiValue}>
+                {dailyTonnage[dayName].toFixed(1)}
+              </div>
+              <div style={styles.kpiLabel}>Tons</div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -3214,57 +3632,7 @@ const WeeklyPlan = () => {
                       borderRadius: "8px",
                       border: "1px solid #e2e8f0",
                     }}
-                  >
-                    <div
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        color: "#2d3748",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      📊 Summary:
-                    </div>
-                    <div
-                      style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}
-                    >
-                      <div>
-                        <span style={{ color: "#4a5568" }}>
-                          Total Elements:{" "}
-                        </span>
-                        <span style={{ fontWeight: "600", color: "#2d3748" }}>
-                          {dieActualData.length}
-                        </span>
-                      </div>
-                      <div>
-                        <span style={{ color: "#4a5568" }}>Ready Status: </span>
-                        <span style={{ fontWeight: "600", color: "#38a169" }}>
-                          {
-                            dieActualData.filter(
-                              (item) => item.die_status === "Ready"
-                            ).length
-                          }
-                        </span>
-                      </div>
-                      <div>
-                        <span style={{ color: "#4a5568" }}>
-                          Completion Rate:{" "}
-                        </span>
-                        <span style={{ fontWeight: "600", color: "#2d3748" }}>
-                          {dieActualData.length > 0
-                            ? Math.round(
-                                (dieActualData.filter(
-                                  (item) => item.actual_set >= item.required_set
-                                ).length /
-                                  dieActualData.length) *
-                                  100
-                              )
-                            : 0}
-                          %
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  ></div>
                 </div>
               )}
             </div>
@@ -3429,6 +3797,23 @@ const WeeklyPlan = () => {
           weekDates={getWeekDates(weekOffset)}
           submittedPlans={plans}
           onEditPlan={(dayName, index, record) => {
+            setModalWeekOffset(weekOffset);
+            setShowModal(true);
+          }}
+          onDeletePlan={(dayName, index, record) => {
+            console.log("Delete", dayName, index, record);
+          }}
+          onOpenPlanModal={openModal}
+          onDailyTonnageUpdate={handleDailyTonnageUpdate}
+        />
+      )}
+      {/* {!showModal && (
+        <WeeklyPlanDisplay
+          weekTitle={getWeekTitle(weekOffset)}
+          weekStatus={getWeekStatus(weekOffset)}
+          weekDates={getWeekDates(weekOffset)}
+          submittedPlans={plans}
+          onEditPlan={(dayName, index, record) => {
             // optional: open modal + pre-fill data if needed
             setModalWeekOffset(weekOffset);
             setShowModal(true);
@@ -3439,7 +3824,7 @@ const WeeklyPlan = () => {
           }}
           onOpenPlanModal={openModal}
         />
-      )}
+      )} */}
       <SmartWeeklyPlanChatbot />
     </div>
   );

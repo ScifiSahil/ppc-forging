@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1" serialNumber="urn:uuid:e81980c4-03b9-4bdb-a1dc-e0d0abe6338f">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1" serialNumber="urn:uuid:03f74399-b427-4047-94ef-e841559153ef">
   <metadata>
-    <timestamp>2025-09-17T03:33:38.059Z</timestamp>
+    <timestamp>2025-10-16T06:02:09.931Z</timestamp>
     <tools>
       <tool>
         <vendor>@cyclonedx</vendor>
@@ -80,6 +80,32 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git">
+      <author>Tobias Koppers @sokra</author>
+      <name>style-loader</name>
+      <version>3.3.2</version>
+      <description>style loader module for webpack</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/webpack-contrib/style-loader.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/webpack-contrib/style-loader</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/webpack-contrib/style-loader/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
       <author>Matt Zabriskie</author>
       <name>axios</name>
@@ -132,54 +158,28 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git">
-      <author>Tobias Koppers @sokra</author>
-      <name>style-loader</name>
-      <version>3.3.2</version>
-      <description>style loader module for webpack</description>
+    <component type="library" bom-ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git">
+      <author>Luke Edwards</author>
+      <name>clsx</name>
+      <version>2.1.1</version>
+      <description>A tiny (239B) utility for constructing className strings conditionally.</description>
       <licenses>
         <license>
           <id>MIT</id>
         </license>
       </licenses>
-      <purl>pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git</purl>
+      <purl>pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git</purl>
       <externalReferences>
         <reference type="vcs">
-          <url>git+https://github.com/webpack-contrib/style-loader.git</url>
+          <url>git+https://github.com/lukeed/clsx.git</url>
           <comment>as detected from PackageJson property "repository.url"</comment>
         </reference>
         <reference type="website">
-          <url>https://github.com/webpack-contrib/style-loader</url>
+          <url>https://github.com/lukeed/clsx#readme</url>
           <comment>as detected from PackageJson property "homepage"</comment>
         </reference>
         <reference type="issue-tracker">
-          <url>https://github.com/webpack-contrib/style-loader/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git">
-      <author>Tobias Koppers @sokra</author>
-      <name>css-loader</name>
-      <version>6.7.3</version>
-      <description>css loader module for webpack</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/webpack-contrib/css-loader.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/webpack-contrib/css-loader</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/webpack-contrib/css-loader/issues</url>
+          <url>https://github.com/lukeed/clsx/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -236,32 +236,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git">
-      <author>Luke Edwards</author>
-      <name>clsx</name>
-      <version>2.1.1</version>
-      <description>A tiny (239B) utility for constructing className strings conditionally.</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/lukeed/clsx.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/lukeed/clsx#readme</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/lukeed/clsx/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git">
       <author>JasonHzq</author>
       <name>react-smooth</name>
@@ -284,6 +258,32 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/recharts/react-smooth/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git">
+      <author>Tobias Koppers @sokra</author>
+      <name>css-loader</name>
+      <version>6.7.3</version>
+      <description>css loader module for webpack</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/webpack-contrib/css-loader.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/webpack-contrib/css-loader</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/webpack-contrib/css-loader/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -417,6 +417,32 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git">
+      <author>T. Jameson Little</author>
+      <name>base64-js</name>
+      <version>1.5.1</version>
+      <description>Base64 encoding/decoding in pure JS</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git://github.com/beatgammit/base64-js.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/beatgammit/base64-js</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/beatgammit/base64-js/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
     <component type="library" bom-ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git">
       <author>Feross Aboukhadijeh</author>
       <name>ieee754</name>
@@ -443,28 +469,78 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git">
-      <author>T. Jameson Little</author>
-      <name>base64-js</name>
-      <version>1.5.1</version>
-      <description>Base64 encoding/decoding in pure JS</description>
+    <component type="library" bom-ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git">
+      <name>prop-types</name>
+      <version>15.8.1</version>
+      <description>Runtime type checking for React props and similar objects.</description>
       <licenses>
         <license>
           <id>MIT</id>
         </license>
       </licenses>
-      <purl>pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git</purl>
+      <purl>pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git</purl>
       <externalReferences>
         <reference type="vcs">
-          <url>git://github.com/beatgammit/base64-js.git</url>
+          <url>git+https://github.com/facebook/prop-types.git</url>
           <comment>as detected from PackageJson property "repository.url"</comment>
         </reference>
         <reference type="website">
-          <url>https://github.com/beatgammit/base64-js</url>
+          <url>https://facebook.github.io/react/</url>
           <comment>as detected from PackageJson property "homepage"</comment>
         </reference>
         <reference type="issue-tracker">
-          <url>https://github.com/beatgammit/base64-js/issues</url>
+          <url>https://github.com/facebook/prop-types/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/fast-equals@5.3.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git">
+      <author>tony_quetano@planttheidea.com</author>
+      <name>fast-equals</name>
+      <version>5.3.2</version>
+      <description>A blazing fast equality comparison, either shallow or deep</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/fast-equals@5.3.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/planttheidea/fast-equals.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/planttheidea/fast-equals#readme</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/planttheidea/fast-equals/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git">
+      <name>react-transition-group</name>
+      <version>4.4.5</version>
+      <description>A react component toolset for managing animations</description>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/reactjs/react-transition-group.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/reactjs/react-transition-group#readme</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/reactjs/react-transition-group/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -495,82 +571,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git">
-      <name>prop-types</name>
-      <version>15.8.1</version>
-      <description>Runtime type checking for React props and similar objects.</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/facebook/prop-types.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://facebook.github.io/react/</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/facebook/prop-types/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git">
-      <name>react-transition-group</name>
-      <version>4.4.5</version>
-      <description>A react component toolset for managing animations</description>
-      <licenses>
-        <license>
-          <id>BSD-3-Clause</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/reactjs/react-transition-group.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/reactjs/react-transition-group#readme</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/reactjs/react-transition-group/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git">
-      <author>tony_quetano@planttheidea.com</author>
-      <name>fast-equals</name>
-      <version>5.2.2</version>
-      <description>A blazing fast equality comparison, either shallow or deep</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/planttheidea/fast-equals.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/planttheidea/fast-equals#readme</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/planttheidea/fast-equals/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git">
       <author>Michael Mclaughlin</author>
       <name>decimal.js-light</name>
@@ -593,6 +593,31 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/MikeMcl/decimal.js-light/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is">
+      <name>react-is</name>
+      <version>16.13.1</version>
+      <description>Brand checking of React Elements.</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/facebook/react.git#packages/react-is</url>
+          <comment>as detected from PackageJson property "repository.url" and "repository.directory"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://reactjs.org/</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/facebook/react/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -649,32 +674,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git">
-      <author>Mike Bostock</author>
-      <name>d3-interpolate</name>
-      <version>3.0.1</version>
-      <description>Interpolate numbers, colors, strings, arrays, objects, whatever!</description>
-      <licenses>
-        <license>
-          <id>ISC</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/d3/d3-interpolate.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://d3js.org/d3-interpolate/</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/d3/d3-interpolate/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git">
       <author>Mike Bostock</author>
       <name>d3-time</name>
@@ -727,27 +726,28 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is">
-      <name>react-is</name>
-      <version>16.13.1</version>
-      <description>Brand checking of React Elements.</description>
+    <component type="library" bom-ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git">
+      <author>Mike Bostock</author>
+      <name>d3-interpolate</name>
+      <version>3.0.1</version>
+      <description>Interpolate numbers, colors, strings, arrays, objects, whatever!</description>
       <licenses>
         <license>
-          <id>MIT</id>
+          <id>ISC</id>
         </license>
       </licenses>
-      <purl>pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is</purl>
+      <purl>pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git</purl>
       <externalReferences>
         <reference type="vcs">
-          <url>git+https://github.com/facebook/react.git#packages/react-is</url>
-          <comment>as detected from PackageJson property "repository.url" and "repository.directory"</comment>
+          <url>git+https://github.com/d3/d3-interpolate.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
         </reference>
         <reference type="website">
-          <url>https://reactjs.org/</url>
+          <url>https://d3js.org/d3-interpolate/</url>
           <comment>as detected from PackageJson property "homepage"</comment>
         </reference>
         <reference type="issue-tracker">
-          <url>https://github.com/facebook/react/issues</url>
+          <url>https://github.com/d3/d3-interpolate/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -804,32 +804,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git">
-      <author>Mike Bostock</author>
-      <name>internmap</name>
-      <version>2.0.3</version>
-      <description>Map and Set with automatic key interning</description>
-      <licenses>
-        <license>
-          <id>ISC</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/mbostock/internmap.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/mbostock/internmap/</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/mbostock/internmap/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git">
       <author>Jason Quense</author>
       <name>dom-helpers</name>
@@ -852,6 +826,32 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/react-bootstrap/dom-helpers/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git">
+      <author>Mike Bostock</author>
+      <name>internmap</name>
+      <version>2.0.3</version>
+      <description>Map and Set with automatic key interning</description>
+      <licenses>
+        <license>
+          <id>ISC</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/mbostock/internmap.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/mbostock/internmap/</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/mbostock/internmap/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -886,37 +886,37 @@
   <dependencies>
     <dependency ref="pkg:npm/kalyani-iot-ppc-forging@0.0.1">
       <dependency ref="pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react"/>
+      <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
       <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git"/>
       <dependency ref="pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git"/>
-      <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
       <dependency ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"/>
     </dependency>
     <dependency ref="pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react"/>
+    <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
     <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
       <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"/>
     </dependency>
     <dependency ref="pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git">
       <dependency ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git"/>
       <dependency ref="pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git"/>
-      <dependency ref="pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git"/>
       <dependency ref="pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git"/>
+      <dependency ref="pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git"/>
       <dependency ref="pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
       <dependency ref="pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git"/>
       <dependency ref="pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git"/>
     </dependency>
-    <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
-    <dependency ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"/>
+    <dependency ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git"/>
     <dependency ref="pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git"/>
     <dependency ref="pkg:npm/victory-vendor@36.9.2?vcs_url=git%2Bhttps%3A//github.com/FormidableLabs/victory.git">
       <dependency ref="pkg:npm/d3-shape@3.2.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-shape.git"/>
       <dependency ref="pkg:npm/d3-scale@4.0.2?vcs_url=git%2Bhttps%3A//github.com/d3/d3-scale.git"/>
     </dependency>
-    <dependency ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git"/>
     <dependency ref="pkg:npm/react-smooth@4.0.4?vcs_url=git%2Bhttps%3A//github.com/recharts/react-smooth.git">
       <dependency ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git"/>
-      <dependency ref="pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git"/>
+      <dependency ref="pkg:npm/fast-equals@5.3.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git"/>
       <dependency ref="pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git"/>
     </dependency>
+    <dependency ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"/>
     <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git">
       <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
       <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
@@ -936,37 +936,37 @@
       <dependency ref="pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git"/>
       <dependency ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git"/>
     </dependency>
-    <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
     <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
-    <dependency ref="pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git"/>
+    <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
     <dependency ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git">
       <dependency ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
       <dependency ref="pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git"/>
     </dependency>
+    <dependency ref="pkg:npm/fast-equals@5.3.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git"/>
     <dependency ref="pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git">
       <dependency ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git"/>
       <dependency ref="pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git"/>
     </dependency>
-    <dependency ref="pkg:npm/fast-equals@5.2.2?vcs_url=git%2Bhttps%3A//github.com/planttheidea/fast-equals.git"/>
+    <dependency ref="pkg:npm/eventemitter3@4.0.7?vcs_url=git%3A//github.com/primus/eventemitter3.git"/>
     <dependency ref="pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git"/>
+    <dependency ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
     <dependency ref="pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git">
       <dependency ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"/>
     </dependency>
     <dependency ref="pkg:npm/d3-format@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-format.git"/>
-    <dependency ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git">
-      <dependency ref="pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"/>
-    </dependency>
     <dependency ref="pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git">
       <dependency ref="pkg:npm/d3-array@3.2.4?vcs_url=git%2Bhttps%3A//github.com/d3/d3-array.git"/>
     </dependency>
     <dependency ref="pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git">
       <dependency ref="pkg:npm/d3-time@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time.git"/>
     </dependency>
-    <dependency ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
+    <dependency ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git">
+      <dependency ref="pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"/>
+    </dependency>
     <dependency ref="pkg:npm/d3-path@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-path.git"/>
     <dependency ref="pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git"/>
-    <dependency ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"/>
     <dependency ref="pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git"/>
+    <dependency ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"/>
     <dependency ref="pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"/>
   </dependencies>
 </bom>

@@ -41,7 +41,7 @@ const Diestatus = () => {
     setError(null);
     try {
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual"
+        "http://localhost:8080/internal/kln_dms_dieactual"
       );
 
       if (!response.ok) {
@@ -1256,20 +1256,20 @@ Please check if the backend server is running and try again.`;
 
                             {/* Summary row for the die */}
                             <div
-                              // style={{
-                              //   marginTop: "8px",
-                              //   padding: "8px 14px",
-                              //   backgroundColor: group.isAllComplete
-                              //     ? "#f0fdf4"
-                              //     : "#fef7ed",
-                              //   borderRadius: "6px",
-                              //   border: group.isAllComplete
-                              //     ? "1px solid #bbf7d0"
-                              //     : "1px solid #fed7aa",
-                              //   display: "flex",
-                              //   justifyContent: "space-between",
-                              //   alignItems: "center",
-                              // }}
+                            // style={{
+                            //   marginTop: "8px",
+                            //   padding: "8px 14px",
+                            //   backgroundColor: group.isAllComplete
+                            //     ? "#f0fdf4"
+                            //     : "#fef7ed",
+                            //   borderRadius: "6px",
+                            //   border: group.isAllComplete
+                            //     ? "1px solid #bbf7d0"
+                            //     : "1px solid #fed7aa",
+                            //   display: "flex",
+                            //   justifyContent: "space-between",
+                            //   alignItems: "center",
+                            // }}
                             >
                               {/* <span
                                 style={{

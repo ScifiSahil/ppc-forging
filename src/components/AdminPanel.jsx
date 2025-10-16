@@ -12,7 +12,7 @@ const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
   const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
 
   // Step 1: Trigger cookie set
-  await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
+  await fetch("http://localhost:8080/internal/weekly_entry", {
     method: "GET",
     headers: {
       Authorization: `Basic ${credentials}`,
@@ -56,11 +56,11 @@ const AdminPanel = () => {
 
   // ✅ UPDATED - Using internal APIs like in WeeklyPlan
   const APIs = {
-    master_data: "https://ktflceprd.kalyanicorp.com/internal/kln_master_data",
-    machine_capacity: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_machine_capacity",
-    month: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_month",
-    week: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_week",
-    schedule: "https://ktflceprd.kalyanicorp.com/internal/kln_prod_schedule",
+    master_data: "http://localhost:8080/internal/kln_master_data",
+    machine_capacity: "http://localhost:8080/internal/kln_ppc_machine_capacity",
+    month: "http://localhost:8080/internal/kln_ppc_month",
+    week: "http://localhost:8080/internal/kln_ppc_week",
+    schedule: "http://localhost:8080/internal/kln_prod_schedule",
   };
 
   // Column configurations for each tab

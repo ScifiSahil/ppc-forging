@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Edit, Save, X } from "lucide-react";
+import { Edit, Save, X, Trash2 } from "lucide-react";
 import "./WeeklyPlanDisplay.css";
 
 // Function to safely convert string to integer
@@ -103,7 +103,6 @@ const mapApiDataToComponentFormat = (apiData) => {
   }));
 };
 
-
 // Function to format quantity display
 const formatQuantity = (shift1, shift2, shift3) => {
   const s1 = shift1 !== null && shift1 !== undefined ? shift1 : 0;
@@ -114,37 +113,103 @@ const formatQuantity = (shift1, shift2, shift3) => {
 };
 
 // Function to group data by day of week
-const groupDataByDay = (mappedData) => {
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// const groupDataByDay = (mappedData) => {
+//   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   const grouped = {};
+
+//   // Initialize all working days
+//   workingDays.forEach((day) => {
+//     grouped[day] = [];
+//   });
+
+//   mappedData.forEach((item) => {
+//     const date = new Date(item.date);
+//     const dayName = dayNames[date.getDay()];
+
+//     console.log(
+//       `📅 Processing item: ${item.prod_order}, Date: ${item.date}, Day: ${dayName}`
+//     );
+
+//     if (workingDays.includes(dayName)) {
+//       grouped[dayName].push({
+//         ...item,
+//         dayLabel: `${dayName} (${date.toLocaleDateString("en-GB", {
+//           day: "2-digit",
+//           month: "short",
+//         })})`,
+//       });
+//     }
+//   });
+
+//   console.log("📊 Final grouped data:", grouped);
+//   return grouped;
+// };
+
+const groupDataByPress = (mappedData) => {
   const grouped = {};
 
-  // Initialize all working days
-  workingDays.forEach((day) => {
-    grouped[day] = [];
+  mappedData.forEach((item) => {
+    const press = item.main_forge_press || item.pressId || "Unknown";
+    const date = new Date(item.date);
+    const dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][
+      date.getDay()
+    ];
+
+    if (!grouped[press]) {
+      grouped[press] = [];
+    }
+
+    grouped[press].push({
+      ...item,
+      dayLabel: `${dayName} (${date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+      })})`,
+    });
   });
 
-  mappedData.forEach((item) => {
-    const date = new Date(item.date);
+  console.log("📊 Press-wise grouped data:", grouped);
+  return grouped;
+};
+
+const calculateDailyTonnage = (apiData) => {
+  const dailyTotals = {
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0,
+  };
+
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  apiData.forEach((item) => {
+    const date = new Date(item.week_prod_date);
     const dayName = dayNames[date.getDay()];
-
-    console.log(
-      `📅 Processing item: ${item.prod_order}, Date: ${item.date}, Day: ${dayName}`
+    // Calculate Production Tonnage = (Shift1 + Shift2 + Shift3) × Net Weight / 1000
+    const prodTonn = calculateProdTonn(
+      item.shift1_qty || 0,
+      item.shift2_qty || 0,
+      item.shift3_qty || 0,
+      item.week_net_tonn || 0
     );
+    const tonnage = prodTonn;
 
-    if (workingDays.includes(dayName)) {
-      grouped[dayName].push({
-        ...item,
-        dayLabel: `${dayName} (${date.toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short",
-        })})`,
-      });
+    if (dailyTotals[dayName] !== undefined) {
+      dailyTotals[dayName] += tonnage;
     }
   });
 
-  console.log("📊 Final grouped data:", grouped);
-  return grouped;
+  // Round to 2 decimal places
+  Object.keys(dailyTotals).forEach((day) => {
+    dailyTotals[day] = Number(dailyTotals[day].toFixed(2));
+  });
+
+  console.log("📊 Daily Tonnage Totals:", dailyTotals);
+  return dailyTotals;
 };
 
 // Function to get date range for week title
@@ -166,7 +231,7 @@ const getWeekDateRange = (apiData) => {
   return `${formatDate(minDate)} - ${formatDate(maxDate)}`;
 };
 
-const WeeklyPlanDisplay = () => {
+const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -182,6 +247,212 @@ const WeeklyPlanDisplay = () => {
   const [endDate, setEndDate] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [forgeLines, setForgeLines] = useState([]);
+  const [sortConfig, setSortConfig] = useState({
+    key: null,
+    direction: null, // null, 'asc', or 'desc'
+  });
+  // 🔥 NEW: State for daily tonnage
+  const [dailyTonnage, setDailyTonnage] = useState({
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0,
+  });
+
+  // Sort handler function
+  const handleSort = (columnKey) => {
+    let direction = "asc";
+
+    if (sortConfig.key === columnKey) {
+      if (sortConfig.direction === "asc") {
+        direction = "desc";
+      } else if (sortConfig.direction === "desc") {
+        direction = null; // Reset to original
+      }
+    }
+
+    setSortConfig({
+      key: columnKey,
+      direction: direction,
+    });
+  };
+
+  // Function to sort data
+  const getSortedPlans = () => {
+    if (!sortConfig.direction || !sortConfig.key) {
+      return groupedPlans; // Return original data
+    }
+
+    const sorted = {};
+
+    const presses = Object.keys(groupedPlans);
+
+    const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+    presses.forEach((press) => {
+      const pressPlans = [...(groupedPlans[press] || [])];
+
+      pressPlans.sort((a, b) => {
+        let aValue, bValue;
+
+        // Map column keys to actual data fields
+        switch (sortConfig.key) {
+          case "plant_code":
+            aValue = a.plantCode;
+            bValue = b.plantCode;
+            break;
+          case "prod_order":
+            aValue = a.prod_order || a.productionOrderNo;
+            bValue = b.prod_order || b.productionOrderNo;
+            break;
+          case "main_forge_press":
+            aValue = a.main_forge_press || a.pressId;
+            bValue = b.main_forge_press || b.pressId;
+            break;
+          case "customer":
+            aValue = a.customer;
+            bValue = b.customer;
+            break;
+          case "netWt":
+            aValue = parseFloat(a.netWt) || 0;
+            bValue = parseFloat(b.netWt) || 0;
+            break;
+          case "die_no":
+            aValue = a.dieNo;
+            bValue = b.dieNo;
+            break;
+          case "qty":
+            aValue =
+              (a.shift1Qty || 0) + (a.shift2Qty || 0) + (a.shift3Qty || 0);
+            bValue =
+              (b.shift1Qty || 0) + (b.shift2Qty || 0) + (b.shift3Qty || 0);
+            break;
+          case "prod_tonn":
+            aValue = parseFloat(a.prodTonn) || 0;
+            bValue = parseFloat(b.prodTonn) || 0;
+            break;
+          case "section":
+            aValue = a.section;
+            bValue = b.section;
+            break;
+          case "grade":
+            aValue = a.grade;
+            bValue = b.grade;
+            break;
+          case "die_req":
+            aValue = a.dieRequired;
+            bValue = b.dieRequired;
+            break;
+          case "rm_status":
+            aValue = a.rmStatus;
+            bValue = b.rmStatus;
+            break;
+          case "heat_code":
+            aValue = a.heatCode;
+            bValue = b.heatCode;
+            break;
+          case "remark":
+            aValue = a.remark;
+            bValue = b.remark;
+            break;
+          default:
+            return 0;
+        }
+
+        // Handle null/undefined values
+        if (aValue === null || aValue === undefined) aValue = "";
+        if (bValue === null || bValue === undefined) bValue = "";
+
+        // Compare values
+        if (typeof aValue === "string" && typeof bValue === "string") {
+          return sortConfig.direction === "asc"
+            ? aValue.localeCompare(bValue)
+            : bValue.localeCompare(aValue);
+        } else {
+          return sortConfig.direction === "asc"
+            ? aValue - bValue
+            : bValue - aValue;
+        }
+      });
+
+      sorted[press] = pressPlans;
+    });
+
+    return sorted;
+  };
+
+  // Handle delete - Localhost version (no auth needed)
+  const handleDelete = async (pressName, planIndex, plan) => {
+    if (!window.confirm("Are you sure you want to mark this as deleted?")) {
+      return;
+    }
+
+    try {
+      setSaving(true);
+      setMessage({ type: "", text: "" });
+
+      const deleteData = {
+        main_prod_no: plan.prod_order,
+        week_prod_date: plan.date,
+        week_die_no: plan.dieNo,
+        is_delete: true,
+      };
+
+      console.log("🗑️ Marking as deleted:", deleteData);
+
+      const response = await fetch(
+        "http://localhost:8080/internal/weekly_plan",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(deleteData),
+        }
+      );
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to delete: ${response.status} - ${errorText}`);
+      }
+
+      await fetchWeeklyPlan(startDate, endDate);
+
+      setMessage({
+        type: "success",
+        text: "Delete event logged successfully!",
+      });
+
+      setTimeout(() => {
+        setMessage({ type: "", text: "" });
+      }, 3000);
+    } catch (err) {
+      console.error("❌ Error logging delete:", err);
+      setMessage({
+        type: "error",
+        text: `Failed to log delete: ${err.message}`,
+      });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Function to get sort indicator
+  const getSortIndicator = (columnKey) => {
+    if (sortConfig.key !== columnKey) {
+      return " ⇅"; // Both arrows when not sorted
+    }
+    if (sortConfig.direction === "asc") {
+      return " ▲"; // Up arrow for ascending
+    }
+    if (sortConfig.direction === "desc") {
+      return " ▼"; // Down arrow for descending
+    }
+    return " ⇅"; // Both arrows when reset
+  };
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -194,7 +465,7 @@ const WeeklyPlanDisplay = () => {
     console.log("📡 Fetching CSRF token with credentials:", credentials);
 
     // Step 1: Trigger cookie set
-    await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+    await fetch("http://localhost:8080/internal/weekly_plan", {
       method: "GET",
       headers: {
         Authorization: `Basic ${credentials}`,
@@ -243,7 +514,7 @@ const WeeklyPlanDisplay = () => {
   const thStyle = {
     position: "sticky",
     left: 0,
-    zindex: 5,
+    zindex: 10,
     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     color: "white",
     padding: "1rem 0.75rem",
@@ -252,15 +523,15 @@ const WeeklyPlanDisplay = () => {
     fontSize: "0.85rem",
     textTransform: "uppercase",
     letterSpacing: "0.05em",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
   };
 
-  const tdStyle = {
-    padding: "1rem 0.75rem",
-    borderBottom: "1px solid rgba(102, 126, 234, 0.1)",
-    background: "rgba(255, 255, 255, 0.8)",
-    transition: "all 0.3s ease",
-  };
-
+  // const tdStyle = {
+  //   padding: "1rem 0.75rem",
+  //   borderBottom: "1px solid rgba(102, 126, 234, 0.1)",
+  //   background: "rgba(255, 255, 255, 0.8)",
+  //   transition: "all 0.3s ease",
+  // };
 
   const fetchWeeklyPlan = async (start, end) => {
     try {
@@ -292,7 +563,7 @@ const WeeklyPlanDisplay = () => {
       const formattedEnd = formatDate(end);
 
       const query = `start_date=${formattedStart}&end_date=${formattedEnd}`;
-      const apiUrl = `https://ktflceprd.kalyanicorp.com/internal/weekly_plan?${query}`;
+      const apiUrl = `http://localhost:8080/internal/weekly_plan?${query}`;
 
       console.log("📡 API Call →", apiUrl);
       console.log("📅 Date Range:", formattedStart, "to", formattedEnd);
@@ -321,8 +592,17 @@ const WeeklyPlanDisplay = () => {
       const mappedData = mapApiDataToComponentFormat(data);
       console.log("🔄 Mapped Data:", mappedData);
 
-      const grouped = groupDataByDay(mappedData);
+      const grouped = groupDataByPress(mappedData);
       console.log("📊 Grouped Data:", grouped);
+
+      // 🔥 NEW: Calculate daily tonnage
+      const dailyTotals = calculateDailyTonnage(data);
+      setDailyTonnage(dailyTotals);
+
+      // 🔥 Parent ko bhi bhejo
+      if (onDailyTonnageUpdate) {
+        onDailyTonnageUpdate(dailyTotals);
+      }
 
       setGroupedPlans(grouped);
       setApiData(data);
@@ -422,7 +702,7 @@ const WeeklyPlanDisplay = () => {
   useEffect(() => {
     const fetchForgeLines = async () => {
       try {
-        const res = await fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+        const res = await fetch("http://localhost:8080/internal/forge_lines", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -638,7 +918,7 @@ const WeeklyPlanDisplay = () => {
 
       // Make API call to update
       const response = await fetch(
-        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+        "http://localhost:8080/internal/weekly_plan",
         {
           ...options,
           method: "PUT",
@@ -706,7 +986,7 @@ const WeeklyPlanDisplay = () => {
   //   const fetchDieDetails = async () => {
   //     try {
   //       const res = await fetch(
-  //         `https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `http://localhost:8080/http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`
   //       );
@@ -746,14 +1026,156 @@ const WeeklyPlanDisplay = () => {
 
   // General field renderer for editable and static view
 
+  // useEffect(() => {
+  //   const dieNo = editFormData.die_no;
+  //   console.log("🔍 Die number changed:", dieNo);
+  //   console.log("🔍 Current editing row:", editingRow);
+  //   console.log("📝 Current editFormData:", editFormData);
+
+  //   if (!dieNo || !dieNo.trim() || !editingRow) {
+  //     console.log("❌ Skipping fetch - missing die_no or editingRow");
+  //     return;
+  //   }
+
+  //   const fetchDieDetails = async () => {
+  //     try {
+  //       console.log("📡 Fetching die details for:", dieNo);
+
+  //       const res = await fetch(
+  //         `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //           dieNo
+  //         )}`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+  //           },
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       console.log("✅ API Response received:", data);
+
+  //       if (!Array.isArray(data) || data.length === 0) {
+  //         console.log("❌ No data received from API");
+  //         return;
+  //       }
+
+  //       const first = data[0];
+  //       console.log("🎯 First item from API:", first);
+  //       console.log("📝 Current form data before update:", editFormData);
+
+  //       setEditFormData((prev) => {
+  //         const updated = {
+  //           ...prev,
+  //           plant_code: first.plant_code ?? prev.plant_code,
+  //           forge_press: first.forge_press ?? prev.forge_press, // Updated: API has forge_press not main_forge_press
+  //           main_forge_press: first.forge_press ?? prev.main_forge_press, // Keep both for compatibility
+  //           customer: first.customer ?? prev.customer, // Updated: API has customer not customer_name
+  //           prod_order: first.prod_order ?? prev.prod_order, // Updated: API has prod_order not main_prod_no
+  //           netWt: first.net_wt ?? prev.netWt,
+  //           section: first.section ?? prev.section, // Updated: API has section not week_section
+  //           rm_grade: first.rm_grade ?? prev.rm_grade,
+  //           die_req: first.die_req ?? prev.die_req,
+  //           rm_status: first.rm_status ?? prev.rm_status,
+  //           heat_code: first.heat_code ?? prev.heat_code,
+  //           remark: first.remark ?? prev.remark,
+  //           prod_tonn: calculateProdTonn(
+  //             prev.shift1_qty || 0,
+  //             prev.shift2_qty || 0,
+  //             prev.shift3_qty || 0,
+  //             first.net_wt ?? prev.netWt
+  //           ),
+  //         };
+
+  //         console.log("🔄 Updated form data:", updated);
+  //         return updated;
+  //       });
+
+  //       setMatchingDieOptions(data.length > 1 ? data : []);
+  //       console.log("✅ Form data updated successfully");
+  //     } catch (e) {
+  //       console.error("❌ Die fetch error:", e);
+  //       setMatchingDieOptions([]);
+  //     }
+  //   };
+
+  //   fetchDieDetails();
+  // }, [editFormData.die_no, editingRow]);
+
   useEffect(() => {
     const dieNo = editFormData.die_no;
     console.log("🔍 Die number changed:", dieNo);
     console.log("🔍 Current editing row:", editingRow);
     console.log("📝 Current editFormData:", editFormData);
 
-    if (!dieNo || !dieNo.trim() || !editingRow) {
-      console.log("❌ Skipping fetch - missing die_no or editingRow");
+    if (!editingRow) {
+      console.log("❌ No editing row active");
+      return;
+    }
+
+    // ✅ If die_no is removed/cleared, reset the autofilled fields
+    // if (!dieNo || !dieNo.trim()) {
+    //   console.log("🧹 Die No removed - clearing autofilled fields");
+    //   setEditFormData((prev) => ({
+    //     ...prev,
+    //     // Keep these fields (user might have entered them)
+    //     die_no: prev.die_no,
+    //     shift1_qty: prev.shift1_qty,
+    //     shift2_qty: prev.shift2_qty,
+    //     shift3_qty: prev.shift3_qty,
+    //     remark: prev.remark,
+
+    //     // Clear autofilled fields
+    //     plant_code: "",
+    //     forge_press: "",
+    //     main_forge_press: "",
+    //     customer: "",
+    //     prod_order: "",
+    //     netWt: 0,
+    //     section: "",
+    //     rm_grade: "",
+    //     die_req: 0,
+    //     rm_status: "",
+    //     heat_code: "",
+    //     prod_tonn: calculateProdTonn(
+    //       prev.shift1_qty || 0,
+    //       prev.shift2_qty || 0,
+    //       prev.shift3_qty || 0,
+    //       0 // netWt is now 0
+    //     ),
+    //   }));
+    //   setMatchingDieOptions([]);
+    //   return;
+    // }
+
+    // ✅ If die_no is removed/cleared, reset the autofilled fields
+    if (!dieNo || !dieNo.trim()) {
+      console.log("🧹 Die No removed - clearing ALL fields");
+      setEditFormData((prev) => ({
+        ...prev,
+        // Keep only remark (user might have entered manually)
+        die_no: "",
+        remark: prev.remark,
+
+        // Clear ALL other fields including shifts
+        shift1_qty: 0,
+        shift2_qty: 0,
+        shift3_qty: 0,
+        plant_code: "",
+        forge_press: "",
+        main_forge_press: "",
+        customer: "",
+        prod_order: "",
+        netWt: 0,
+        section: "",
+        rm_grade: "",
+        die_req: 0,
+        rm_status: "",
+        heat_code: "",
+        prod_tonn: 0,
+      }));
+      setMatchingDieOptions([]);
       return;
     }
 
@@ -762,7 +1184,7 @@ const WeeklyPlanDisplay = () => {
         console.log("📡 Fetching die details for:", dieNo);
 
         const res = await fetch(
-          `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
+          `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
             dieNo
           )}`,
           {
@@ -789,12 +1211,12 @@ const WeeklyPlanDisplay = () => {
           const updated = {
             ...prev,
             plant_code: first.plant_code ?? prev.plant_code,
-            forge_press: first.forge_press ?? prev.forge_press, // Updated: API has forge_press not main_forge_press
-            main_forge_press: first.forge_press ?? prev.main_forge_press, // Keep both for compatibility
-            customer: first.customer ?? prev.customer, // Updated: API has customer not customer_name
-            prod_order: first.prod_order ?? prev.prod_order, // Updated: API has prod_order not main_prod_no
+            forge_press: first.forge_press ?? prev.forge_press,
+            main_forge_press: first.forge_press ?? prev.main_forge_press,
+            customer: first.customer ?? prev.customer,
+            prod_order: first.prod_order ?? prev.prod_order,
             netWt: first.net_wt ?? prev.netWt,
-            section: first.section ?? prev.section, // Updated: API has section not week_section
+            section: first.section ?? prev.section,
             rm_grade: first.rm_grade ?? prev.rm_grade,
             die_req: first.die_req ?? prev.die_req,
             rm_status: first.rm_status ?? prev.rm_status,
@@ -1023,18 +1445,235 @@ const WeeklyPlanDisplay = () => {
   };
 
   // Updated renderTableRows function with better data handling
-  const renderTableRows = () => {
-    const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const rows = [];
+  // const renderTableRows = () => {
+  //   const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  //   const rows = [];
+  //   const sortedPlans = getSortedPlans();
+  //   const presses = Object.keys(sortedPlans); // Get all unique presses
 
-    const highlightMatch = (text) => {
-      if (!searchText || typeof text !== "string") return text;
-      const regex = new RegExp(`(${searchText})`, "gi");
-      const parts = text.split(regex);
-      return parts.map((part, i) =>
-        regex.test(part) ? <mark key={i}>{part}</mark> : part
-      );
-    };
+  //   // const sortedPlans = getSortedPlans();
+
+  //   const highlightMatch = (text) => {
+  //     if (!searchText || typeof text !== "string") return text;
+  //     const regex = new RegExp(`(${searchText})`, "gi");
+  //     const parts = text.split(regex);
+  //     return parts.map((part, i) =>
+  //       regex.test(part) ? <mark key={i}>{part}</mark> : part
+  //     );
+  //   };
+
+  //   const isRowMatching = (plan) => {
+  //     if (!searchText) return true;
+  //     const valuesToCheck = [
+  //       plan.plantCode,
+  //       plan.prod_order,
+  //       plan.main_forge_press,
+  //       plan.customer,
+  //       plan.netWt,
+  //       plan.dieNo,
+  //       plan.shift1Qty,
+  //       plan.shift2Qty,
+  //       plan.shift3Qty,
+  //       plan.prodTonn,
+  //       plan.section,
+  //       plan.grade,
+  //       plan.dieRequired,
+  //       plan.rmStatus,
+  //       plan.heatCode,
+  //       plan.remark,
+  //     ];
+  //     return valuesToCheck
+  //       .join(" ")
+  //       .toLowerCase()
+  //       .includes(searchText.toLowerCase());
+  //   };
+
+  //   workingDays.forEach((dayName) => {
+  //     const dayPlans = sortedPlans[dayName] || [];
+  //     const filteredPlans = dayPlans.filter((plan) => isRowMatching(plan));
+
+  //     console.log(`📊 ${dayName} plans:`, filteredPlans.length);
+
+  //     if (filteredPlans.length === 0) return;
+
+  //     filteredPlans.forEach((plan, planIndex) => {
+  //       const rowKey = `${dayName}-${planIndex}`;
+  //       const isEditing = editingRow === rowKey;
+
+  //       rows.push(
+  //         <tr key={rowKey} className={isEditing ? "editing-row" : ""}>
+  //           {planIndex === 0 && (
+  //             <td
+  //               className="weekly-plan-td weekly-day-cell"
+  //               rowSpan={filteredPlans.length}
+  //             >
+  //               {plan.dayLabel || dayName}
+  //             </td>
+  //           )}
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.plantCode, "plant_code", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td max-ellipsis-90">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "prod_order")}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "main_forge_press")}
+  //           </td>
+  //           <td className="weekly-plan-td customer-cell">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "customer")}
+  //           </td>
+
+  //           <td className="weekly-plan-td">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "netWt")}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.dieNo, "die_no", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td shift-cell">
+  //             {isEditing ? (
+  //               <div className="shift-edit-container">
+  //                 <div className="shift-edit-item">
+  //                   <label>S1:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift1_qty")}
+  //                 </div>
+  //                 <div className="shift-edit-item">
+  //                   <label>S2:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift2_qty")}
+  //                 </div>
+  //                 <div className="shift-edit-item">
+  //                   <label>S3:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift3_qty")}
+  //                 </div>
+  //               </div>
+  //             ) : (
+  //               `${plan.shift1Qty || 0}, ${plan.shift2Qty || 0}, ${
+  //                 plan.shift3Qty || 0
+  //               }`
+  //             )}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.prodTonn, "prod_tonn", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.section, "section", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.grade, "rm_grade", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.dieRequired, "die_req", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.rmStatus, "rm_status", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.heatCode, "heat_code", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.remark, "remark", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td action-cell">
+  //             {isEditing ? (
+  //               <div className="flex-gap-2">
+  //                 <button
+  //                   className="action-btn save-btn"
+  //                   onClick={() => handleSave(dayName, planIndex, plan)}
+  //                   disabled={saving}
+  //                 >
+  //                   {saving ? "..." : <Save size={10} />}
+  //                 </button>
+
+  //                 <button
+  //                   className="action-btn cancel-btn"
+  //                   onClick={handleCancel}
+  //                   disabled={saving}
+  //                 >
+  //                   <X size={10} />
+  //                 </button>
+  //               </div>
+  //             ) : (
+  //               <button
+  //                 className="action-btn"
+  //                 onClick={() => handleEditClick(dayName, planIndex, plan)}
+  //               >
+  //                 <Edit size={12} />
+  //               </button>
+  //             )}
+  //           </td>
+  //         </tr>
+  //       );
+  //     });
+  //   });
+
+  //   return rows;
+  // };
+
+  // 🔥 NEW: Render Daily Tonnage Summary Component
+  const renderDailyTonnageSummary = () => {
+    const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+          padding: "1rem",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          borderRadius: "12px",
+          marginBottom: "2rem",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        {workingDays.map((day) => (
+          <div
+            key={day}
+            style={{
+              textAlign: "center",
+              color: "white",
+              padding: "0.5rem 1rem",
+              background: "rgba(255, 255, 255, 0.1)",
+              borderRadius: "8px",
+              minWidth: "80px",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "0.9rem",
+                fontWeight: "600",
+                marginBottom: "0.25rem",
+                letterSpacing: "0.5px",
+              }}
+            >
+              {day.toUpperCase()}
+            </div>
+            <div
+              style={{
+                fontSize: "1.2rem",
+                fontWeight: "700",
+              }}
+            >
+              {dailyTonnage[day].toFixed(1)}
+            </div>
+            <div
+              style={{
+                fontSize: "0.7rem",
+                opacity: 0.8,
+                marginTop: "0.1rem",
+              }}
+            >
+              TONS
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  const renderTableRows = () => {
+    const rows = [];
+    const sortedPlans = getSortedPlans();
+    const presses = Object.keys(sortedPlans); // Get all unique presses
 
     const isRowMatching = (plan) => {
       if (!searchText) return true;
@@ -1062,37 +1701,40 @@ const WeeklyPlanDisplay = () => {
         .includes(searchText.toLowerCase());
     };
 
-    workingDays.forEach((dayName) => {
-      const dayPlans = groupedPlans[dayName] || [];
-      const filteredPlans = dayPlans.filter((plan) => isRowMatching(plan));
-
-      console.log(`📊 ${dayName} plans:`, filteredPlans.length);
+    presses.forEach((pressName) => {
+      const pressPlans = sortedPlans[pressName] || [];
+      const filteredPlans = pressPlans.filter((plan) => isRowMatching(plan));
 
       if (filteredPlans.length === 0) return;
 
       filteredPlans.forEach((plan, planIndex) => {
-        const rowKey = `${dayName}-${planIndex}`;
+        const rowKey = `${pressName}-${planIndex}`;
         const isEditing = editingRow === rowKey;
 
         rows.push(
           <tr key={rowKey} className={isEditing ? "editing-row" : ""}>
+            {/* Press column with rowspan */}
             {planIndex === 0 && (
               <td
                 className="weekly-plan-td weekly-day-cell"
                 rowSpan={filteredPlans.length}
               >
-                {plan.dayLabel || dayName}
+                {pressName}
               </td>
             )}
-            <td className="weekly-plan-td">
-              {renderValue(plan.plantCode, "plant_code", isEditing, rowKey)}
-            </td>
+
+            {/* Day column (new) */}
+            <td className="weekly-plan-td">{plan.dayLabel}</td>
+
+            {/* Plant Code - comment out अगर नहीं चाहिए */}
+            {/* <td className="weekly-plan-td">
+            {renderValue(plan.plantCode, "plant_code", isEditing, rowKey)}
+          </td> */}
+
             <td className="weekly-plan-td max-ellipsis-90">
               {renderQuantityValue(plan, isEditing, rowKey, "prod_order")}
             </td>
-            <td className="weekly-plan-td">
-              {renderQuantityValue(plan, isEditing, rowKey, "main_forge_press")}
-            </td>
+
             <td className="weekly-plan-td customer-cell">
               {renderQuantityValue(plan, isEditing, rowKey, "customer")}
             </td>
@@ -1100,9 +1742,12 @@ const WeeklyPlanDisplay = () => {
             <td className="weekly-plan-td">
               {renderQuantityValue(plan, isEditing, rowKey, "netWt")}
             </td>
+
             <td className="weekly-plan-td">
               {renderValue(plan.dieNo, "die_no", isEditing, rowKey)}
             </td>
+
+            {/* Shift quantities */}
             <td className="weekly-plan-td shift-cell">
               {isEditing ? (
                 <div className="shift-edit-container">
@@ -1125,6 +1770,8 @@ const WeeklyPlanDisplay = () => {
                 }`
               )}
             </td>
+
+            {/* Remaining columns same as before */}
             <td className="weekly-plan-td">
               {renderValue(plan.prodTonn, "prod_tonn", isEditing, rowKey)}
             </td>
@@ -1146,17 +1793,18 @@ const WeeklyPlanDisplay = () => {
             <td className="weekly-plan-td">
               {renderValue(plan.remark, "remark", isEditing, rowKey)}
             </td>
+
+            {/* Action buttons */}
             <td className="weekly-plan-td action-cell">
               {isEditing ? (
                 <div className="flex-gap-2">
                   <button
                     className="action-btn save-btn"
-                    onClick={() => handleSave(dayName, planIndex, plan)}
+                    onClick={() => handleSave(pressName, planIndex, plan)}
                     disabled={saving}
                   >
                     {saving ? "..." : <Save size={10} />}
                   </button>
-
                   <button
                     className="action-btn cancel-btn"
                     onClick={handleCancel}
@@ -1166,12 +1814,21 @@ const WeeklyPlanDisplay = () => {
                   </button>
                 </div>
               ) : (
-                <button
-                  className="action-btn"
-                  onClick={() => handleEditClick(dayName, planIndex, plan)}
-                >
-                  <Edit size={12} />
-                </button>
+                <div className="flex-gap-2">
+                  <button
+                    className="action-btn"
+                    onClick={() => handleEditClick(pressName, planIndex, plan)}
+                  >
+                    <Edit size={12} />
+                  </button>
+                  <button
+                    className="action-btn delete-btn"
+                    onClick={() => handleDelete(pressName, planIndex, plan)}
+                    disabled={saving}
+                  >
+                    <Trash2 size={12} />
+                  </button>
+                </div>
               )}
             </td>
           </tr>
@@ -1240,6 +1897,8 @@ const WeeklyPlanDisplay = () => {
         </button>
       </div>
 
+      {/* {renderDailyTonnageSummary()} */}
+
       {renderWeekHeader()}
       {validationErrors.length > 0 && (
         <div className="validation-error">
@@ -1273,10 +1932,16 @@ const WeeklyPlanDisplay = () => {
               onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
-          <div style={{ overflowX: "auto" }}>
+          <div>
             <table style={tableStyle}>
-              <thead>
-                <tr>
+              {/* <thead>
+                <tr
+                  style={{
+                    overflowX: "auto",
+                    maxHeight: "70vh",
+                    overflowY: "auto",
+                  }}
+                >
                   <th style={thStyle}>Day</th>
                   <th style={thStyle}>Plant Code</th>
                   <th style={thStyle}>Production Order No</th>
@@ -1292,6 +1957,152 @@ const WeeklyPlanDisplay = () => {
                   <th style={thStyle}>RM Status</th>
                   <th style={thStyle}>Heat Code</th>
                   <th style={thStyle}>Remark</th>
+                  <th style={thStyle}>Action</th>
+                </tr>
+              </thead> */}
+              <thead>
+                <tr>
+                  <th style={thStyle}>Press</th>
+                  {/* <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("plant_code")}
+                  >
+                    Plant Code{getSortIndicator("plant_code")}
+                  </th> */}
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("prod_order")}
+                  >
+                    Day and date{getSortIndicator("prod_order")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("main_forge_press")}
+                  >
+                    Prod. No.{getSortIndicator("main_forge_press")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("customer")}
+                  >
+                    Customer{getSortIndicator("customer")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("netWt")}
+                  >
+                    Net Wt{getSortIndicator("netWt")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("die_no")}
+                  >
+                    Die No{getSortIndicator("die_no")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("qty")}
+                  >
+                    Qty (S1, S2, S3){getSortIndicator("qty")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("prod_tonn")}
+                  >
+                    Prod Tonn{getSortIndicator("prod_tonn")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("section")}
+                  >
+                    Section{getSortIndicator("section")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("grade")}
+                  >
+                    Grade{getSortIndicator("grade")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("die_req")}
+                  >
+                    Die Required{getSortIndicator("die_req")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("rm_status")}
+                  >
+                    RM Status{getSortIndicator("rm_status")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("heat_code")}
+                  >
+                    Heat Code{getSortIndicator("heat_code")}
+                  </th>
+                  <th
+                    style={{
+                      ...thStyle,
+                      cursor: "pointer",
+                      userSelect: "none",
+                    }}
+                    onClick={() => handleSort("remark")}
+                  >
+                    Remark{getSortIndicator("remark")}
+                  </th>
                   <th style={thStyle}>Action</th>
                 </tr>
               </thead>

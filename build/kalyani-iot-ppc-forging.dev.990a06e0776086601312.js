@@ -30600,7 +30600,7 @@ var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
           contentType = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
           credentials = btoa("kalyaniadmin:kalyaniadmin@7001"); // Step 1: Trigger cookie set
           _context.next = 5;
-          return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
+          return fetch("http://localhost:8080/internal/weekly_entry", {
             method: "GET",
             headers: {
               Authorization: "Basic ".concat(credentials)
@@ -30681,11 +30681,11 @@ var AdminPanel = function AdminPanel() {
 
   // ✅ UPDATED - Using internal APIs like in WeeklyPlan
   var APIs = {
-    master_data: "https://ktflceprd.kalyanicorp.com/internal/kln_master_data",
-    machine_capacity: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_machine_capacity",
-    month: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_month",
-    week: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_week",
-    schedule: "https://ktflceprd.kalyanicorp.com/internal/kln_prod_schedule"
+    master_data: "http://localhost:8080/internal/kln_master_data",
+    machine_capacity: "http://localhost:8080/internal/kln_ppc_machine_capacity",
+    month: "http://localhost:8080/internal/kln_ppc_month",
+    week: "http://localhost:8080/internal/kln_ppc_week",
+    schedule: "http://localhost:8080/internal/kln_prod_schedule"
   };
 
   // Column configurations for each tab
@@ -32968,7 +32968,7 @@ var Diestatus = function Diestatus() {
             setError(null);
             _context.prev = 2;
             _context.next = 5;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual");
+            return fetch("http://localhost:8080/internal/kln_dms_dieactual");
           case 5:
             response = _context.sent;
             if (response.ok) {
@@ -42027,7 +42027,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 8;
             _context.next = 11;
-            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
+            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan");
           case 11:
             res = _context.sent;
             _context.next = 14;
@@ -42133,7 +42133,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 38;
             _context.next = 41;
-            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -42183,7 +42183,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 58;
             _context.next = 61;
-            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
+            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan");
           case 61:
             _res2 = _context.sent;
             _context.next = 64;
@@ -42265,7 +42265,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }, currentField, userInput);
             _context.prev = 81;
             _context.next = 84;
-            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan", {
               method: "PATCH",
               headers: {
                 "Content-Type": "application/json"
@@ -42390,6 +42390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _WeeklyPlanModal_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./WeeklyPlanModal.css */ "./src/components/WeeklyPlanModal.css");
 /* harmony import */ var _SmartWeeklyPlanChatbot__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SmartWeeklyPlanChatbot */ "./src/components/SmartWeeklyPlanChatbot.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+var _styles;
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -42435,7 +42436,7 @@ var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
           contentType = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
           credentials = btoa("kalyaniadmin:kalyaniadmin@7001"); // Step 1: Trigger cookie set
           _context.next = 5;
-          return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
+          return fetch("http://localhost:8080/internal/weekly_entry", {
             method: "GET",
             headers: {
               Authorization: "Basic ".concat(credentials)
@@ -42512,7 +42513,7 @@ var apiService = {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=".concat(dieNumber), {
+            return fetch("http://localhost:8080/internal/weekly_entry?die_no=".concat(dieNumber), {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -42551,7 +42552,7 @@ var apiService = {
             console.log("Calling Forge Lines API 🚀");
             _context3.prev = 1;
             _context3.next = 4;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+            return fetch("http://localhost:8080/internal/forge_lines", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -42654,7 +42655,7 @@ var apiService = {
           case 6:
             authOptions = _context5.sent;
             _context5.next = 9;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({
+            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify(payload)
@@ -42756,7 +42757,7 @@ var apiService = {
             });
             _context8.prev = 1;
             // ✅ Construct URL with proper encoding
-            baseUrl = "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual";
+            baseUrl = "http://localhost:8080/internal/kln_dms_dieactual";
             params = new URLSearchParams({
               plant_code: plantCode,
               die_no: dieNo
@@ -42887,7 +42888,7 @@ var apiService = {
           case 3:
             authOptions = _context10.sent;
             _context10.next = 6;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/production_order", _objectSpread(_objectSpread({
+            return fetch("http://localhost:8080/internal/production_order", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify({
@@ -42946,7 +42947,7 @@ var apiService = {
           case 3:
             authConfig = _context11.sent;
             _context11.next = 6;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/production_report", _objectSpread({
+            return fetch("http://localhost:8080/internal/production_report", _objectSpread({
               method: "GET"
             }, authConfig));
           case 6:
@@ -42991,7 +42992,7 @@ var apiService = {
 };
 
 // Styles
-var styles = {
+var styles = (_styles = {
   container: {
     padding: "10px",
     fontFamily: "Arial, sans-serif"
@@ -43003,6 +43004,56 @@ var styles = {
     marginBottom: "15px",
     flexWrap: "wrap",
     gap: "10px"
+  },
+  // ✅ NEW: Month Report Button Style
+  monthReportButton: {
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "8px",
+    backgroundImage: "linear-gradient(93deg, #764ba2 0%, #667eea 100%)",
+    // Reverse gradient
+    color: "#ffffff",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "8px",
+    fontSize: "14px",
+    fontWeight: "600",
+    letterSpacing: "0.5px",
+    textTransform: "uppercase",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
+    transition: "all 0.3s ease-in-out"
+  },
+  // ✅ NEW: KPI Card Style
+  kpiCard: {
+    padding: "8px 12px",
+    borderRadius: "6px",
+    background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+    border: "1px solid #dee2e6",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "2px",
+    minWidth: "70px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)"
+  },
+  kpiDay: {
+    fontSize: "10px",
+    fontWeight: "700",
+    color: "#6c757d",
+    textTransform: "uppercase",
+    letterSpacing: "0.5px"
+  },
+  kpiValue: {
+    fontSize: "14px",
+    fontWeight: "700",
+    color: "#2d3748"
+  },
+  kpiLabel: {
+    fontSize: "8px",
+    color: "#6c757d",
+    textTransform: "uppercase"
   },
   button: {
     padding: "6px 12px",
@@ -43016,216 +43067,219 @@ var styles = {
     fontSize: "12px"
   },
   primaryButton: {
-    padding: "12px 24px",
+    padding: "8px 16px",
+    // ✅ Reduced padding
     border: "none",
-    borderRadius: "8px",
+    borderRadius: "6px",
+    // ✅ Smaller radius
     backgroundImage: "linear-gradient(93deg, #43cea2 0%, #185a9d 100%)",
-    // Teal to Blue
     color: "#ffffff",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
-    fontSize: "14px",
+    gap: "6px",
+    // ✅ Smaller gap
+    fontSize: "12px",
+    // ✅ Smaller font
     fontWeight: "600",
-    letterSpacing: "0.5px",
+    letterSpacing: "0.3px",
     textTransform: "uppercase",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
-    transition: "all 0.3s ease-in-out"
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease-in-out",
+    whiteSpace: "nowrap"
   },
   // ✅ NEW: Email Button Style
   emailButton: {
-    padding: "12px 24px",
+    padding: "8px 16px",
+    // ✅ Reduced
     border: "none",
-    borderRadius: "8px",
+    borderRadius: "6px",
     backgroundImage: "linear-gradient(93deg, #667eea 0%, #764ba2 100%)",
-    // Purple gradient
     color: "#ffffff",
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
-    fontSize: "14px",
-    fontWeight: "600",
-    letterSpacing: "0.5px",
-    textTransform: "uppercase",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.15)",
-    transition: "all 0.3s ease-in-out"
-  },
-  successButton: {
-    padding: "10px 20px",
-    backgroundColor: "#28a745",
-    color: "white",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontSize: "14px",
-    fontWeight: "bold"
-  },
-  weekNav: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "10px",
-    marginBottom: "10px",
-    padding: "6px",
-    backgroundColor: "#f8f9fa",
-    borderRadius: "6px",
-    flexWrap: "wrap"
-  },
-  modal: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 1000,
-    padding: "5px"
-  },
-  modalContent: {
-    backgroundColor: "white",
-    padding: "0",
-    borderRadius: "8px",
-    width: "95%",
-    maxWidth: "100vw",
-    display: "flex",
-    flexDirection: "column"
-  },
-  modalHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderBottom: "1px solid #eee"
-  },
-  modalTitle: {
-    margin: 0,
-    fontSize: "14px"
-  },
-  modalTableWrapper: {
-    flex: 1,
-    overflowX: "auto",
-    overflowY: "hidden",
-    border: "1px solid #ddd",
-    borderRadius: "4px",
-    height: "100%"
-  },
-  modalTable: {
-    width: "100%",
-    borderCollapse: "collapse",
-    fontSize: "10px",
-    minWidth: "1200px" // Ensures horizontal scroll on small screens
-  },
-
-  modalTableHeader: {
-    backgroundColor: "#f8f9fa",
-    border: "1px solid #dee2e6",
-    padding: "8px 4px",
-    textAlign: "center",
-    fontWeight: "600",
-    fontSize: "11px",
-    position: "sticky",
-    top: 0,
-    zIndex: 10,
-    whiteSpace: "nowrap",
-    minWidth: "80px",
-    maxWidth: "120px",
-    overflow: "hidden",
-    textOverflow: "ellipsis"
-  },
-  modalTableCell: {
-    border: "1px solid #dee2e6",
-    padding: "4px 2px",
-    verticalAlign: "middle",
-    minWidth: "60px"
-  },
-  dayCell: {
-    backgroundColor: "#f8f9fa",
-    fontWeight: "600",
-    fontSize: "9px",
-    minWidth: "60px",
-    position: "sticky",
-    left: 0,
-    zIndex: 5
-  },
-  compactInput: {
-    width: "100%",
-    padding: "2px 3px",
-    border: "1px solid #ccc",
-    borderRadius: "3px",
-    fontSize: "9px",
-    minHeight: "18px",
-    boxSizing: "border-box"
-  },
-  compactSelect: {
-    width: "100%",
-    padding: "2px 3px",
-    border: "1px solid #ccc",
-    borderRadius: "3px",
-    fontSize: "9px",
-    minHeight: "20px",
-    backgroundColor: "white",
-    color: "#333",
-    boxSizing: "border-box"
-  },
-  shiftInputs: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "1px"
-  },
-  shiftInput: {
-    width: "100%",
-    padding: "1px 2px",
-    border: "1px solid #ccc",
-    borderRadius: "2px",
-    fontSize: "8px",
-    minHeight: "16px",
-    boxSizing: "border-box"
-  },
-  actionButtons: {
-    display: "flex",
-    gap: "1px",
-    flexWrap: "wrap"
-  },
-  smallButton: {
-    padding: "1px 4px",
-    fontSize: "8px",
-    border: "none",
-    borderRadius: "2px",
-    cursor: "pointer",
-    minHeight: "16px",
-    whiteSpace: "nowrap"
-  },
-  modalFooter: {
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: "8px",
-    paddingTop: "6px",
-    borderTop: "1px solid #eee",
-    marginTop: "6px",
-    flexShrink: 0,
-    flexWrap: "wrap"
-  },
-  modalFooterButton: {
-    padding: "6px 12px",
+    gap: "6px",
     fontSize: "12px",
-    borderRadius: "4px",
-    cursor: "pointer",
-    border: "1px solid",
-    minWidth: "80px"
-  },
-  loading: {
-    textAlign: "center",
-    padding: "15px",
-    color: "#666",
-    fontSize: "14px"
+    fontWeight: "600",
+    letterSpacing: "0.3px",
+    textTransform: "uppercase",
+    boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease-in-out",
+    whiteSpace: "nowrap"
   }
-};
+}, _defineProperty(_styles, "monthReportButton", {
+  padding: "8px 16px",
+  // ✅ Reduced
+  border: "none",
+  borderRadius: "6px",
+  backgroundImage: "linear-gradient(93deg, #f093fb 0%, #f5576c 100%)",
+  color: "#ffffff",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "6px",
+  fontSize: "12px",
+  fontWeight: "600",
+  letterSpacing: "0.3px",
+  textTransform: "uppercase",
+  boxShadow: "0 2px 6px rgba(0, 0, 0, 0.1)",
+  transition: "all 0.3s ease-in-out",
+  whiteSpace: "nowrap"
+}), _defineProperty(_styles, "successButton", {
+  padding: "10px 20px",
+  backgroundColor: "#28a745",
+  color: "white",
+  border: "none",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontSize: "14px",
+  fontWeight: "bold"
+}), _defineProperty(_styles, "weekNav", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "10px",
+  marginBottom: "10px",
+  padding: "6px",
+  backgroundColor: "#f8f9fa",
+  borderRadius: "6px",
+  flexWrap: "wrap"
+}), _defineProperty(_styles, "modal", {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0,0,0,0.5)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  zIndex: 1000,
+  padding: "5px"
+}), _defineProperty(_styles, "modalContent", {
+  backgroundColor: "white",
+  padding: "0",
+  borderRadius: "8px",
+  width: "95%",
+  maxWidth: "100vw",
+  display: "flex",
+  flexDirection: "column"
+}), _defineProperty(_styles, "modalHeader", {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  borderBottom: "1px solid #eee"
+}), _defineProperty(_styles, "modalTitle", {
+  margin: 0,
+  fontSize: "14px"
+}), _defineProperty(_styles, "modalTableWrapper", {
+  flex: 1,
+  overflowX: "auto",
+  overflowY: "hidden",
+  border: "1px solid #ddd",
+  borderRadius: "4px",
+  height: "100%"
+}), _defineProperty(_styles, "modalTable", {
+  width: "100%",
+  borderCollapse: "collapse",
+  fontSize: "10px",
+  minWidth: "1200px" // Ensures horizontal scroll on small screens
+}), _defineProperty(_styles, "modalTableHeader", {
+  backgroundColor: "#f8f9fa",
+  border: "1px solid #dee2e6",
+  padding: "8px 4px",
+  textAlign: "center",
+  fontWeight: "600",
+  fontSize: "11px",
+  position: "sticky",
+  top: 0,
+  zIndex: 10,
+  whiteSpace: "nowrap",
+  minWidth: "80px",
+  maxWidth: "120px",
+  overflow: "hidden",
+  textOverflow: "ellipsis"
+}), _defineProperty(_styles, "modalTableCell", {
+  border: "1px solid #dee2e6",
+  padding: "4px 2px",
+  verticalAlign: "middle",
+  minWidth: "60px"
+}), _defineProperty(_styles, "dayCell", {
+  backgroundColor: "#f8f9fa",
+  fontWeight: "600",
+  fontSize: "9px",
+  minWidth: "60px",
+  position: "sticky",
+  left: 0,
+  zIndex: 5
+}), _defineProperty(_styles, "compactInput", {
+  width: "100%",
+  padding: "2px 3px",
+  border: "1px solid #ccc",
+  borderRadius: "3px",
+  fontSize: "9px",
+  minHeight: "18px",
+  boxSizing: "border-box"
+}), _defineProperty(_styles, "compactSelect", {
+  width: "100%",
+  padding: "2px 3px",
+  border: "1px solid #ccc",
+  borderRadius: "3px",
+  fontSize: "9px",
+  minHeight: "20px",
+  backgroundColor: "white",
+  color: "#333",
+  boxSizing: "border-box"
+}), _defineProperty(_styles, "shiftInputs", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "1px"
+}), _defineProperty(_styles, "shiftInput", {
+  width: "100%",
+  padding: "1px 2px",
+  border: "1px solid #ccc",
+  borderRadius: "2px",
+  fontSize: "8px",
+  minHeight: "16px",
+  boxSizing: "border-box"
+}), _defineProperty(_styles, "actionButtons", {
+  display: "flex",
+  gap: "1px",
+  flexWrap: "wrap"
+}), _defineProperty(_styles, "smallButton", {
+  padding: "1px 4px",
+  fontSize: "8px",
+  border: "none",
+  borderRadius: "2px",
+  cursor: "pointer",
+  minHeight: "16px",
+  whiteSpace: "nowrap"
+}), _defineProperty(_styles, "modalFooter", {
+  display: "flex",
+  justifyContent: "flex-end",
+  gap: "8px",
+  paddingTop: "6px",
+  borderTop: "1px solid #eee",
+  marginTop: "6px",
+  flexShrink: 0,
+  flexWrap: "wrap"
+}), _defineProperty(_styles, "modalFooterButton", {
+  padding: "6px 12px",
+  fontSize: "12px",
+  borderRadius: "4px",
+  cursor: "pointer",
+  border: "1px solid",
+  minWidth: "80px"
+}), _defineProperty(_styles, "loading", {
+  textAlign: "center",
+  padding: "15px",
+  color: "#666",
+  fontSize: "14px"
+}), _styles);
 
 // const getFieldStyle = (record, fieldName) => {
 //   const hasError = record.fieldErrors?.[fieldName];
@@ -43297,55 +43351,73 @@ var getConsistentSelectStyle = function getConsistentSelectStyle() {
   };
 };
 var WeeklyPlan = function WeeklyPlan() {
-  // State Management
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState2 = _slicedToArray(_useState, 2),
     weekOffset = _useState2[0],
     setWeekOffset = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  // 🔥 NEW: Daily Tonnage State
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      Mon: 0,
+      Tue: 0,
+      Wed: 0,
+      Thu: 0,
+      Fri: 0,
+      Sat: 0,
+      Sun: 0
+    }),
     _useState4 = _slicedToArray(_useState3, 2),
-    showDieActualModal = _useState4[0],
-    setShowDieActualModal = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    dailyTonnage = _useState4[0],
+    setDailyTonnage = _useState4[1];
+
+  // 🔥 NEW: Callback to receive daily tonnage from WeeklyPlanDisplay
+  var handleDailyTonnageUpdate = function handleDailyTonnageUpdate(totals) {
+    console.log("📊 Received daily tonnage:", totals);
+    setDailyTonnage(totals);
+  };
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    dieActualData = _useState6[0],
-    setDieActualData = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    showDieActualModal = _useState6[0],
+    setShowDieActualModal = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    dieActualData = _useState8[0],
+    setDieActualData = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       plantCode: "",
       dieNo: ""
     }),
-    _useState8 = _slicedToArray(_useState7, 2),
-    selectedDieInfo = _useState8[0],
-    setSelectedDieInfo = _useState8[1];
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState10 = _slicedToArray(_useState9, 2),
-    loadingDieActual = _useState10[0],
-    setLoadingDieActual = _useState10[1];
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    selectedDieInfo = _useState10[0],
+    setSelectedDieInfo = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState12 = _slicedToArray(_useState11, 2),
-    modalWeekOffset = _useState12[0],
-    setModalWeekOffset = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    loadingDieActual = _useState12[0],
+    setLoadingDieActual = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState14 = _slicedToArray(_useState13, 2),
-    plans = _useState14[0],
-    setPlans = _useState14[1];
+    modalWeekOffset = _useState14[0],
+    setModalWeekOffset = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState16 = _slicedToArray(_useState15, 2),
-    dayWiseData = _useState16[0],
-    setDayWiseData = _useState16[1];
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    plans = _useState16[0],
+    setPlans = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState18 = _slicedToArray(_useState17, 2),
-    showModal = _useState18[0],
-    setShowModal = _useState18[1];
+    dayWiseData = _useState18[0],
+    setDayWiseData = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    loading = _useState20[0],
-    setLoading = _useState20[1];
+    showModal = _useState20[0],
+    setShowModal = _useState20[1];
   var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState22 = _slicedToArray(_useState21, 2),
-    showManualEntryModal = _useState22[0],
-    setShowManualEntryModal = _useState22[1];
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    loading = _useState22[0],
+    setLoading = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState24 = _slicedToArray(_useState23, 2),
+    showManualEntryModal = _useState24[0],
+    setShowManualEntryModal = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       order_id: "",
       // Production Order No (matches API format)
       customer: "",
@@ -43363,16 +43435,16 @@ var WeeklyPlan = function WeeklyPlan() {
       heatCode: "",
       remark: ""
     }),
-    _useState24 = _slicedToArray(_useState23, 2),
-    manualEntryData = _useState24[0],
-    setManualEntryData = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState26 = _slicedToArray(_useState25, 2),
+    manualEntryData = _useState26[0],
+    setManualEntryData = _useState26[1];
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       day: "",
       recordIndex: null
     }),
-    _useState26 = _slicedToArray(_useState25, 2),
-    currentManualRecord = _useState26[0],
-    setCurrentManualRecord = _useState26[1];
+    _useState28 = _slicedToArray(_useState27, 2),
+    currentManualRecord = _useState28[0],
+    setCurrentManualRecord = _useState28[1];
 
   // ✅ NEW: Send Email Handler
   var handleSendEmail = /*#__PURE__*/function () {
@@ -43431,6 +43503,74 @@ var WeeklyPlan = function WeeklyPlan() {
       return _ref4.apply(this, arguments);
     };
   }();
+
+  // ✅ NEW: Send Month Report Handler
+  var handleSendMonthReport = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
+      var confirmed, authConfig, response, errorText, result;
+      return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+        while (1) switch (_context13.prev = _context13.next) {
+          case 0:
+            // Show confirmation alert
+            confirmed = window.confirm("Do you really want to send monthly report?");
+            if (confirmed) {
+              _context13.next = 3;
+              break;
+            }
+            return _context13.abrupt("return");
+          case 3:
+            _context13.prev = 3;
+            setLoading(true);
+
+            // Call API for monthly report
+            _context13.next = 7;
+            return getAuthHeadersWithCSRF("GET", false);
+          case 7:
+            authConfig = _context13.sent;
+            _context13.next = 10;
+            return fetch("http://localhost:8080/internal/monthly_report", // ✅ NEW URL
+            _objectSpread({
+              method: "GET"
+            }, authConfig));
+          case 10:
+            response = _context13.sent;
+            if (response.ok) {
+              _context13.next = 16;
+              break;
+            }
+            _context13.next = 14;
+            return response.text();
+          case 14:
+            errorText = _context13.sent;
+            throw new Error("Email API Error: ".concat(response.status, " - ").concat(errorText));
+          case 16:
+            _context13.next = 18;
+            return response.json();
+          case 18:
+            result = _context13.sent;
+            alert("✅ Monthly report sent successfully!");
+            _context13.next = 26;
+            break;
+          case 22:
+            _context13.prev = 22;
+            _context13.t0 = _context13["catch"](3);
+            console.error("❌ Send monthly report failed:", _context13.t0);
+            alert("❌ Error sending monthly report: " + _context13.t0.message);
+          case 26:
+            _context13.prev = 26;
+            setLoading(false);
+            return _context13.finish(26);
+          case 29:
+          case "end":
+            return _context13.stop();
+        }
+      }, _callee13, null, [[3, 22, 26, 29]]);
+    }));
+    return function handleSendMonthReport() {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  // ✅ UPDATED: Manual Entry Modal - Removed Plant Code Input
   var ManualEntryModal = function ManualEntryModal() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: styles.modal
@@ -43480,34 +43620,17 @@ var WeeklyPlan = function WeeklyPlan() {
         marginBottom: "4px",
         display: "block"
       }
-    }, "Plant Code *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    }, "Die No * (Auto-filled)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
       type: "text",
-      placeholder: "Enter Plant Code",
-      value: manualEntryData.plant_code || "",
-      onChange: function onChange(e) {
-        return setManualEntryData(_objectSpread(_objectSpread({}, manualEntryData), {}, {
-          plant_code: e.target.value // always keep as string
-        }));
-      },
-
-      style: getConsistentInputStyle()
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
-      style: {
-        fontSize: "12px",
-        color: "#666",
-        marginBottom: "4px",
-        display: "block"
-      }
-    }, "Die No *"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
-      type: "text",
-      placeholder: "Enter Die Number",
       value: manualEntryData.die_no || "",
-      onChange: function onChange(e) {
-        return setManualEntryData(_objectSpread(_objectSpread({}, manualEntryData), {}, {
-          die_no: e.target.value
-        }));
-      },
-      style: getConsistentInputStyle()
+      readOnly: true,
+      style: _objectSpread(_objectSpread({}, getConsistentInputStyle()), {}, {
+        backgroundColor: "#f7fafc",
+        color: "#2d3748",
+        cursor: "not-allowed",
+        fontWeight: "600"
+      }),
+      placeholder: "Die Number"
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", {
       style: {
         fontSize: "12px",
@@ -43520,12 +43643,16 @@ var WeeklyPlan = function WeeklyPlan() {
       placeholder: "Enter Order Quantity",
       value: manualEntryData.order_qty || "",
       onChange: function onChange(e) {
-        return setManualEntryData(_objectSpread(_objectSpread({}, manualEntryData), {}, {
-          order_qty: e.target.value // keep as string while typing
-        }));
+        // ✅ FIX: Directly update only order_qty field
+        setManualEntryData(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, {
+            order_qty: e.target.value
+          });
+        });
       },
-
-      style: getConsistentInputStyle()
+      style: getConsistentInputStyle(),
+      min: "1",
+      step: "1"
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
       style: {
         display: "flex",
@@ -43555,15 +43682,15 @@ var WeeklyPlan = function WeeklyPlan() {
       })
     }, "Save"))));
   };
-  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       presses: [],
       customers: [],
       grades: [],
       sections: []
     }),
-    _useState28 = _slicedToArray(_useState27, 2),
-    masterData = _useState28[0],
-    setMasterData = _useState28[1];
+    _useState30 = _slicedToArray(_useState29, 2),
+    masterData = _useState30[0],
+    setMasterData = _useState30[1];
 
   // Utility Functions
   var getWeekDates = function getWeekDates() {
@@ -43609,17 +43736,17 @@ var WeeklyPlan = function WeeklyPlan() {
 
   // 🔥 NEW: Handle Die Required click
   var handleDieRequiredClick = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(record) {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(record) {
       var _record$dieNo;
       var plantCode, dieNo, dieData;
-      return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-        while (1) switch (_context13.prev = _context13.next) {
+      return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+        while (1) switch (_context14.prev = _context14.next) {
           case 0:
             console.log("🔥 Die Required clicked for record:", record);
 
             // 1. ✅ Better validation with detailed logging
             if (!(!record.plantCode || !((_record$dieNo = record.dieNo) !== null && _record$dieNo !== void 0 && _record$dieNo[0]))) {
-              _context13.next = 5;
+              _context14.next = 5;
               break;
             }
             console.error("❌ Missing required data:", {
@@ -43628,7 +43755,7 @@ var WeeklyPlan = function WeeklyPlan() {
               fullRecord: record
             });
             alert("⚠️ Please select Plant Code and Die Number first!");
-            return _context13.abrupt("return");
+            return _context14.abrupt("return");
           case 5:
             // 2. ✅ Set loading state and modal info
             plantCode = record.plantCode.toString().trim();
@@ -43644,69 +43771,69 @@ var WeeklyPlan = function WeeklyPlan() {
             setLoadingDieActual(true);
             setShowDieActualModal(true);
             setDieActualData([]); // Clear previous data
-            _context13.prev = 12;
+            _context14.prev = 12;
             // 3. ✅ Enhanced API call with better error handling
             console.log("📡 Calling getDieActualData API...");
-            _context13.next = 16;
+            _context14.next = 16;
             return apiService.getDieActualData(plantCode, dieNo);
           case 16:
-            dieData = _context13.sent;
+            dieData = _context14.sent;
             console.log("✅ API Response received:", dieData);
             console.log("📊 Response type:", _typeof(dieData), "Length:", dieData === null || dieData === void 0 ? void 0 : dieData.length);
 
             // 4. ✅ Better data validation
             if (dieData) {
-              _context13.next = 23;
+              _context14.next = 23;
               break;
             }
             console.warn("⚠️ API returned null/undefined");
             setDieActualData([]);
-            return _context13.abrupt("return");
+            return _context14.abrupt("return");
           case 23:
             if (Array.isArray(dieData)) {
-              _context13.next = 27;
+              _context14.next = 27;
               break;
             }
             console.warn("⚠️ API response is not an array:", dieData);
             setDieActualData([]);
-            return _context13.abrupt("return");
+            return _context14.abrupt("return");
           case 27:
             if (!(dieData.length === 0)) {
-              _context13.next = 31;
+              _context14.next = 31;
               break;
             }
             console.warn("⚠️ API returned empty array");
             setDieActualData([]);
-            return _context13.abrupt("return");
+            return _context14.abrupt("return");
           case 31:
             console.log("✅ Setting die actual data:", dieData);
             setDieActualData(dieData);
-            _context13.next = 41;
+            _context14.next = 41;
             break;
           case 35:
-            _context13.prev = 35;
-            _context13.t0 = _context13["catch"](12);
-            console.error("❌ Failed to fetch die actual data:", _context13.t0);
+            _context14.prev = 35;
+            _context14.t0 = _context14["catch"](12);
+            console.error("❌ Failed to fetch die actual data:", _context14.t0);
             console.error("❌ Error details:", {
-              message: _context13.t0.message,
-              stack: _context13.t0.stack,
+              message: _context14.t0.message,
+              stack: _context14.t0.stack,
               plantCode: plantCode,
               dieNo: dieNo
             });
-            alert("\u274C Failed to fetch die actual data: ".concat(_context13.t0.message));
+            alert("\u274C Failed to fetch die actual data: ".concat(_context14.t0.message));
             setDieActualData([]);
           case 41:
-            _context13.prev = 41;
+            _context14.prev = 41;
             setLoadingDieActual(false);
-            return _context13.finish(41);
+            return _context14.finish(41);
           case 44:
           case "end":
-            return _context13.stop();
+            return _context14.stop();
         }
-      }, _callee13, null, [[12, 35, 41, 44]]);
+      }, _callee14, null, [[12, 35, 41, 44]]);
     }));
     return function handleDieRequiredClick(_x10) {
-      return _ref5.apply(this, arguments);
+      return _ref6.apply(this, arguments);
     };
   }();
   var getWeekStatus = function getWeekStatus() {
@@ -43744,17 +43871,17 @@ var WeeklyPlan = function WeeklyPlan() {
     };
   };
   var loadMasterData = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14() {
+    var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15() {
       var forgeLines, transformedPresses, data;
-      return _regeneratorRuntime().wrap(function _callee14$(_context14) {
-        while (1) switch (_context14.prev = _context14.next) {
+      return _regeneratorRuntime().wrap(function _callee15$(_context15) {
+        while (1) switch (_context15.prev = _context15.next) {
           case 0:
             console.log("loadMasterData called ✅");
-            _context14.prev = 1;
-            _context14.next = 4;
+            _context15.prev = 1;
+            _context15.next = 4;
             return apiService.getForgeLines();
           case 4:
-            forgeLines = _context14.sent;
+            forgeLines = _context15.sent;
             // ✅ Uncomment this line
             console.log("Forge Lines API Response 👉", forgeLines); // ✅ Add this debug log
 
@@ -43780,29 +43907,29 @@ var WeeklyPlan = function WeeklyPlan() {
 
             setMasterData(data);
             console.log("MasterData set:", data); // ✅ Add this debug log
-            _context14.next = 16;
+            _context15.next = 16;
             break;
           case 13:
-            _context14.prev = 13;
-            _context14.t0 = _context14["catch"](1);
-            console.error("Error loading master data:", _context14.t0);
+            _context15.prev = 13;
+            _context15.t0 = _context15["catch"](1);
+            console.error("Error loading master data:", _context15.t0);
           case 16:
           case "end":
-            return _context14.stop();
+            return _context15.stop();
         }
-      }, _callee14, null, [[1, 13]]);
+      }, _callee15, null, [[1, 13]]);
     }));
     return function loadMasterData() {
-      return _ref6.apply(this, arguments);
+      return _ref7.apply(this, arguments);
     };
   }();
   var initializeDayWiseData = function initializeDayWiseData() {
     var offset = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : modalWeekOffset;
     var dates = getWeekDates(offset);
     var data = {};
-    dates.forEach(function (_ref7) {
-      var dayName = _ref7.dayName,
-        date = _ref7.date;
+    dates.forEach(function (_ref8) {
+      var dayName = _ref8.dayName,
+        date = _ref8.date;
       // Check if plans exist for this day
       var existingPlan = plans[dayName];
       if (existingPlan && existingPlan.length > 0) {
@@ -43818,27 +43945,27 @@ var WeeklyPlan = function WeeklyPlan() {
     var newData = initializeDayWiseData(newOffset);
     setDayWiseData(newData);
   };
-
-  // Updated handleDieNoChange function
   var handleDieNoChange = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee15(day, recordIndex, value) {
+    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16(day, recordIndex, value) {
       var results, uniqueProductionOrders, uniquePressIds, firstResult, plantCodeValue;
-      return _regeneratorRuntime().wrap(function _callee15$(_context15) {
-        while (1) switch (_context15.prev = _context15.next) {
+      return _regeneratorRuntime().wrap(function _callee16$(_context16) {
+        while (1) switch (_context16.prev = _context16.next) {
           case 0:
             if (!(!value || value.trim() === "")) {
-              _context15.next = 3;
+              _context16.next = 4;
               break;
             }
-            // Reset fields
+            console.log("🧹 Die No removed - clearing autofilled fields");
             setDayWiseData(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, day, prev[day].map(function (record, idx) {
                 return idx === recordIndex ? _objectSpread(_objectSpread({}, record), {}, {
+                  // ✅ Clear die number
                   dieNo: [value],
+                  // ✅ Reset error states
                   dieNoError: false,
                   dieNoErrorMessage: "",
                   showCreateLink: false,
-                  // ✅ NEW: Hide create link
+                  // ✅ Clear ALL autofilled fields
                   productionOrderNo: "",
                   customer: "",
                   grade: "",
@@ -43846,28 +43973,39 @@ var WeeklyPlan = function WeeklyPlan() {
                   plantCode: "",
                   section: "",
                   netWt: "",
+                  dieRequired: "",
+                  rmStatus: "",
+                  // ✅ Clear all dropdown options
                   customerOptions: [],
                   pressOptions: [],
                   gradeOptions: [],
                   plantOptions: [],
                   productionOrderOptions: [],
                   dieResults: [],
-                  hasMultipleOptions: false
+                  hasMultipleOptions: false,
+                  // ✅ Keep these fields (user might have manually entered)
+                  qty: record.qty || {
+                    shift1: "",
+                    shift2: "",
+                    shift3: ""
+                  },
+                  heatCode: record.heatCode || "",
+                  remark: record.remark || "",
+                  prodTonn: "" // Reset production tonnage
                 }) : record;
               })));
             });
-            return _context15.abrupt("return");
-          case 3:
-            _context15.prev = 3;
-            _context15.next = 6;
+            return _context16.abrupt("return");
+          case 4:
+            _context16.prev = 4;
+            _context16.next = 7;
             return apiService.getKlnMasterDataByDie(value);
-          case 6:
-            results = _context15.sent;
+          case 7:
+            results = _context16.sent;
             if (!(!results || results.length === 0)) {
-              _context15.next = 10;
+              _context16.next = 11;
               break;
             }
-            // ✅ NEW: Show hyperlink instead of opening modal immediately
             setDayWiseData(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, day, prev[day].map(function (record, idx) {
                 return idx === recordIndex ? _objectSpread(_objectSpread({}, record), {}, {
@@ -43875,7 +44013,7 @@ var WeeklyPlan = function WeeklyPlan() {
                   dieNoError: true,
                   dieNoErrorMessage: "No data found for Die No. ".concat(value),
                   showCreateLink: true,
-                  // ✅ NEW: Show create production order link
+                  // ✅ Clear fields on error too
                   productionOrderNo: "",
                   customer: "",
                   grade: "",
@@ -43883,6 +44021,8 @@ var WeeklyPlan = function WeeklyPlan() {
                   plantCode: "",
                   section: "",
                   netWt: "",
+                  dieRequired: "",
+                  rmStatus: "",
                   customerOptions: [],
                   pressOptions: [],
                   gradeOptions: [],
@@ -43893,15 +44033,15 @@ var WeeklyPlan = function WeeklyPlan() {
                 }) : record;
               })));
             });
-            return _context15.abrupt("return");
-          case 10:
-            // Get unique production orders and press IDs
+            return _context16.abrupt("return");
+          case 11:
+            // ✅ Your existing logic for single/multiple results...
             uniqueProductionOrders = _toConsumableArray(new Set(results.map(function (r) {
               return r.prod_order;
             })));
             uniquePressIds = _toConsumableArray(new Set(results.map(function (r) {
               return r.forge_press;
-            }))); // Always get the first result for auto-filling
+            })));
             firstResult = results[0];
             plantCodeValue = firstResult.plant_code || firstResult.plantCode || firstResult.plant || firstResult.Plant_Code || "";
             if (results.length === 1) {
@@ -43913,7 +44053,6 @@ var WeeklyPlan = function WeeklyPlan() {
                     dieNoError: false,
                     dieNoErrorMessage: "",
                     showCreateLink: false,
-                    // ✅ NEW: Hide create link
                     productionOrderNo: firstResult.prod_order || "",
                     plantCode: plantCodeValue,
                     pressId: firstResult.forge_press || "",
@@ -43929,7 +44068,9 @@ var WeeklyPlan = function WeeklyPlan() {
                     plantOptions: [],
                     productionOrderOptions: [],
                     dieResults: results,
-                    hasMultipleOptions: false
+                    hasMultipleOptions: false,
+                    // ✅ Recalculate production tonnage
+                    prodTonn: calculateProdTonn(record.qty, firstResult.net_wt || 0)
                   }) : record;
                 })));
               });
@@ -43942,7 +44083,6 @@ var WeeklyPlan = function WeeklyPlan() {
                     dieNoError: false,
                     dieNoErrorMessage: "",
                     showCreateLink: false,
-                    // ✅ NEW: Hide create link
                     productionOrderNo: firstResult.prod_order || "",
                     pressId: firstResult.forge_press || "",
                     plantCode: plantCodeValue,
@@ -43964,17 +44104,19 @@ var WeeklyPlan = function WeeklyPlan() {
                     }))),
                     productionOrderOptions: uniqueProductionOrders,
                     dieResults: results,
-                    hasMultipleOptions: true
+                    hasMultipleOptions: true,
+                    // ✅ Recalculate production tonnage
+                    prodTonn: calculateProdTonn(record.qty, firstResult.net_wt || 0)
                   }) : record;
                 })));
               });
             }
-            _context15.next = 21;
+            _context16.next = 22;
             break;
-          case 17:
-            _context15.prev = 17;
-            _context15.t0 = _context15["catch"](3);
-            console.error("API error:", _context15.t0);
+          case 18:
+            _context16.prev = 18;
+            _context16.t0 = _context16["catch"](4);
+            console.error("API error:", _context16.t0);
             setDayWiseData(function (prev) {
               return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, day, prev[day].map(function (record, idx) {
                 return idx === recordIndex ? _objectSpread(_objectSpread({}, record), {}, {
@@ -43982,31 +44124,225 @@ var WeeklyPlan = function WeeklyPlan() {
                   dieNoError: true,
                   dieNoErrorMessage: "Error fetching die data",
                   showCreateLink: true,
-                  // ✅ NEW: Show create link on API error too
+                  // ✅ Clear fields on error
+                  productionOrderNo: "",
+                  customer: "",
+                  grade: "",
+                  pressId: "",
+                  plantCode: "",
+                  section: "",
+                  netWt: "",
+                  dieRequired: "",
+                  rmStatus: "",
                   productionOrderOptions: [],
                   dieResults: []
                 }) : record;
               })));
             });
-          case 21:
+          case 22:
           case "end":
-            return _context15.stop();
+            return _context16.stop();
         }
-      }, _callee15, null, [[3, 17]]);
+      }, _callee16, null, [[4, 18]]);
     }));
     return function handleDieNoChange(_x11, _x12, _x13) {
-      return _ref8.apply(this, arguments);
+      return _ref9.apply(this, arguments);
     };
   }();
+  // // Updated handleDieNoChange function
+  // const handleDieNoChange = async (day, recordIndex, value) => {
+  //   if (!value || value.trim() === "") {
+  //     // Reset fields
+  //     setDayWiseData((prev) => ({
+  //       ...prev,
+  //       [day]: prev[day].map((record, idx) =>
+  //         idx === recordIndex
+  //           ? {
+  //               ...record,
+  //               dieNo: [value],
+  //               dieNoError: false,
+  //               dieNoErrorMessage: "",
+  //               showCreateLink: false, // ✅ NEW: Hide create link
+  //               productionOrderNo: "",
+  //               customer: "",
+  //               grade: "",
+  //               pressId: "",
+  //               plantCode: "",
+  //               section: "",
+  //               netWt: "",
+  //               dieRequired: "", // ✅ ADD THIS
+  //               rmStatus: "", // ✅ ADD THIS
+  //               customerOptions: [],
+  //               pressOptions: [],
+  //               gradeOptions: [],
+  //               plantOptions: [],
+  //               productionOrderOptions: [],
+  //               dieResults: [],
+  //               hasMultipleOptions: false,
+  //             }
+  //           : record
+  //       ),
+  //     }));
+  //     return;
+  //   }
+
+  //   // ✅ REMOVED: 4 digit minimum check - now API call happens for any value
+  //   try {
+  //     const results = await apiService.getKlnMasterDataByDie(value);
+
+  //     if (!results || results.length === 0) {
+  //       // ✅ NEW: Show hyperlink instead of opening modal immediately
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: true,
+  //                 dieNoErrorMessage: `No data found for Die No. ${value}`,
+  //                 showCreateLink: true, // ✅ NEW: Show create production order link
+  //                 productionOrderNo: "",
+  //                 customer: "",
+  //                 grade: "",
+  //                 pressId: "",
+  //                 plantCode: "",
+  //                 section: "",
+  //                 netWt: "",
+  //                 customerOptions: [],
+  //                 pressOptions: [],
+  //                 gradeOptions: [],
+  //                 plantOptions: [],
+  //                 productionOrderOptions: [],
+  //                 dieResults: [],
+  //                 hasMultipleOptions: false,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //       return;
+  //     }
+
+  //     // Get unique production orders and press IDs
+  //     const uniqueProductionOrders = [
+  //       ...new Set(results.map((r) => r.prod_order)),
+  //     ];
+  //     const uniquePressIds = [...new Set(results.map((r) => r.forge_press))];
+
+  //     // Always get the first result for auto-filling
+  //     const firstResult = results[0];
+  //     const plantCodeValue =
+  //       firstResult.plant_code ||
+  //       firstResult.plantCode ||
+  //       firstResult.plant ||
+  //       firstResult.Plant_Code ||
+  //       "";
+
+  //     if (results.length === 1) {
+  //       // Single result - auto-fill all fields
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: false,
+  //                 dieNoErrorMessage: "",
+  //                 showCreateLink: false, // ✅ NEW: Hide create link
+  //                 productionOrderNo: firstResult.prod_order || "",
+  //                 plantCode: plantCodeValue,
+  //                 pressId: firstResult.forge_press || "",
+  //                 customer: firstResult.customer || "",
+  //                 netWt: firstResult.net_wt || 0,
+  //                 section: firstResult.section || "",
+  //                 grade: firstResult.rm_grade || "N/A",
+  //                 dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                 rmStatus: firstResult.rm_status || "No",
+  //                 customerOptions: [],
+  //                 pressOptions: [],
+  //                 gradeOptions: [],
+  //                 plantOptions: [],
+  //                 productionOrderOptions: [],
+  //                 dieResults: results,
+  //                 hasMultipleOptions: false,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //     } else {
+  //       // Multiple results - show dropdowns with first value auto-selected
+  //       setDayWiseData((prev) => ({
+  //         ...prev,
+  //         [day]: prev[day].map((record, idx) =>
+  //           idx === recordIndex
+  //             ? {
+  //                 ...record,
+  //                 dieNo: [value],
+  //                 dieNoError: false,
+  //                 dieNoErrorMessage: "",
+  //                 showCreateLink: false, // ✅ NEW: Hide create link
+  //                 productionOrderNo: firstResult.prod_order || "",
+  //                 pressId: firstResult.forge_press || "",
+  //                 plantCode: plantCodeValue,
+  //                 customer: firstResult.customer || "",
+  //                 netWt: firstResult.net_wt || 0,
+  //                 section: firstResult.section || "",
+  //                 grade: firstResult.rm_grade || "N/A",
+  //                 dieRequired: firstResult.die_req ? "Yes" : "No",
+  //                 rmStatus: firstResult.rm_status || "No",
+  //                 customerOptions: [...new Set(results.map((r) => r.customer))],
+  //                 pressOptions: uniquePressIds,
+  //                 gradeOptions: [...new Set(results.map((r) => r.rm_grade))],
+  //                 plantOptions: [...new Set(results.map((r) => r.plant_code))],
+  //                 productionOrderOptions: uniqueProductionOrders,
+  //                 dieResults: results,
+  //                 hasMultipleOptions: true,
+  //               }
+  //             : record
+  //         ),
+  //       }));
+  //     }
+  //   } catch (error) {
+  //     console.error("API error:", error);
+  //     setDayWiseData((prev) => ({
+  //       ...prev,
+  //       [day]: prev[day].map((record, idx) =>
+  //         idx === recordIndex
+  //           ? {
+  //               ...record,
+  //               dieNo: [value],
+  //               dieNoError: true,
+  //               dieNoErrorMessage: "Error fetching die data",
+  //               showCreateLink: true, // ✅ NEW: Show create link on API error too
+  //               productionOrderOptions: [],
+  //               dieResults: [],
+  //             }
+  //           : record
+  //       ),
+  //     }));
+  //   }
+  // };
 
   // ✅ NEW: Function to handle create production order link click
   var handleCreateProductionOrderClick = function handleCreateProductionOrderClick(day, recordIndex) {
+    var _record$dieNo2;
+    var record = dayWiseData[day][recordIndex];
+
+    // Pre-fill die number and plant code from the current record
+    setManualEntryData({
+      die_no: ((_record$dieNo2 = record.dieNo) === null || _record$dieNo2 === void 0 ? void 0 : _record$dieNo2[0]) || "",
+      plant_code: record.plantCode || "",
+      // Get plant code from main record
+      order_qty: ""
+    });
     setCurrentManualRecord({
       day: day,
       recordIndex: recordIndex
     });
     setShowManualEntryModal(true);
   };
+
   // 🔥 UPDATED handleDieNoChange function
   //   const handleDieNoChange = async (day, recordIndex, value) => {
   //     if (!value || value.trim() === "") {
@@ -44193,44 +44529,68 @@ var WeeklyPlan = function WeeklyPlan() {
   //   };
 
   var handleManualEntrySubmit = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee16() {
-      var payload;
-      return _regeneratorRuntime().wrap(function _callee16$(_context16) {
-        while (1) switch (_context16.prev = _context16.next) {
+    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
+      var payload, response, errorMessage;
+      return _regeneratorRuntime().wrap(function _callee17$(_context17) {
+        while (1) switch (_context17.prev = _context17.next) {
           case 0:
-            _context16.prev = 0;
+            _context17.prev = 0;
             payload = {
-              data: [{
-                plant_code: manualEntryData.plant_code,
-                die_no: manualEntryData.die_no,
-                order_qty: Number(manualEntryData.order_qty) // ensure numeric
-              }]
+              die_no: manualEntryData.die_no,
+              order_qty: Number(manualEntryData.order_qty)
             };
-            _context16.next = 4;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("https://ktflceprd.kalyanicorp.com/production_order", payload);
-          case 4:
-            alert("Production order created successfully!");
+            console.log("📦 Sending payload:", payload);
+            _context17.next = 5;
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://localhost:8080/internal/production_order", payload);
+          case 5:
+            response = _context17.sent;
+            if (!(response.data && response.data.error)) {
+              _context17.next = 9;
+              break;
+            }
+            alert("❌ Error: " + response.data.error);
+            return _context17.abrupt("return");
+          case 9:
+            // ✅ Success case
+            alert("✅ Production order created successfully!");
             setShowManualEntryModal(false);
             setManualEntryData({
               plant_code: "",
               die_no: "",
               order_qty: ""
             });
-            _context16.next = 13;
+            _context17.next = 20;
             break;
-          case 9:
-            _context16.prev = 9;
-            _context16.t0 = _context16["catch"](0);
-            console.error("Error creating production order:", _context16.t0);
-            alert("Failed to create production order.");
-          case 13:
+          case 14:
+            _context17.prev = 14;
+            _context17.t0 = _context17["catch"](0);
+            console.error("❌ Error creating production order:", _context17.t0);
+
+            // ✅ Extract backend error message
+            errorMessage = "Failed to create production order.";
+            if (_context17.t0.response && _context17.t0.response.data) {
+              // Backend ne error field return kiya hai
+              if (_context17.t0.response.data.error) {
+                errorMessage = _context17.t0.response.data.error;
+              }
+              // Ya phir string format mein error aaya
+              else if (typeof _context17.t0.response.data === "string") {
+                errorMessage = _context17.t0.response.data;
+              }
+            }
+            // Network error ya generic error
+            else if (_context17.t0.message) {
+              errorMessage = _context17.t0.message;
+            }
+            alert("❌ Error: " + errorMessage);
+          case 20:
           case "end":
-            return _context16.stop();
+            return _context17.stop();
         }
-      }, _callee16, null, [[0, 9]]);
+      }, _callee17, null, [[0, 14]]);
     }));
     return function handleManualEntrySubmit() {
-      return _ref9.apply(this, arguments);
+      return _ref10.apply(this, arguments);
     };
   }();
 
@@ -44249,7 +44609,7 @@ var WeeklyPlan = function WeeklyPlan() {
 
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
   //     const response = await fetch(
-  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       "http://localhost:8080/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions,
@@ -44400,13 +44760,13 @@ var WeeklyPlan = function WeeklyPlan() {
     });
   };
   var handleSavePlan = /*#__PURE__*/function () {
-    var _ref10 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee17() {
+    var _ref11 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee18() {
       var validatedPlans, allProdOrders, hasValidData, incompleteRecords, _i2, _Object$entries, _Object$entries$_i, day, records, recordIndex, _rec$productionOrderN, _rec$pressId, _rec$dieNo2, _rec$dieNo2$, _rec$customer, _rec$plantCode, _qty$shift, _qty$shift2, _qty$shift3, _rec$heatCode, _rec$remark, _rec$productionOrderN2, _rec$pressId2, _rec$dieNo3, _rec$dieNo3$, _rec$customer2, _rec$plantCode2, _qty$shift4, _qty$shift5, _qty$shift6, _rec$section, _rec$grade, _rec$dieRequired, _rec$rmStatus, rec, qty, hasAnyData, fieldErrors, isIncomplete, dateParts, weekDateStr, payload, authOptions, response, errMsg;
-      return _regeneratorRuntime().wrap(function _callee17$(_context17) {
-        while (1) switch (_context17.prev = _context17.next) {
+      return _regeneratorRuntime().wrap(function _callee18$(_context18) {
+        while (1) switch (_context18.prev = _context18.next) {
           case 0:
             setLoading(true);
-            _context17.prev = 1;
+            _context18.prev = 1;
             validatedPlans = [];
             allProdOrders = new Set();
             hasValidData = false; // ✅ Track if at least one complete record exists
@@ -44427,24 +44787,24 @@ var WeeklyPlan = function WeeklyPlan() {
             _i2 = 0, _Object$entries = Object.entries(dayWiseData);
           case 8:
             if (!(_i2 < _Object$entries.length)) {
-              _context17.next = 38;
+              _context18.next = 38;
               break;
             }
             _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2), day = _Object$entries$_i[0], records = _Object$entries$_i[1];
             recordIndex = 0;
           case 11:
             if (!(recordIndex < records.length)) {
-              _context17.next = 35;
+              _context18.next = 35;
               break;
             }
             rec = records[recordIndex];
             qty = rec.qty || {}; // ✅ Check if this record has ANY data filled
             hasAnyData = ((_rec$productionOrderN = rec.productionOrderNo) === null || _rec$productionOrderN === void 0 ? void 0 : _rec$productionOrderN.trim()) || ((_rec$pressId = rec.pressId) === null || _rec$pressId === void 0 ? void 0 : _rec$pressId.trim()) || ((_rec$dieNo2 = rec.dieNo) === null || _rec$dieNo2 === void 0 ? void 0 : (_rec$dieNo2$ = _rec$dieNo2[0]) === null || _rec$dieNo2$ === void 0 ? void 0 : _rec$dieNo2$.trim()) || ((_rec$customer = rec.customer) === null || _rec$customer === void 0 ? void 0 : _rec$customer.trim()) || ((_rec$plantCode = rec.plantCode) === null || _rec$plantCode === void 0 ? void 0 : _rec$plantCode.toString().trim()) || ((_qty$shift = qty.shift1) === null || _qty$shift === void 0 ? void 0 : _qty$shift.toString().trim()) || ((_qty$shift2 = qty.shift2) === null || _qty$shift2 === void 0 ? void 0 : _qty$shift2.toString().trim()) || ((_qty$shift3 = qty.shift3) === null || _qty$shift3 === void 0 ? void 0 : _qty$shift3.toString().trim()) || ((_rec$heatCode = rec.heatCode) === null || _rec$heatCode === void 0 ? void 0 : _rec$heatCode.trim()) || ((_rec$remark = rec.remark) === null || _rec$remark === void 0 ? void 0 : _rec$remark.trim()); // ✅ Skip completely empty records
             if (hasAnyData) {
-              _context17.next = 17;
+              _context18.next = 17;
               break;
             }
-            return _context17.abrupt("continue", 32);
+            return _context18.abrupt("continue", 32);
           case 17:
             // ✅ If record has some data, validate all required fields
             fieldErrors = {};
@@ -44529,24 +44889,24 @@ var WeeklyPlan = function WeeklyPlan() {
             }
           case 32:
             recordIndex++;
-            _context17.next = 11;
+            _context18.next = 11;
             break;
           case 35:
             _i2++;
-            _context17.next = 8;
+            _context18.next = 8;
             break;
           case 38:
             if (!(incompleteRecords.length > 0)) {
-              _context17.next = 43;
+              _context18.next = 43;
               break;
             }
             // Highlight incomplete fields
             setDayWiseData(function (prev) {
               var updatedData = _objectSpread({}, prev);
-              incompleteRecords.forEach(function (_ref11) {
-                var day = _ref11.day,
-                  recordIndex = _ref11.recordIndex,
-                  fieldErrors = _ref11.fieldErrors;
+              incompleteRecords.forEach(function (_ref12) {
+                var day = _ref12.day,
+                  recordIndex = _ref12.recordIndex,
+                  fieldErrors = _ref12.fieldErrors;
                 if (updatedData[day] && updatedData[day][recordIndex]) {
                   updatedData[day][recordIndex] = _objectSpread(_objectSpread({}, updatedData[day][recordIndex]), {}, {
                     fieldErrors: fieldErrors
@@ -44557,65 +44917,65 @@ var WeeklyPlan = function WeeklyPlan() {
             });
             alert("⚠️ Please fill all highlighted fields before saving the plan.");
             setLoading(false);
-            return _context17.abrupt("return");
+            return _context18.abrupt("return");
           case 43:
             if (hasValidData) {
-              _context17.next = 47;
+              _context18.next = 47;
               break;
             }
             alert("⚠️ Please fill at least one complete record to save the plan.");
             setLoading(false);
-            return _context17.abrupt("return");
+            return _context18.abrupt("return");
           case 47:
             payload = validatedPlans;
             console.log("📦 Final Payload Being Sent:", payload);
 
             // ✅ API call remains the same
-            _context17.next = 51;
+            _context18.next = 51;
             return getAuthHeadersWithCSRF("POST");
           case 51:
-            authOptions = _context17.sent;
-            _context17.next = 54;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({
+            authOptions = _context18.sent;
+            _context18.next = 54;
+            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify(payload)
             }));
           case 54:
-            response = _context17.sent;
+            response = _context18.sent;
             if (response.ok) {
-              _context17.next = 60;
+              _context18.next = 60;
               break;
             }
-            _context17.next = 58;
+            _context18.next = 58;
             return response.text();
           case 58:
-            errMsg = _context17.sent;
+            errMsg = _context18.sent;
             throw new Error(errMsg);
           case 60:
             alert("✅ Plan submitted successfully!");
             setShowModal(false);
             setDayWiseData({});
             setModalWeekOffset(weekOffset);
-            _context17.next = 70;
+            _context18.next = 70;
             break;
           case 66:
-            _context17.prev = 66;
-            _context17.t0 = _context17["catch"](1);
-            console.error("❌ Save plan failed:", _context17.t0);
-            alert("❌ Error saving plan: " + _context17.t0.message);
+            _context18.prev = 66;
+            _context18.t0 = _context18["catch"](1);
+            console.error("❌ Save plan failed:", _context18.t0);
+            alert("❌ Error saving plan: " + _context18.t0.message);
           case 70:
-            _context17.prev = 70;
+            _context18.prev = 70;
             setLoading(false);
-            return _context17.finish(70);
+            return _context18.finish(70);
           case 73:
           case "end":
-            return _context17.stop();
+            return _context18.stop();
         }
-      }, _callee17, null, [[1, 66, 70, 73]]);
+      }, _callee18, null, [[1, 66, 70, 73]]);
     }));
     return function handleSavePlan() {
-      return _ref10.apply(this, arguments);
+      return _ref11.apply(this, arguments);
     };
   }();
 
@@ -44698,7 +45058,7 @@ var WeeklyPlan = function WeeklyPlan() {
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
 
   //     const response = await fetch(
-  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+  //       "http://localhost:8080/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions, // This includes headers with CSRF token and credentials
@@ -44788,24 +45148,60 @@ var WeeklyPlan = function WeeklyPlan() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: styles.container
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: styles.header
+    style: _objectSpread(_objectSpread({}, styles.header), {}, {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "15px",
+      flexWrap: "wrap",
+      padding: "15px",
+      background: "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)",
+      borderRadius: "8px",
+      boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)"
+    })
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       display: "flex",
-      gap: "10px"
+      gap: "8px",
+      flexWrap: "wrap"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: openModal,
     style: styles.primaryButton
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    size: 16
+    size: 14
   }), " Enter Plan"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: handleSendEmail,
     style: styles.emailButton,
     disabled: loading
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    size: 16
-  }), " ", loading ? "Sending..." : "Send Email"))), showModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    size: 14
+  }), " ", loading ? "Sending..." : "Send Week"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handleSendMonthReport,
+    style: styles.monthReportButton,
+    disabled: loading
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    size: 14
+  }), " ", loading ? "Sending..." : "Send Month")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      gap: "8px",
+      flexWrap: "wrap",
+      flex: 1,
+      justifyContent: "flex-end"
+    }
+  }, ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(function (dayName) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      key: dayName,
+      style: styles.kpiCard
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: styles.kpiDay
+    }, dayName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: styles.kpiValue
+    }, dailyTonnage[dayName].toFixed(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: styles.kpiLabel
+    }, "Tons"));
+  }))), showModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: _objectSpread(_objectSpread({}, styles.modal), {}, {
       background: "rgba(0, 0, 0, 0.6)",
       backdropFilter: "blur(8px)",
@@ -44984,12 +45380,12 @@ var WeeklyPlan = function WeeklyPlan() {
       color: "white",
       textShadow: "0 1px 2px rgba(0, 0, 0, 0.1)"
     })
-  }, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, getWeekDates(modalWeekOffset).map(function (_ref12, dayIndex) {
+  }, "Actions"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, getWeekDates(modalWeekOffset).map(function (_ref13, dayIndex) {
     var _dayWiseData$dayName;
-    var dayName = _ref12.dayName,
-      date = _ref12.date;
+    var dayName = _ref13.dayName,
+      date = _ref13.date;
     return (_dayWiseData$dayName = dayWiseData[dayName]) === null || _dayWiseData$dayName === void 0 ? void 0 : _dayWiseData$dayName.map(function (record, recordIndex) {
-      var _ref13;
+      var _ref14;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
         key: "".concat(dayName, "-").concat(recordIndex),
         style: {
@@ -45019,13 +45415,13 @@ var WeeklyPlan = function WeeklyPlan() {
           marginTop: "2px"
         }
       }, window.innerWidth >= 480 ? date : date.split("/").slice(0, 2).join("/")), recordIndex > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-        style: (_ref13 = {
+        style: (_ref14 = {
           fontSize: window.innerWidth >= 768 ? "9px" : "7px",
           color: "#a0aec0",
           background: "#667eea"
-        }, _defineProperty(_ref13, "color", "white"), _defineProperty(_ref13, "padding", "2px 6px"), _defineProperty(_ref13, "borderRadius", "10px"), _defineProperty(_ref13, "display", "inline-block"), _defineProperty(_ref13, "marginTop", "4px"), _ref13)
+        }, _defineProperty(_ref14, "color", "white"), _defineProperty(_ref14, "padding", "2px 6px"), _defineProperty(_ref14, "borderRadius", "10px"), _defineProperty(_ref14, "display", "inline-block"), _defineProperty(_ref14, "marginTop", "4px"), _ref14)
       }, "#", recordIndex + 1)), Object.keys(FIELD_LABELS).map(function (field) {
-        var _record$dieNo2, _record$qty, _record$qty2, _record$qty3, _record$pressOptions, _masterData$presses, _masterData$presses$f, _record$dieNo3, _record$dieNo4, _record$field;
+        var _record$dieNo3, _record$qty, _record$qty2, _record$qty3, _record$pressOptions, _masterData$presses, _masterData$presses$f, _record$dieNo4, _record$dieNo5, _record$field;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           key: "".concat(dayName, "-").concat(recordIndex, "-").concat(field),
           style: _objectSpread(_objectSpread({}, styles.modalTableCell), {}, {
@@ -45033,7 +45429,7 @@ var WeeklyPlan = function WeeklyPlan() {
           })
         }, field === "dieNo" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
           type: "text",
-          value: ((_record$dieNo2 = record.dieNo) === null || _record$dieNo2 === void 0 ? void 0 : _record$dieNo2[0]) || "",
+          value: ((_record$dieNo3 = record.dieNo) === null || _record$dieNo3 === void 0 ? void 0 : _record$dieNo3[0]) || "",
           onChange: function onChange(e) {
             return handleDieNoChange(dayName, recordIndex, e.target.value);
           },
@@ -45230,8 +45626,8 @@ var WeeklyPlan = function WeeklyPlan() {
             fontWeight: "600",
             transition: "all 0.2s ease"
           }),
-          disabled: !record.plantCode || !((_record$dieNo3 = record.dieNo) !== null && _record$dieNo3 !== void 0 && _record$dieNo3[0])
-        }, record.dieRequired || "Check", record.plantCode && ((_record$dieNo4 = record.dieNo) === null || _record$dieNo4 === void 0 ? void 0 : _record$dieNo4[0]) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+          disabled: !record.plantCode || !((_record$dieNo4 = record.dieNo) !== null && _record$dieNo4 !== void 0 && _record$dieNo4[0])
+        }, record.dieRequired || "Check", record.plantCode && ((_record$dieNo5 = record.dieNo) === null || _record$dieNo5 === void 0 ? void 0 : _record$dieNo5[0]) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
           style: {
             fontSize: "10px"
           }
@@ -45559,51 +45955,7 @@ var WeeklyPlan = function WeeklyPlan() {
       borderRadius: "8px",
       border: "1px solid #e2e8f0"
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      fontSize: "14px",
-      fontWeight: "600",
-      color: "#2d3748",
-      marginBottom: "8px"
-    }
-  }, "\uD83D\uDCCA Summary:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      display: "flex",
-      gap: "20px",
-      flexWrap: "wrap"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      color: "#4a5568"
-    }
-  }, "Total Elements:", " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      fontWeight: "600",
-      color: "#2d3748"
-    }
-  }, dieActualData.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      color: "#4a5568"
-    }
-  }, "Ready Status: "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      fontWeight: "600",
-      color: "#38a169"
-    }
-  }, dieActualData.filter(function (item) {
-    return item.die_status === "Ready";
-  }).length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      color: "#4a5568"
-    }
-  }, "Completion Rate:", " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
-    style: {
-      fontWeight: "600",
-      color: "#2d3748"
-    }
-  }, dieActualData.length > 0 ? Math.round(dieActualData.filter(function (item) {
-    return item.actual_set >= item.required_set;
-  }).length / dieActualData.length * 100) : 0, "%")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: {
       padding: "10px 20px",
       background: "#f8f9fa",
@@ -45633,15 +45985,14 @@ var WeeklyPlan = function WeeklyPlan() {
     weekDates: getWeekDates(weekOffset),
     submittedPlans: plans,
     onEditPlan: function onEditPlan(dayName, index, record) {
-      // optional: open modal + pre-fill data if needed
       setModalWeekOffset(weekOffset);
       setShowModal(true);
     },
     onDeletePlan: function onDeletePlan(dayName, index, record) {
-      // optional: handle delete functionality
       console.log("Delete", dayName, index, record);
     },
-    onOpenPlanModal: openModal
+    onOpenPlanModal: openModal,
+    onDailyTonnageUpdate: handleDailyTonnageUpdate
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SmartWeeklyPlanChatbot__WEBPACK_IMPORTED_MODULE_3__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WeeklyPlan);
@@ -45664,6 +46015,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/save.js");
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
 /* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/square-pen.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/trash-2.js");
 /* harmony import */ var _WeeklyPlanDisplay_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WeeklyPlanDisplay.css */ "./src/components/WeeklyPlanDisplay.css");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -45794,30 +46146,84 @@ var formatQuantity = function formatQuantity(shift1, shift2, shift3) {
 };
 
 // Function to group data by day of week
-var groupDataByDay = function groupDataByDay(mappedData) {
-  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var grouped = {};
+// const groupDataByDay = (mappedData) => {
+//   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+//   const grouped = {};
 
-  // Initialize all working days
-  workingDays.forEach(function (day) {
-    grouped[day] = [];
-  });
+//   // Initialize all working days
+//   workingDays.forEach((day) => {
+//     grouped[day] = [];
+//   });
+
+//   mappedData.forEach((item) => {
+//     const date = new Date(item.date);
+//     const dayName = dayNames[date.getDay()];
+
+//     console.log(
+//       `📅 Processing item: ${item.prod_order}, Date: ${item.date}, Day: ${dayName}`
+//     );
+
+//     if (workingDays.includes(dayName)) {
+//       grouped[dayName].push({
+//         ...item,
+//         dayLabel: `${dayName} (${date.toLocaleDateString("en-GB", {
+//           day: "2-digit",
+//           month: "short",
+//         })})`,
+//       });
+//     }
+//   });
+
+//   console.log("📊 Final grouped data:", grouped);
+//   return grouped;
+// };
+
+var groupDataByPress = function groupDataByPress(mappedData) {
+  var grouped = {};
   mappedData.forEach(function (item) {
+    var press = item.main_forge_press || item.pressId || "Unknown";
     var date = new Date(item.date);
+    var dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
+    if (!grouped[press]) {
+      grouped[press] = [];
+    }
+    grouped[press].push(_objectSpread(_objectSpread({}, item), {}, {
+      dayLabel: "".concat(dayName, " (").concat(date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short"
+      }), ")")
+    }));
+  });
+  console.log("📊 Press-wise grouped data:", grouped);
+  return grouped;
+};
+var calculateDailyTonnage = function calculateDailyTonnage(apiData) {
+  var dailyTotals = {
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0
+  };
+  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  apiData.forEach(function (item) {
+    var date = new Date(item.week_prod_date);
     var dayName = dayNames[date.getDay()];
-    console.log("\uD83D\uDCC5 Processing item: ".concat(item.prod_order, ", Date: ").concat(item.date, ", Day: ").concat(dayName));
-    if (workingDays.includes(dayName)) {
-      grouped[dayName].push(_objectSpread(_objectSpread({}, item), {}, {
-        dayLabel: "".concat(dayName, " (").concat(date.toLocaleDateString("en-GB", {
-          day: "2-digit",
-          month: "short"
-        }), ")")
-      }));
+    var tonnage = safeParseFloat(item.week_net_tonn, 0);
+    if (dailyTotals[dayName] !== undefined) {
+      dailyTotals[dayName] += tonnage;
     }
   });
-  console.log("📊 Final grouped data:", grouped);
-  return grouped;
+
+  // Round to 2 decimal places
+  Object.keys(dailyTotals).forEach(function (day) {
+    dailyTotals[day] = Number(dailyTotals[day].toFixed(2));
+  });
+  console.log("📊 Daily Tonnage Totals:", dailyTotals);
+  return dailyTotals;
 };
 
 // Function to get date range for week title
@@ -45837,7 +46243,8 @@ var getWeekDateRange = function getWeekDateRange(apiData) {
   };
   return "".concat(formatDate(minDate), " - ").concat(formatDate(maxDate));
 };
-var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
+var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
+  var onDailyTonnageUpdate = _ref.onDailyTonnageUpdate;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState2 = _slicedToArray(_useState, 2),
     apiData = _useState2[0],
@@ -45901,30 +46308,261 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
     _useState30 = _slicedToArray(_useState29, 2),
     forgeLines = _useState30[0],
     setForgeLines = _useState30[1];
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      key: null,
+      direction: null // null, 'asc', or 'desc'
+    }),
+    _useState32 = _slicedToArray(_useState31, 2),
+    sortConfig = _useState32[0],
+    setSortConfig = _useState32[1];
+  // 🔥 NEW: State for daily tonnage
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      Mon: 0,
+      Tue: 0,
+      Wed: 0,
+      Thu: 0,
+      Fri: 0,
+      Sat: 0,
+      Sun: 0
+    }),
+    _useState34 = _slicedToArray(_useState33, 2),
+    dailyTonnage = _useState34[0],
+    setDailyTonnage = _useState34[1];
+
+  // Sort handler function
+  var handleSort = function handleSort(columnKey) {
+    var direction = "asc";
+    if (sortConfig.key === columnKey) {
+      if (sortConfig.direction === "asc") {
+        direction = "desc";
+      } else if (sortConfig.direction === "desc") {
+        direction = null; // Reset to original
+      }
+    }
+
+    setSortConfig({
+      key: columnKey,
+      direction: direction
+    });
+  };
+
+  // Function to sort data
+  var getSortedPlans = function getSortedPlans() {
+    if (!sortConfig.direction || !sortConfig.key) {
+      return groupedPlans; // Return original data
+    }
+
+    var sorted = {};
+    var presses = Object.keys(groupedPlans);
+    var workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    presses.forEach(function (press) {
+      var pressPlans = _toConsumableArray(groupedPlans[press] || []);
+      pressPlans.sort(function (a, b) {
+        var aValue, bValue;
+
+        // Map column keys to actual data fields
+        switch (sortConfig.key) {
+          case "plant_code":
+            aValue = a.plantCode;
+            bValue = b.plantCode;
+            break;
+          case "prod_order":
+            aValue = a.prod_order || a.productionOrderNo;
+            bValue = b.prod_order || b.productionOrderNo;
+            break;
+          case "main_forge_press":
+            aValue = a.main_forge_press || a.pressId;
+            bValue = b.main_forge_press || b.pressId;
+            break;
+          case "customer":
+            aValue = a.customer;
+            bValue = b.customer;
+            break;
+          case "netWt":
+            aValue = parseFloat(a.netWt) || 0;
+            bValue = parseFloat(b.netWt) || 0;
+            break;
+          case "die_no":
+            aValue = a.dieNo;
+            bValue = b.dieNo;
+            break;
+          case "qty":
+            aValue = (a.shift1Qty || 0) + (a.shift2Qty || 0) + (a.shift3Qty || 0);
+            bValue = (b.shift1Qty || 0) + (b.shift2Qty || 0) + (b.shift3Qty || 0);
+            break;
+          case "prod_tonn":
+            aValue = parseFloat(a.prodTonn) || 0;
+            bValue = parseFloat(b.prodTonn) || 0;
+            break;
+          case "section":
+            aValue = a.section;
+            bValue = b.section;
+            break;
+          case "grade":
+            aValue = a.grade;
+            bValue = b.grade;
+            break;
+          case "die_req":
+            aValue = a.dieRequired;
+            bValue = b.dieRequired;
+            break;
+          case "rm_status":
+            aValue = a.rmStatus;
+            bValue = b.rmStatus;
+            break;
+          case "heat_code":
+            aValue = a.heatCode;
+            bValue = b.heatCode;
+            break;
+          case "remark":
+            aValue = a.remark;
+            bValue = b.remark;
+            break;
+          default:
+            return 0;
+        }
+
+        // Handle null/undefined values
+        if (aValue === null || aValue === undefined) aValue = "";
+        if (bValue === null || bValue === undefined) bValue = "";
+
+        // Compare values
+        if (typeof aValue === "string" && typeof bValue === "string") {
+          return sortConfig.direction === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+        } else {
+          return sortConfig.direction === "asc" ? aValue - bValue : bValue - aValue;
+        }
+      });
+      sorted[press] = pressPlans;
+    });
+    return sorted;
+  };
+
+  // Handle delete - Localhost version (no auth needed)
+  var handleDelete = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(pressName, planIndex, plan) {
+      var deleteData, response, errorText;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            if (window.confirm("Are you sure you want to mark this as deleted?")) {
+              _context.next = 2;
+              break;
+            }
+            return _context.abrupt("return");
+          case 2:
+            _context.prev = 2;
+            setSaving(true);
+            setMessage({
+              type: "",
+              text: ""
+            });
+            deleteData = {
+              main_prod_no: plan.prod_order,
+              week_prod_date: plan.date,
+              week_die_no: plan.dieNo,
+              is_delete: true
+            };
+            console.log("🗑️ Marking as deleted:", deleteData);
+            _context.next = 9;
+            return fetch("http://localhost:8080/internal/weekly_plan", {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(deleteData)
+            });
+          case 9:
+            response = _context.sent;
+            if (response.ok) {
+              _context.next = 15;
+              break;
+            }
+            _context.next = 13;
+            return response.text();
+          case 13:
+            errorText = _context.sent;
+            throw new Error("Failed to delete: ".concat(response.status, " - ").concat(errorText));
+          case 15:
+            _context.next = 17;
+            return fetchWeeklyPlan(startDate, endDate);
+          case 17:
+            setMessage({
+              type: "success",
+              text: "Delete event logged successfully!"
+            });
+            setTimeout(function () {
+              setMessage({
+                type: "",
+                text: ""
+              });
+            }, 3000);
+            _context.next = 25;
+            break;
+          case 21:
+            _context.prev = 21;
+            _context.t0 = _context["catch"](2);
+            console.error("❌ Error logging delete:", _context.t0);
+            setMessage({
+              type: "error",
+              text: "Failed to log delete: ".concat(_context.t0.message)
+            });
+          case 25:
+            _context.prev = 25;
+            setSaving(false);
+            return _context.finish(25);
+          case 28:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[2, 21, 25, 28]]);
+    }));
+    return function handleDelete(_x2, _x3, _x4) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  // Function to get sort indicator
+  var getSortIndicator = function getSortIndicator(columnKey) {
+    if (sortConfig.key !== columnKey) {
+      return " ⇅"; // Both arrows when not sorted
+    }
+
+    if (sortConfig.direction === "asc") {
+      return " ▲"; // Up arrow for ascending
+    }
+
+    if (sortConfig.direction === "desc") {
+      return " ▼"; // Down arrow for descending
+    }
+
+    return " ⇅"; // Both arrows when reset
+  };
+
   var getCookie = function getCookie(name) {
     var value = "; ".concat(document.cookie);
     var parts = value.split("; ".concat(name, "="));
     if (parts.length === 2) return parts.pop().split(";").shift();
   };
   var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var method,
         contentType,
         credentials,
         csrfToken,
         headers,
-        _args = arguments;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
+        _args2 = arguments;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
           case 0:
-            method = _args.length > 0 && _args[0] !== undefined ? _args[0] : "GET";
-            contentType = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
+            method = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : "GET";
+            contentType = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : true;
             credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
             console.log("📡 Fetching CSRF token with credentials:", credentials);
 
             // Step 1: Trigger cookie set
-            _context.next = 6;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+            _context2.next = 6;
+            return fetch("http://localhost:8080/internal/weekly_plan", {
               method: "GET",
               headers: {
                 Authorization: "Basic ".concat(credentials)
@@ -45935,7 +46573,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
             csrfToken = getCookie("CSRFToken");
             console.log("Fetched CSRF Token from cookie:", csrfToken);
             if (csrfToken) {
-              _context.next = 10;
+              _context2.next = 10;
               break;
             }
             throw new Error("CSRF token not found in cookies.");
@@ -45947,18 +46585,18 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
             if (contentType) {
               headers["Content-Type"] = "application/json";
             }
-            return _context.abrupt("return", {
+            return _context2.abrupt("return", {
               headers: headers,
               credentials: "include"
             });
           case 13:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
-      }, _callee);
+      }, _callee2);
     }));
     return function getAuthHeadersWithCSRF() {
-      return _ref.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
   var containerStyle = {
@@ -45978,7 +46616,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
   var thStyle = {
     position: "sticky",
     left: 0,
-    zindex: 5,
+    zindex: 10,
     background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     color: "white",
     padding: "1rem 0.75rem",
@@ -45986,21 +46624,24 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
     fontWeight: "600",
     fontSize: "0.85rem",
     textTransform: "uppercase",
-    letterSpacing: "0.05em"
+    letterSpacing: "0.05em",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
   };
-  var tdStyle = {
-    padding: "1rem 0.75rem",
-    borderBottom: "1px solid rgba(102, 126, 234, 0.1)",
-    background: "rgba(255, 255, 255, 0.8)",
-    transition: "all 0.3s ease"
-  };
+
+  // const tdStyle = {
+  //   padding: "1rem 0.75rem",
+  //   borderBottom: "1px solid rgba(102, 126, 234, 0.1)",
+  //   background: "rgba(255, 255, 255, 0.8)",
+  //   transition: "all 0.3s ease",
+  // };
+
   var fetchWeeklyPlan = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(start, end) {
-      var formatDate, formattedStart, formattedEnd, query, apiUrl, response, errorText, data, mappedData, grouped;
-      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-        while (1) switch (_context2.prev = _context2.next) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(start, end) {
+      var formatDate, formattedStart, formattedEnd, query, apiUrl, response, errorText, data, mappedData, grouped, dailyTotals;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.prev = 0;
+            _context3.prev = 0;
             setLoading(true);
             setError(null);
             formatDate = function formatDate(date) {
@@ -46016,7 +46657,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
               return dateObj.toISOString().split("T")[0] + "T00:00:00";
             };
             if (!(!start || !end)) {
-              _context2.next = 7;
+              _context3.next = 7;
               break;
             }
             console.error("❌ Start or end date is missing:", {
@@ -46028,10 +46669,10 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
             formattedStart = formatDate(start);
             formattedEnd = formatDate(end);
             query = "start_date=".concat(formattedStart, "&end_date=").concat(formattedEnd);
-            apiUrl = "https://ktflceprd.kalyanicorp.com/internal/weekly_plan?".concat(query);
+            apiUrl = "http://localhost:8080/internal/weekly_plan?".concat(query);
             console.log("📡 API Call →", apiUrl);
             console.log("📅 Date Range:", formattedStart, "to", formattedEnd);
-            _context2.next = 15;
+            _context3.next = 15;
             return fetch(apiUrl, {
               method: "GET",
               headers: {
@@ -46040,52 +46681,61 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
               }
             });
           case 15:
-            response = _context2.sent;
+            response = _context3.sent;
             if (response.ok) {
-              _context2.next = 22;
+              _context3.next = 22;
               break;
             }
-            _context2.next = 19;
+            _context3.next = 19;
             return response.text();
           case 19:
-            errorText = _context2.sent;
+            errorText = _context3.sent;
             console.error("❌ API Error Response:", errorText);
             throw new Error("HTTP error! status: ".concat(response.status, " - ").concat(errorText));
           case 22:
-            _context2.next = 24;
+            _context3.next = 24;
             return response.json();
           case 24:
-            data = _context2.sent;
+            data = _context3.sent;
             console.log("✅ API Response received:", (data === null || data === void 0 ? void 0 : data.length) || 0, "records");
             console.log("📊 Raw API Data:", data);
 
             // Process the data - remove duplicate filtering for now to see all data
             mappedData = mapApiDataToComponentFormat(data);
             console.log("🔄 Mapped Data:", mappedData);
-            grouped = groupDataByDay(mappedData);
+            grouped = groupDataByPress(mappedData);
             console.log("📊 Grouped Data:", grouped);
+
+            // 🔥 NEW: Calculate daily tonnage
+            dailyTotals = calculateDailyTonnage(data);
+            setDailyTonnage(dailyTotals);
+
+            // 🔥 Parent ko bhi bhejo
+            if (onDailyTonnageUpdate) {
+              onDailyTonnageUpdate(dailyTotals);
+            }
             setGroupedPlans(grouped);
             setApiData(data);
             setWeekTitle(getWeekDateRange(data));
-            _context2.next = 40;
+            _context3.next = 43;
             break;
-          case 36:
-            _context2.prev = 36;
-            _context2.t0 = _context2["catch"](0);
-            console.error("❌ Error fetching weekly plan:", _context2.t0);
-            setError("Failed to load weekly plan: ".concat(_context2.t0.message));
-          case 40:
-            _context2.prev = 40;
-            setLoading(false);
-            return _context2.finish(40);
+          case 39:
+            _context3.prev = 39;
+            _context3.t0 = _context3["catch"](0);
+            console.error("❌ Error fetching weekly plan:", _context3.t0);
+            setError("Failed to load weekly plan: ".concat(_context3.t0.message));
           case 43:
+            _context3.prev = 43;
+            setLoading(false);
+            return _context3.finish(43);
+          case 46:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
-      }, _callee2, null, [[0, 36, 40, 43]]);
+      }, _callee3, null, [[0, 39, 43, 46]]);
     }));
-    return function fetchWeeklyPlan(_x2, _x3) {
-      return _ref2.apply(this, arguments);
+    return function fetchWeeklyPlan(_x5, _x6) {
+      return _ref4.apply(this, arguments);
     };
   }();
   var getMonday = function getMonday(date) {
@@ -46163,14 +46813,14 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchForgeLines = /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var res, data;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
-              _context3.prev = 0;
-              _context3.next = 3;
-              return fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+              _context4.prev = 0;
+              _context4.next = 3;
+              return fetch("http://localhost:8080/internal/forge_lines", {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json"
@@ -46178,29 +46828,29 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
                 }
               });
             case 3:
-              res = _context3.sent;
-              _context3.next = 6;
+              res = _context4.sent;
+              _context4.next = 6;
               return res.json();
             case 6:
-              data = _context3.sent;
+              data = _context4.sent;
               if (Array.isArray(data) && data.length > 0) {
                 setForgeLines(data[0].forge_lines || []);
                 console.log("✅ Forge lines loaded:", data[0].forge_lines);
               }
-              _context3.next = 13;
+              _context4.next = 13;
               break;
             case 10:
-              _context3.prev = 10;
-              _context3.t0 = _context3["catch"](0);
-              console.error("❌ Failed to fetch forge lines:", _context3.t0);
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](0);
+              console.error("❌ Failed to fetch forge lines:", _context4.t0);
             case 13:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
-        }, _callee3, null, [[0, 10]]);
+        }, _callee4, null, [[0, 10]]);
       }));
       return function fetchForgeLines() {
-        return _ref3.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       };
     }();
     try {
@@ -46320,12 +46970,12 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
 
   // Handle save
   var handleSave = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(dayName, planIndex, originalPlan) {
+    var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(dayName, planIndex, originalPlan) {
       var errors, updateData, options, response, errorText;
-      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-        while (1) switch (_context4.prev = _context4.next) {
+      return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+        while (1) switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.prev = 0;
+            _context5.prev = 0;
             setSaving(true);
             setMessage({
               type: "",
@@ -46336,12 +46986,12 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
             // Validate form data
             errors = validateFormData(editFormData);
             if (!(errors.length > 0)) {
-              _context4.next = 9;
+              _context5.next = 9;
               break;
             }
             setValidationErrors(errors);
             setSaving(false);
-            return _context4.abrupt("return");
+            return _context5.abrupt("return");
           case 9:
             // Prepare data for API with proper data types
             // const updateData = {
@@ -46384,28 +47034,28 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
               old_prod_no: originalPlan.prod_order
             };
             console.log("Sending data to API:", updateData);
-            _context4.next = 13;
+            _context5.next = 13;
             return getAuthHeadersWithCSRF("PUT");
           case 13:
-            options = _context4.sent;
-            _context4.next = 16;
-            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({}, options), {}, {
+            options = _context5.sent;
+            _context5.next = 16;
+            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({}, options), {}, {
               method: "PUT",
               body: JSON.stringify(updateData)
             }));
           case 16:
-            response = _context4.sent;
+            response = _context5.sent;
             if (response.ok) {
-              _context4.next = 22;
+              _context5.next = 22;
               break;
             }
-            _context4.next = 20;
+            _context5.next = 20;
             return response.text();
           case 20:
-            errorText = _context4.sent;
+            errorText = _context5.sent;
             throw new Error("Failed to update: ".concat(response.status, " - ").concat(errorText));
           case 22:
-            _context4.next = 24;
+            _context5.next = 24;
             return fetchWeeklyPlan(startDate, endDate);
           case 24:
             setEditingRow(null);
@@ -46422,15 +47072,15 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
                 text: ""
               });
             }, 3000);
-            _context4.next = 35;
+            _context5.next = 35;
             break;
           case 30:
-            _context4.prev = 30;
-            _context4.t0 = _context4["catch"](0);
-            console.error("Error updating plan:", _context4.t0);
+            _context5.prev = 30;
+            _context5.t0 = _context5["catch"](0);
+            console.error("Error updating plan:", _context5.t0);
             setMessage({
               type: "error",
-              text: "Failed to update plan: ".concat(_context4.t0.message)
+              text: "Failed to update plan: ".concat(_context5.t0.message)
             });
 
             // Clear error message after 5 seconds
@@ -46441,17 +47091,17 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
               });
             }, 5000);
           case 35:
-            _context4.prev = 35;
+            _context5.prev = 35;
             setSaving(false);
-            return _context4.finish(35);
+            return _context5.finish(35);
           case 38:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
-      }, _callee4, null, [[0, 30, 35, 38]]);
+      }, _callee5, null, [[0, 30, 35, 38]]);
     }));
-    return function handleSave(_x4, _x5, _x6) {
-      return _ref4.apply(this, arguments);
+    return function handleSave(_x7, _x8, _x9) {
+      return _ref6.apply(this, arguments);
     };
   }();
 
@@ -46471,7 +47121,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
   //   const fetchDieDetails = async () => {
   //     try {
   //       const res = await fetch(
-  //         `https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `http://localhost:8080/http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`
   //       );
@@ -46511,25 +47161,134 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
 
   // General field renderer for editable and static view
 
+  // useEffect(() => {
+  //   const dieNo = editFormData.die_no;
+  //   console.log("🔍 Die number changed:", dieNo);
+  //   console.log("🔍 Current editing row:", editingRow);
+  //   console.log("📝 Current editFormData:", editFormData);
+
+  //   if (!dieNo || !dieNo.trim() || !editingRow) {
+  //     console.log("❌ Skipping fetch - missing die_no or editingRow");
+  //     return;
+  //   }
+
+  //   const fetchDieDetails = async () => {
+  //     try {
+  //       console.log("📡 Fetching die details for:", dieNo);
+
+  //       const res = await fetch(
+  //         `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //           dieNo
+  //         )}`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+  //           },
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       console.log("✅ API Response received:", data);
+
+  //       if (!Array.isArray(data) || data.length === 0) {
+  //         console.log("❌ No data received from API");
+  //         return;
+  //       }
+
+  //       const first = data[0];
+  //       console.log("🎯 First item from API:", first);
+  //       console.log("📝 Current form data before update:", editFormData);
+
+  //       setEditFormData((prev) => {
+  //         const updated = {
+  //           ...prev,
+  //           plant_code: first.plant_code ?? prev.plant_code,
+  //           forge_press: first.forge_press ?? prev.forge_press, // Updated: API has forge_press not main_forge_press
+  //           main_forge_press: first.forge_press ?? prev.main_forge_press, // Keep both for compatibility
+  //           customer: first.customer ?? prev.customer, // Updated: API has customer not customer_name
+  //           prod_order: first.prod_order ?? prev.prod_order, // Updated: API has prod_order not main_prod_no
+  //           netWt: first.net_wt ?? prev.netWt,
+  //           section: first.section ?? prev.section, // Updated: API has section not week_section
+  //           rm_grade: first.rm_grade ?? prev.rm_grade,
+  //           die_req: first.die_req ?? prev.die_req,
+  //           rm_status: first.rm_status ?? prev.rm_status,
+  //           heat_code: first.heat_code ?? prev.heat_code,
+  //           remark: first.remark ?? prev.remark,
+  //           prod_tonn: calculateProdTonn(
+  //             prev.shift1_qty || 0,
+  //             prev.shift2_qty || 0,
+  //             prev.shift3_qty || 0,
+  //             first.net_wt ?? prev.netWt
+  //           ),
+  //         };
+
+  //         console.log("🔄 Updated form data:", updated);
+  //         return updated;
+  //       });
+
+  //       setMatchingDieOptions(data.length > 1 ? data : []);
+  //       console.log("✅ Form data updated successfully");
+  //     } catch (e) {
+  //       console.error("❌ Die fetch error:", e);
+  //       setMatchingDieOptions([]);
+  //     }
+  //   };
+
+  //   fetchDieDetails();
+  // }, [editFormData.die_no, editingRow]);
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var dieNo = editFormData.die_no;
     console.log("🔍 Die number changed:", dieNo);
     console.log("🔍 Current editing row:", editingRow);
     console.log("📝 Current editFormData:", editFormData);
-    if (!dieNo || !dieNo.trim() || !editingRow) {
-      console.log("❌ Skipping fetch - missing die_no or editingRow");
+    if (!editingRow) {
+      console.log("❌ No editing row active");
+      return;
+    }
+
+    // ✅ If die_no is removed/cleared, reset the autofilled fields
+    if (!dieNo || !dieNo.trim()) {
+      console.log("🧹 Die No removed - clearing autofilled fields");
+      setEditFormData(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, {
+          // Keep these fields (user might have entered them)
+          die_no: prev.die_no,
+          shift1_qty: prev.shift1_qty,
+          shift2_qty: prev.shift2_qty,
+          shift3_qty: prev.shift3_qty,
+          remark: prev.remark,
+          // Clear autofilled fields
+          plant_code: "",
+          forge_press: "",
+          main_forge_press: "",
+          customer: "",
+          prod_order: "",
+          netWt: 0,
+          section: "",
+          rm_grade: "",
+          die_req: 0,
+          rm_status: "",
+          heat_code: "",
+          prod_tonn: calculateProdTonn(prev.shift1_qty || 0, prev.shift2_qty || 0, prev.shift3_qty || 0, 0 // netWt is now 0
+          )
+        });
+      });
+
+      setMatchingDieOptions([]);
       return;
     }
     var fetchDieDetails = /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
         var res, data, first;
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-          while (1) switch (_context5.prev = _context5.next) {
+        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+          while (1) switch (_context6.prev = _context6.next) {
             case 0:
-              _context5.prev = 0;
+              _context6.prev = 0;
               console.log("📡 Fetching die details for:", dieNo);
-              _context5.next = 4;
-              return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=".concat(encodeURIComponent(dieNo)), {
+              _context6.next = 4;
+              return fetch("http://localhost:8080/internal/weekly_entry?die_no=".concat(encodeURIComponent(dieNo)), {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -46537,18 +47296,18 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
                 }
               });
             case 4:
-              res = _context5.sent;
-              _context5.next = 7;
+              res = _context6.sent;
+              _context6.next = 7;
               return res.json();
             case 7:
-              data = _context5.sent;
+              data = _context6.sent;
               console.log("✅ API Response received:", data);
               if (!(!Array.isArray(data) || data.length === 0)) {
-                _context5.next = 12;
+                _context6.next = 12;
                 break;
               }
               console.log("❌ No data received from API");
-              return _context5.abrupt("return");
+              return _context6.abrupt("return");
             case 12:
               first = data[0];
               console.log("🎯 First item from API:", first);
@@ -46558,16 +47317,11 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
                 var updated = _objectSpread(_objectSpread({}, prev), {}, {
                   plant_code: (_first$plant_code = first.plant_code) !== null && _first$plant_code !== void 0 ? _first$plant_code : prev.plant_code,
                   forge_press: (_first$forge_press = first.forge_press) !== null && _first$forge_press !== void 0 ? _first$forge_press : prev.forge_press,
-                  // Updated: API has forge_press not main_forge_press
                   main_forge_press: (_first$forge_press2 = first.forge_press) !== null && _first$forge_press2 !== void 0 ? _first$forge_press2 : prev.main_forge_press,
-                  // Keep both for compatibility
                   customer: (_first$customer = first.customer) !== null && _first$customer !== void 0 ? _first$customer : prev.customer,
-                  // Updated: API has customer not customer_name
                   prod_order: (_first$prod_order = first.prod_order) !== null && _first$prod_order !== void 0 ? _first$prod_order : prev.prod_order,
-                  // Updated: API has prod_order not main_prod_no
                   netWt: (_first$net_wt = first.net_wt) !== null && _first$net_wt !== void 0 ? _first$net_wt : prev.netWt,
                   section: (_first$section = first.section) !== null && _first$section !== void 0 ? _first$section : prev.section,
-                  // Updated: API has section not week_section
                   rm_grade: (_first$rm_grade = first.rm_grade) !== null && _first$rm_grade !== void 0 ? _first$rm_grade : prev.rm_grade,
                   die_req: (_first$die_req = first.die_req) !== null && _first$die_req !== void 0 ? _first$die_req : prev.die_req,
                   rm_status: (_first$rm_status = first.rm_status) !== null && _first$rm_status !== void 0 ? _first$rm_status : prev.rm_status,
@@ -46580,21 +47334,21 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
               });
               setMatchingDieOptions(data.length > 1 ? data : []);
               console.log("✅ Form data updated successfully");
-              _context5.next = 24;
+              _context6.next = 24;
               break;
             case 20:
-              _context5.prev = 20;
-              _context5.t0 = _context5["catch"](0);
-              console.error("❌ Die fetch error:", _context5.t0);
+              _context6.prev = 20;
+              _context6.t0 = _context6["catch"](0);
+              console.error("❌ Die fetch error:", _context6.t0);
               setMatchingDieOptions([]);
             case 24:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
-        }, _callee5, null, [[0, 20]]);
+        }, _callee6, null, [[0, 20]]);
       }));
       return function fetchDieDetails() {
-        return _ref5.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       };
     }();
     fetchDieDetails();
@@ -46743,33 +47497,233 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
   };
 
   // Updated renderTableRows function with better data handling
+  // const renderTableRows = () => {
+  //   const workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  //   const rows = [];
+  //   const sortedPlans = getSortedPlans();
+  //   const presses = Object.keys(sortedPlans); // Get all unique presses
+
+  //   // const sortedPlans = getSortedPlans();
+
+  //   const highlightMatch = (text) => {
+  //     if (!searchText || typeof text !== "string") return text;
+  //     const regex = new RegExp(`(${searchText})`, "gi");
+  //     const parts = text.split(regex);
+  //     return parts.map((part, i) =>
+  //       regex.test(part) ? <mark key={i}>{part}</mark> : part
+  //     );
+  //   };
+
+  //   const isRowMatching = (plan) => {
+  //     if (!searchText) return true;
+  //     const valuesToCheck = [
+  //       plan.plantCode,
+  //       plan.prod_order,
+  //       plan.main_forge_press,
+  //       plan.customer,
+  //       plan.netWt,
+  //       plan.dieNo,
+  //       plan.shift1Qty,
+  //       plan.shift2Qty,
+  //       plan.shift3Qty,
+  //       plan.prodTonn,
+  //       plan.section,
+  //       plan.grade,
+  //       plan.dieRequired,
+  //       plan.rmStatus,
+  //       plan.heatCode,
+  //       plan.remark,
+  //     ];
+  //     return valuesToCheck
+  //       .join(" ")
+  //       .toLowerCase()
+  //       .includes(searchText.toLowerCase());
+  //   };
+
+  //   workingDays.forEach((dayName) => {
+  //     const dayPlans = sortedPlans[dayName] || [];
+  //     const filteredPlans = dayPlans.filter((plan) => isRowMatching(plan));
+
+  //     console.log(`📊 ${dayName} plans:`, filteredPlans.length);
+
+  //     if (filteredPlans.length === 0) return;
+
+  //     filteredPlans.forEach((plan, planIndex) => {
+  //       const rowKey = `${dayName}-${planIndex}`;
+  //       const isEditing = editingRow === rowKey;
+
+  //       rows.push(
+  //         <tr key={rowKey} className={isEditing ? "editing-row" : ""}>
+  //           {planIndex === 0 && (
+  //             <td
+  //               className="weekly-plan-td weekly-day-cell"
+  //               rowSpan={filteredPlans.length}
+  //             >
+  //               {plan.dayLabel || dayName}
+  //             </td>
+  //           )}
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.plantCode, "plant_code", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td max-ellipsis-90">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "prod_order")}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "main_forge_press")}
+  //           </td>
+  //           <td className="weekly-plan-td customer-cell">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "customer")}
+  //           </td>
+
+  //           <td className="weekly-plan-td">
+  //             {renderQuantityValue(plan, isEditing, rowKey, "netWt")}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.dieNo, "die_no", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td shift-cell">
+  //             {isEditing ? (
+  //               <div className="shift-edit-container">
+  //                 <div className="shift-edit-item">
+  //                   <label>S1:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift1_qty")}
+  //                 </div>
+  //                 <div className="shift-edit-item">
+  //                   <label>S2:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift2_qty")}
+  //                 </div>
+  //                 <div className="shift-edit-item">
+  //                   <label>S3:</label>
+  //                   {renderQuantityValue(plan, isEditing, rowKey, "shift3_qty")}
+  //                 </div>
+  //               </div>
+  //             ) : (
+  //               `${plan.shift1Qty || 0}, ${plan.shift2Qty || 0}, ${
+  //                 plan.shift3Qty || 0
+  //               }`
+  //             )}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.prodTonn, "prod_tonn", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.section, "section", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.grade, "rm_grade", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.dieRequired, "die_req", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.rmStatus, "rm_status", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.heatCode, "heat_code", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td">
+  //             {renderValue(plan.remark, "remark", isEditing, rowKey)}
+  //           </td>
+  //           <td className="weekly-plan-td action-cell">
+  //             {isEditing ? (
+  //               <div className="flex-gap-2">
+  //                 <button
+  //                   className="action-btn save-btn"
+  //                   onClick={() => handleSave(dayName, planIndex, plan)}
+  //                   disabled={saving}
+  //                 >
+  //                   {saving ? "..." : <Save size={10} />}
+  //                 </button>
+
+  //                 <button
+  //                   className="action-btn cancel-btn"
+  //                   onClick={handleCancel}
+  //                   disabled={saving}
+  //                 >
+  //                   <X size={10} />
+  //                 </button>
+  //               </div>
+  //             ) : (
+  //               <button
+  //                 className="action-btn"
+  //                 onClick={() => handleEditClick(dayName, planIndex, plan)}
+  //               >
+  //                 <Edit size={12} />
+  //               </button>
+  //             )}
+  //           </td>
+  //         </tr>
+  //       );
+  //     });
+  //   });
+
+  //   return rows;
+  // };
+
+  // 🔥 NEW: Render Daily Tonnage Summary Component
+  var renderDailyTonnageSummary = function renderDailyTonnageSummary() {
+    var workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: {
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        padding: "1rem",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        borderRadius: "12px",
+        marginBottom: "2rem",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)"
+      }
+    }, workingDays.map(function (day) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: day,
+        style: {
+          textAlign: "center",
+          color: "white",
+          padding: "0.5rem 1rem",
+          background: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "8px",
+          minWidth: "80px"
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        style: {
+          fontSize: "0.9rem",
+          fontWeight: "600",
+          marginBottom: "0.25rem",
+          letterSpacing: "0.5px"
+        }
+      }, day.toUpperCase()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        style: {
+          fontSize: "1.2rem",
+          fontWeight: "700"
+        }
+      }, dailyTonnage[day].toFixed(1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        style: {
+          fontSize: "0.7rem",
+          opacity: 0.8,
+          marginTop: "0.1rem"
+        }
+      }, "TONS"));
+    }));
+  };
   var renderTableRows = function renderTableRows() {
-    var workingDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var rows = [];
-    var highlightMatch = function highlightMatch(text) {
-      if (!searchText || typeof text !== "string") return text;
-      var regex = new RegExp("(".concat(searchText, ")"), "gi");
-      var parts = text.split(regex);
-      return parts.map(function (part, i) {
-        return regex.test(part) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("mark", {
-          key: i
-        }, part) : part;
-      });
-    };
+    var sortedPlans = getSortedPlans();
+    var presses = Object.keys(sortedPlans); // Get all unique presses
+
     var isRowMatching = function isRowMatching(plan) {
       if (!searchText) return true;
       var valuesToCheck = [plan.plantCode, plan.prod_order, plan.main_forge_press, plan.customer, plan.netWt, plan.dieNo, plan.shift1Qty, plan.shift2Qty, plan.shift3Qty, plan.prodTonn, plan.section, plan.grade, plan.dieRequired, plan.rmStatus, plan.heatCode, plan.remark];
       return valuesToCheck.join(" ").toLowerCase().includes(searchText.toLowerCase());
     };
-    workingDays.forEach(function (dayName) {
-      var dayPlans = groupedPlans[dayName] || [];
-      var filteredPlans = dayPlans.filter(function (plan) {
+    presses.forEach(function (pressName) {
+      var pressPlans = sortedPlans[pressName] || [];
+      var filteredPlans = pressPlans.filter(function (plan) {
         return isRowMatching(plan);
       });
-      console.log("\uD83D\uDCCA ".concat(dayName, " plans:"), filteredPlans.length);
       if (filteredPlans.length === 0) return;
       filteredPlans.forEach(function (plan, planIndex) {
-        var rowKey = "".concat(dayName, "-").concat(planIndex);
+        var rowKey = "".concat(pressName, "-").concat(planIndex);
         var isEditing = editingRow === rowKey;
         rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
           key: rowKey,
@@ -46777,13 +47731,11 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
         }, planIndex === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           className: "weekly-plan-td weekly-day-cell",
           rowSpan: filteredPlans.length
-        }, plan.dayLabel || dayName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+        }, pressName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           className: "weekly-plan-td"
-        }, renderValue(plan.plantCode, "plant_code", isEditing, rowKey)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+        }, plan.dayLabel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           className: "weekly-plan-td max-ellipsis-90"
         }, renderQuantityValue(plan, isEditing, rowKey, "prod_order")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
-          className: "weekly-plan-td"
-        }, renderQuantityValue(plan, isEditing, rowKey, "main_forge_press")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           className: "weekly-plan-td customer-cell"
         }, renderQuantityValue(plan, isEditing, rowKey, "customer")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
           className: "weekly-plan-td"
@@ -46820,7 +47772,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           className: "action-btn save-btn",
           onClick: function onClick() {
-            return handleSave(dayName, planIndex, plan);
+            return handleSave(pressName, planIndex, plan);
           },
           disabled: saving
         }, saving ? "..." : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -46831,14 +47783,24 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
           disabled: saving
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
           size: 10
-        }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+        }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+          className: "flex-gap-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
           className: "action-btn",
           onClick: function onClick() {
-            return handleEditClick(dayName, planIndex, plan);
+            return handleEditClick(pressName, planIndex, plan);
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
           size: 12
-        })))));
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+          className: "action-btn delete-btn",
+          onClick: function onClick() {
+            return handleDelete(pressName, planIndex, plan);
+          },
+          disabled: saving
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          size: 12
+        }))))));
       });
     });
     return rows;
@@ -46920,43 +47882,115 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay() {
     onChange: function onChange(e) {
       return setSearchText(e.target.value);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    style: {
-      overflowX: "auto"
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
     style: tableStyle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     style: thStyle
-  }, "Day"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Plant Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Production Order No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
   }, "Press"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Customer"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Net Wt"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Die No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Qty (S1, S2, S3)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Prod Tonn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Section"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Grade"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Die Required"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "RM Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Heat Code"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
-    style: thStyle
-  }, "Remark"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("prod_order");
+    }
+  }, "Day and date", getSortIndicator("prod_order")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("main_forge_press");
+    }
+  }, "Prod. No.", getSortIndicator("main_forge_press")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("customer");
+    }
+  }, "Customer", getSortIndicator("customer")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("netWt");
+    }
+  }, "Net Wt", getSortIndicator("netWt")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("die_no");
+    }
+  }, "Die No", getSortIndicator("die_no")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("qty");
+    }
+  }, "Qty (S1, S2, S3)", getSortIndicator("qty")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("prod_tonn");
+    }
+  }, "Prod Tonn", getSortIndicator("prod_tonn")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("section");
+    }
+  }, "Section", getSortIndicator("section")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("grade");
+    }
+  }, "Grade", getSortIndicator("grade")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("die_req");
+    }
+  }, "Die Required", getSortIndicator("die_req")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("rm_status");
+    }
+  }, "RM Status", getSortIndicator("rm_status")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("heat_code");
+    }
+  }, "Heat Code", getSortIndicator("heat_code")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: _objectSpread(_objectSpread({}, thStyle), {}, {
+      cursor: "pointer",
+      userSelect: "none"
+    }),
+    onClick: function onClick() {
+      return handleSort("remark");
+    }
+  }, "Remark", getSortIndicator("remark")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
     style: thStyle
   }, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, renderTableRows())))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "no-plan-message"
@@ -51913,7 +52947,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Container */\r\n.weekly-plan-container {\r\n  padding: 20px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin-top: 20px;\r\n  font-family: Arial, sans-serif;\r\n}\r\n\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 4px 8px;\r\n  font-size: 13px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 180px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.05);\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 5px rgba(0,123,255,0.4);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #999;\r\n  font-size: 12px;\r\n}\r\n\r\n\r\n.search-input {\r\n  padding: 6px 10px;\r\n  font-size: 14px;\r\n  border-radius: 4px;\r\n  border: 1px solid #ccc;\r\n  width: 250px;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  font-weight: bold;\r\n  padding: 0 2px;\r\n}\r\n\r\n\r\n/* Header */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  padding: 0 2px;\r\n  border-radius: 2px;\r\n}\r\n\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 18px;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Table styles */\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, #f8f9fa, transparent);\r\n  pointer-events: none;\r\n}\r\n.table-container {\r\n  position: relative;\r\n}\r\n\r\n\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f9fafc, #e9ecef);\r\n  border-bottom: 2px solid #ced4da;\r\n}\r\n\r\n\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 3;\r\n  background-color: #e9ecef;\r\n  border-right: 2px solid #dee2e6; \r\n  background-color: #e9ecef;\r\n  font-weight: 600;\r\n  color: #495057;\r\n  writing-mode: vertical-rl;\r\n  text-orientation: mixed;\r\n  width: 40px;\r\n  min-width: 40px;\r\n   font-weight: bold;\r\n  color: #212529;\r\n  background-color: #dce2e7;\r\n  font-size: 11px;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n/* .edit-input {\r\n  width: 100%;\r\n  padding: 2px 4px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 3px;\r\n  font-size: 10px;\r\n  text-align: center;\r\n} */\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n/* Buttons */\r\n.action-btn {\r\n  padding: 4px;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n  border: 1px solid;\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n/* Messages */\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #ffeaa7;\r\n}\r\n\r\n/* Loading & Error States */\r\n.loading-state,\r\n.error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 4px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 8px 16px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  margin-top: 10px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 120px;\r\n  padding: 4px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 16px;\r\n  padding: 0 12px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.25rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #ccc;\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n\r\n\r\n.action-btn {\r\n  border: none;\r\n  padding: 6px;\r\n  font-size: 12px;\r\n  border-radius: 4px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.1);\r\n  background-color: #e2f0d9;\r\n}\r\n\r\n\r\n.save-btn {\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n}\r\n.mb-2 {\r\n  margin-bottom: 2px;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n\r\n.cancel-btn {\r\n  border: 1px solid #dc3545;\r\n  color: #dc3545;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n.validation-list {\r\n  margin: 5px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.3;\r\n  padding: 4px 6px;\r\n  text-align: left;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 60px;\r\n}\r\n\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #6c757d;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n}\r\n\r\n\r\n.weekly-plan-td input,\r\n.weekly-plan-td select {\r\n  width: 100%;\r\n  display: block;\r\n}\r\n\r\n/* Base Container - Optimized for 1366x768 */\r\n.weekly-plan-container {\r\n  padding: 15px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin: 10px auto;\r\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\r\n  max-width: 1340px; /* Fits within 1366px with margins */\r\n  min-height: calc(100vh - 100px);\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* Filter Section */\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 8px 12px;\r\n  font-size: 14px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 280px;\r\n  max-width: 100%;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 8px rgba(0,123,255,0.3);\r\n  transform: scale(1.02);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #666;\r\n  font-size: 13px;\r\n}\r\n\r\n/* Header Section */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 20px;\r\n  padding: 0 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.4rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n  flex: 1;\r\n  min-width: 200px;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n  padding: 8px 16px;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 80px;\r\n}\r\n\r\n.week-nav-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Table Container - Responsive Scrolling */\r\n.table-container {\r\n  position: relative;\r\n  overflow-x: auto;\r\n  overflow-y: auto;\r\n  max-height: calc(100vh - 250px); /* Prevents vertical overflow */\r\n  border: 1px solid #dee2e6;\r\n  border-radius: 8px;\r\n  background: white;\r\n  box-shadow: 0 4px 6px rgba(0,0,0,0.1);\r\n}\r\n\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, rgba(248,249,250,0.9), transparent);\r\n  pointer-events: none;\r\n  z-index: 1;\r\n}\r\n\r\n/* Table Styles - Optimized for 1366px width */\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  min-width: 1200px; /* Ensures horizontal scroll on smaller screens */\r\n  border-collapse: collapse;\r\n  font-size: 12px;\r\n  table-layout: fixed;\r\n  background: white;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);\r\n  color: #343a40;\r\n  font-weight: 700;\r\n  padding: 10px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  font-size: 11px;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  min-width: 80px;\r\n}\r\n\r\n.weekly-plan-th:first-child {\r\n  min-width: 120px; /* Day column */\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 8px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 11px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  min-width: 80px;\r\n  transition: all 0.1s ease;\r\n}\r\n\r\n.weekly-plan-td:hover {\r\n  background-color: #f8f9fa;\r\n}\r\n\r\n/* Day Cell - Sticky Left Column */\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 5;\r\n  background: linear-gradient(to right, #e9ecef, #dce2e7);\r\n  border-right: 2px solid #ced4da;\r\n  font-weight: 700;\r\n  color: #495057;\r\n  writing-mode: horizontal-tb; /* Better for 1366px width */\r\n  text-orientation: mixed;\r\n  width: 120px;\r\n  min-width: 120px;\r\n  font-size: 12px;\r\n  box-shadow: 2px 0 4px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Customer Cell */\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 10px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 150px;\r\n  min-width: 120px;\r\n}\r\n\r\n/* Action Cells */\r\n.action-cell {\r\n  width: 80px;\r\n  min-width: 80px;\r\n  padding: 4px;\r\n}\r\n\r\n.action-btn {\r\n  padding: 6px 8px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 2px;\r\n  font-size: 11px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 30px;\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.05);\r\n  background-color: #28a745;\r\n  color: white;\r\n  box-shadow: 0 2px 4px rgba(40,167,69,0.3);\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.save-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n.cancel-btn:hover {\r\n  background-color: #dc3545;\r\n  color: white;\r\n}\r\n\r\n/* Special Cells */\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.4;\r\n  padding: 6px 8px;\r\n  text-align: left;\r\n  max-width: 200px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n  opacity: 0.7;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n  box-shadow: inset 0 0 0 2px #2196f3;\r\n}\r\n\r\n/* Form Elements */\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.edit-input:focus, .edit-select:focus {\r\n  outline: none;\r\n  border-color: #0056b3;\r\n  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 140px;\r\n  padding: 6px 8px;\r\n}\r\n\r\n/* Messages */\r\n.success-message, .error-message, .validation-error {\r\n  padding: 12px 16px;\r\n  border-radius: 6px;\r\n  margin-bottom: 15px;\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  border-color: #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  border-color: #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  border-color: #ffeaa7;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 60px 20px;\r\n  font-size: 20px;\r\n  color: #dc3545;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Loading States */\r\n.loading-state, .error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n  font-size: 16px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 6px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 10px 20px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  margin-top: 15px;\r\n  font-size: 14px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.retry-btn:hover {\r\n  background-color: #0056b3;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Utility Classes */\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.mb-2 {\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.validation-list {\r\n  margin: 8px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 80px;\r\n}\r\n\r\n/* Highlight/Search Results */\r\nmark {\r\n  background-color: #ffeb3b;\r\n  color: #333;\r\n  font-weight: 600;\r\n  padding: 2px 4px;\r\n  border-radius: 3px;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Responsive Adjustments for smaller screens within 1366x768 range */\r\n@media screen and (max-width: 1366px) {\r\n  .weekly-plan-container {\r\n    padding: 12px;\r\n    margin: 5px;\r\n    max-width: 1350px;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 240px;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    min-width: 1100px;\r\n  }\r\n  \r\n  .weekly-plan-th, .weekly-plan-td {\r\n    padding: 6px 4px;\r\n    font-size: 10px;\r\n  }\r\n  \r\n  .weekly-day-cell {\r\n    width: 100px;\r\n    min-width: 100px;\r\n    font-size: 11px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 1200px) {\r\n  .filter-container {\r\n    flex-direction: column;\r\n    align-items: stretch;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 100%;\r\n    max-width: 400px;\r\n    margin: 0 auto;\r\n  }\r\n  \r\n  .week-header {\r\n    flex-direction: column;\r\n    text-align: center;\r\n    gap: 15px;\r\n  }\r\n  \r\n  .week-title {\r\n    margin-bottom: 10px;\r\n  }\r\n}\r\n\r\n/* Print Styles */\r\n@media print {\r\n  .weekly-plan-container {\r\n    padding: 0;\r\n    background: white;\r\n    box-shadow: none;\r\n  }\r\n  \r\n  .action-btn, .week-nav-btn, .retry-btn {\r\n    display: none;\r\n  }\r\n  \r\n  .table-container {\r\n    overflow: visible;\r\n    max-height: none;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    font-size: 8px;\r\n  }\r\n}\r\n\r\n/* Make modal fit screen */\r\n.modal-dialog {\r\n  max-width: 95vw !important;\r\n  width: 95vw !important;\r\n  margin: auto !important;\r\n}\r\n\r\n/* Optional - if modal has container or wrapper */\r\n.modal-content {\r\n  overflow-x: auto;\r\n  max-height: calc(100vh - 60px);\r\n}\r\nbody.modal-open {\r\n  overflow: hidden;\r\n}\r\n\r\n.weekly-plan-modal {\r\n  max-width: 95vw;\r\n  width: 95vw;\r\n  margin: auto;\r\n}\r\n\r\n.weekly-plan-container {\r\n  max-width: 100%;\r\n  overflow-x: auto;\r\n} \r\n\r\n", "",{"version":3,"sources":["webpack://./src/components/WeeklyPlanDisplay.css"],"names":[],"mappings":"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","sourcesContent":["/* Container */\r\n.weekly-plan-container {\r\n  padding: 20px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin-top: 20px;\r\n  font-family: Arial, sans-serif;\r\n}\r\n\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 4px 8px;\r\n  font-size: 13px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 180px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.05);\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 5px rgba(0,123,255,0.4);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #999;\r\n  font-size: 12px;\r\n}\r\n\r\n\r\n.search-input {\r\n  padding: 6px 10px;\r\n  font-size: 14px;\r\n  border-radius: 4px;\r\n  border: 1px solid #ccc;\r\n  width: 250px;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  font-weight: bold;\r\n  padding: 0 2px;\r\n}\r\n\r\n\r\n/* Header */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  padding: 0 2px;\r\n  border-radius: 2px;\r\n}\r\n\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 18px;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Table styles */\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, #f8f9fa, transparent);\r\n  pointer-events: none;\r\n}\r\n.table-container {\r\n  position: relative;\r\n}\r\n\r\n\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f9fafc, #e9ecef);\r\n  border-bottom: 2px solid #ced4da;\r\n}\r\n\r\n\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 3;\r\n  background-color: #e9ecef;\r\n  border-right: 2px solid #dee2e6; \r\n  background-color: #e9ecef;\r\n  font-weight: 600;\r\n  color: #495057;\r\n  writing-mode: vertical-rl;\r\n  text-orientation: mixed;\r\n  width: 40px;\r\n  min-width: 40px;\r\n   font-weight: bold;\r\n  color: #212529;\r\n  background-color: #dce2e7;\r\n  font-size: 11px;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n/* .edit-input {\r\n  width: 100%;\r\n  padding: 2px 4px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 3px;\r\n  font-size: 10px;\r\n  text-align: center;\r\n} */\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n/* Buttons */\r\n.action-btn {\r\n  padding: 4px;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n  border: 1px solid;\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n/* Messages */\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #ffeaa7;\r\n}\r\n\r\n/* Loading & Error States */\r\n.loading-state,\r\n.error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 4px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 8px 16px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  margin-top: 10px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 120px;\r\n  padding: 4px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 16px;\r\n  padding: 0 12px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.25rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #ccc;\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n\r\n\r\n.action-btn {\r\n  border: none;\r\n  padding: 6px;\r\n  font-size: 12px;\r\n  border-radius: 4px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.1);\r\n  background-color: #e2f0d9;\r\n}\r\n\r\n\r\n.save-btn {\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n}\r\n.mb-2 {\r\n  margin-bottom: 2px;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n\r\n.cancel-btn {\r\n  border: 1px solid #dc3545;\r\n  color: #dc3545;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n.validation-list {\r\n  margin: 5px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.3;\r\n  padding: 4px 6px;\r\n  text-align: left;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 60px;\r\n}\r\n\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #6c757d;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n}\r\n\r\n\r\n.weekly-plan-td input,\r\n.weekly-plan-td select {\r\n  width: 100%;\r\n  display: block;\r\n}\r\n\r\n/* Base Container - Optimized for 1366x768 */\r\n.weekly-plan-container {\r\n  padding: 15px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin: 10px auto;\r\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\r\n  max-width: 1340px; /* Fits within 1366px with margins */\r\n  min-height: calc(100vh - 100px);\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* Filter Section */\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 8px 12px;\r\n  font-size: 14px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 280px;\r\n  max-width: 100%;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 8px rgba(0,123,255,0.3);\r\n  transform: scale(1.02);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #666;\r\n  font-size: 13px;\r\n}\r\n\r\n/* Header Section */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 20px;\r\n  padding: 0 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.4rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n  flex: 1;\r\n  min-width: 200px;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n  padding: 8px 16px;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 80px;\r\n}\r\n\r\n.week-nav-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Table Container - Responsive Scrolling */\r\n.table-container {\r\n  position: relative;\r\n  overflow-x: auto;\r\n  overflow-y: auto;\r\n  max-height: calc(100vh - 250px); /* Prevents vertical overflow */\r\n  border: 1px solid #dee2e6;\r\n  border-radius: 8px;\r\n  background: white;\r\n  box-shadow: 0 4px 6px rgba(0,0,0,0.1);\r\n}\r\n\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, rgba(248,249,250,0.9), transparent);\r\n  pointer-events: none;\r\n  z-index: 1;\r\n}\r\n\r\n/* Table Styles - Optimized for 1366px width */\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  min-width: 1200px; /* Ensures horizontal scroll on smaller screens */\r\n  border-collapse: collapse;\r\n  font-size: 12px;\r\n  table-layout: fixed;\r\n  background: white;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);\r\n  color: #343a40;\r\n  font-weight: 700;\r\n  padding: 10px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  font-size: 11px;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  min-width: 80px;\r\n}\r\n\r\n.weekly-plan-th:first-child {\r\n  min-width: 120px; /* Day column */\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 8px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 11px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  min-width: 80px;\r\n  transition: all 0.1s ease;\r\n}\r\n\r\n.weekly-plan-td:hover {\r\n  background-color: #f8f9fa;\r\n}\r\n\r\n/* Day Cell - Sticky Left Column */\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 5;\r\n  background: linear-gradient(to right, #e9ecef, #dce2e7);\r\n  border-right: 2px solid #ced4da;\r\n  font-weight: 700;\r\n  color: #495057;\r\n  writing-mode: horizontal-tb; /* Better for 1366px width */\r\n  text-orientation: mixed;\r\n  width: 120px;\r\n  min-width: 120px;\r\n  font-size: 12px;\r\n  box-shadow: 2px 0 4px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Customer Cell */\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 10px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 150px;\r\n  min-width: 120px;\r\n}\r\n\r\n/* Action Cells */\r\n.action-cell {\r\n  width: 80px;\r\n  min-width: 80px;\r\n  padding: 4px;\r\n}\r\n\r\n.action-btn {\r\n  padding: 6px 8px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 2px;\r\n  font-size: 11px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 30px;\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.05);\r\n  background-color: #28a745;\r\n  color: white;\r\n  box-shadow: 0 2px 4px rgba(40,167,69,0.3);\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.save-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n.cancel-btn:hover {\r\n  background-color: #dc3545;\r\n  color: white;\r\n}\r\n\r\n/* Special Cells */\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.4;\r\n  padding: 6px 8px;\r\n  text-align: left;\r\n  max-width: 200px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n  opacity: 0.7;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n  box-shadow: inset 0 0 0 2px #2196f3;\r\n}\r\n\r\n/* Form Elements */\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.edit-input:focus, .edit-select:focus {\r\n  outline: none;\r\n  border-color: #0056b3;\r\n  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 140px;\r\n  padding: 6px 8px;\r\n}\r\n\r\n/* Messages */\r\n.success-message, .error-message, .validation-error {\r\n  padding: 12px 16px;\r\n  border-radius: 6px;\r\n  margin-bottom: 15px;\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  border-color: #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  border-color: #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  border-color: #ffeaa7;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 60px 20px;\r\n  font-size: 20px;\r\n  color: #dc3545;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Loading States */\r\n.loading-state, .error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n  font-size: 16px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 6px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 10px 20px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  margin-top: 15px;\r\n  font-size: 14px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.retry-btn:hover {\r\n  background-color: #0056b3;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Utility Classes */\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.mb-2 {\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.validation-list {\r\n  margin: 8px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 80px;\r\n}\r\n\r\n/* Highlight/Search Results */\r\nmark {\r\n  background-color: #ffeb3b;\r\n  color: #333;\r\n  font-weight: 600;\r\n  padding: 2px 4px;\r\n  border-radius: 3px;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Responsive Adjustments for smaller screens within 1366x768 range */\r\n@media screen and (max-width: 1366px) {\r\n  .weekly-plan-container {\r\n    padding: 12px;\r\n    margin: 5px;\r\n    max-width: 1350px;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 240px;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    min-width: 1100px;\r\n  }\r\n  \r\n  .weekly-plan-th, .weekly-plan-td {\r\n    padding: 6px 4px;\r\n    font-size: 10px;\r\n  }\r\n  \r\n  .weekly-day-cell {\r\n    width: 100px;\r\n    min-width: 100px;\r\n    font-size: 11px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 1200px) {\r\n  .filter-container {\r\n    flex-direction: column;\r\n    align-items: stretch;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 100%;\r\n    max-width: 400px;\r\n    margin: 0 auto;\r\n  }\r\n  \r\n  .week-header {\r\n    flex-direction: column;\r\n    text-align: center;\r\n    gap: 15px;\r\n  }\r\n  \r\n  .week-title {\r\n    margin-bottom: 10px;\r\n  }\r\n}\r\n\r\n/* Print Styles */\r\n@media print {\r\n  .weekly-plan-container {\r\n    padding: 0;\r\n    background: white;\r\n    box-shadow: none;\r\n  }\r\n  \r\n  .action-btn, .week-nav-btn, .retry-btn {\r\n    display: none;\r\n  }\r\n  \r\n  .table-container {\r\n    overflow: visible;\r\n    max-height: none;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    font-size: 8px;\r\n  }\r\n}\r\n\r\n/* Make modal fit screen */\r\n.modal-dialog {\r\n  max-width: 95vw !important;\r\n  width: 95vw !important;\r\n  margin: auto !important;\r\n}\r\n\r\n/* Optional - if modal has container or wrapper */\r\n.modal-content {\r\n  overflow-x: auto;\r\n  max-height: calc(100vh - 60px);\r\n}\r\nbody.modal-open {\r\n  overflow: hidden;\r\n}\r\n\r\n.weekly-plan-modal {\r\n  max-width: 95vw;\r\n  width: 95vw;\r\n  margin: auto;\r\n}\r\n\r\n.weekly-plan-container {\r\n  max-width: 100%;\r\n  overflow-x: auto;\r\n} \r\n\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Container */\r\n.weekly-plan-container {\r\n  padding: 20px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin-top: 20px;\r\n  font-family: Arial, sans-serif;\r\n}\r\n\r\n.delete-btn {\r\n  background: linear-gradient(135deg, #ff4757 0%, #ff6348 100%);\r\n  color: white;\r\n}\r\n\r\n.delete-btn:hover {\r\n  background: linear-gradient(135deg, #ff3838 0%, #ff5733 100%);\r\n  transform: scale(1.05);\r\n}\r\n\r\n.delete-btn:disabled {\r\n  opacity: 0.5;\r\n  cursor: not-allowed;\r\n}\r\n\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 4px 8px;\r\n  font-size: 13px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 180px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.05);\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 5px rgba(0,123,255,0.4);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #999;\r\n  font-size: 12px;\r\n}\r\n\r\n\r\n.search-input {\r\n  padding: 6px 10px;\r\n  font-size: 14px;\r\n  border-radius: 4px;\r\n  border: 1px solid #ccc;\r\n  width: 250px;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  font-weight: bold;\r\n  padding: 0 2px;\r\n}\r\n\r\n\r\n/* Header */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  padding: 0 2px;\r\n  border-radius: 2px;\r\n}\r\n\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 18px;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Table styles */\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, #f8f9fa, transparent);\r\n  pointer-events: none;\r\n}\r\n.table-container {\r\n  position: relative;\r\n}\r\n\r\n\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f9fafc, #e9ecef);\r\n  border-bottom: 2px solid #ced4da;\r\n}\r\n\r\n\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 3;\r\n  background-color: #e9ecef;\r\n  border-right: 2px solid #dee2e6; \r\n  background-color: #e9ecef;\r\n  font-weight: 600;\r\n  color: #495057;\r\n  writing-mode: vertical-rl;\r\n  text-orientation: mixed;\r\n  width: 40px;\r\n  min-width: 40px;\r\n   font-weight: bold;\r\n  color: #212529;\r\n  background-color: #dce2e7;\r\n  font-size: 11px;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n/* .edit-input {\r\n  width: 100%;\r\n  padding: 2px 4px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 3px;\r\n  font-size: 10px;\r\n  text-align: center;\r\n} */\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n/* Buttons */\r\n.action-btn {\r\n  padding: 4px;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n  border: 1px solid;\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n/* Messages */\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #ffeaa7;\r\n}\r\n\r\n/* Loading & Error States */\r\n.loading-state,\r\n.error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 4px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 8px 16px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  margin-top: 10px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 120px;\r\n  padding: 4px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 16px;\r\n  padding: 0 12px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.25rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #ccc;\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n\r\n\r\n.action-btn {\r\n  border: none;\r\n  padding: 6px;\r\n  font-size: 12px;\r\n  border-radius: 4px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.1);\r\n  background-color: #e2f0d9;\r\n}\r\n\r\n\r\n.save-btn {\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n}\r\n.mb-2 {\r\n  margin-bottom: 2px;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n\r\n.cancel-btn {\r\n  border: 1px solid #dc3545;\r\n  color: #dc3545;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n.validation-list {\r\n  margin: 5px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.3;\r\n  padding: 4px 6px;\r\n  text-align: left;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 60px;\r\n}\r\n\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #6c757d;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n}\r\n\r\n\r\n.weekly-plan-td input,\r\n.weekly-plan-td select {\r\n  width: 100%;\r\n  display: block;\r\n}\r\n\r\n/* Base Container - Optimized for 1366x768 */\r\n.weekly-plan-container {\r\n  padding: 15px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin: 10px auto;\r\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\r\n  max-width: 1340px; /* Fits within 1366px with margins */\r\n  min-height: calc(100vh - 100px);\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* Filter Section */\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 8px 12px;\r\n  font-size: 14px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 280px;\r\n  max-width: 100%;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 8px rgba(0,123,255,0.3);\r\n  transform: scale(1.02);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #666;\r\n  font-size: 13px;\r\n}\r\n\r\n/* Header Section */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 20px;\r\n  padding: 0 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.4rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n  flex: 1;\r\n  min-width: 200px;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n  padding: 8px 16px;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 80px;\r\n}\r\n\r\n.week-nav-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Table Container - Responsive Scrolling */\r\n.table-container {\r\n  position: relative;\r\n  overflow-x: auto;\r\n  overflow-y: auto;\r\n  max-height: calc(100vh - 250px); /* Prevents vertical overflow */\r\n  border: 1px solid #dee2e6;\r\n  border-radius: 8px;\r\n  background: white;\r\n  box-shadow: 0 4px 6px rgba(0,0,0,0.1);\r\n   max-height: 70vh;\r\n  overflow: auto;\r\n}\r\n\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, rgba(248,249,250,0.9), transparent);\r\n  pointer-events: none;\r\n  z-index: 1;\r\n}\r\n\r\n/* Table Styles - Optimized for 1366px width */\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  min-width: 1200px; /* Ensures horizontal scroll on smaller screens */\r\n  border-collapse: collapse;\r\n  font-size: 12px;\r\n  table-layout: fixed;\r\n  background: white;\r\n}\r\n\r\n.table-container table {\r\n  border-collapse: separate;\r\n  border-spacing: 0;\r\n}\r\n\r\n.table-container thead th {\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n}\r\n\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);\r\n  color: #343a40;\r\n  font-weight: 700;\r\n  padding: 10px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  font-size: 11px;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  min-width: 80px;\r\n}\r\n\r\n.weekly-plan-th:first-child {\r\n  min-width: 120px; /* Day column */\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 8px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 11px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  min-width: 80px;\r\n  transition: all 0.1s ease;\r\n}\r\n\r\n.weekly-plan-td:hover {\r\n  background-color: #f8f9fa;\r\n}\r\n\r\n/* Day Cell - Sticky Left Column */\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 5;\r\n  background: linear-gradient(to right, #e9ecef, #dce2e7);\r\n  border-right: 2px solid #ced4da;\r\n  font-weight: 700;\r\n  color: #495057;\r\n  writing-mode: horizontal-tb; /* Better for 1366px width */\r\n  text-orientation: mixed;\r\n  width: 120px;\r\n  min-width: 120px;\r\n  font-size: 12px;\r\n  box-shadow: 2px 0 4px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Customer Cell */\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 10px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 150px;\r\n  min-width: 120px;\r\n}\r\n\r\n/* Action Cells */\r\n.action-cell {\r\n  width: 80px;\r\n  min-width: 80px;\r\n  padding: 4px;\r\n}\r\n\r\n.action-btn {\r\n  padding: 6px 8px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 2px;\r\n  font-size: 11px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 30px;\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.05);\r\n  background-color: #28a745;\r\n  color: white;\r\n  box-shadow: 0 2px 4px rgba(40,167,69,0.3);\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.save-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n.cancel-btn:hover {\r\n  background-color: #dc3545;\r\n  color: white;\r\n}\r\n\r\n/* Special Cells */\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.4;\r\n  padding: 6px 8px;\r\n  text-align: left;\r\n  max-width: 200px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n  opacity: 0.7;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n  box-shadow: inset 0 0 0 2px #2196f3;\r\n}\r\n\r\n/* Form Elements */\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.edit-input:focus, .edit-select:focus {\r\n  outline: none;\r\n  border-color: #0056b3;\r\n  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 140px;\r\n  padding: 6px 8px;\r\n}\r\n\r\n/* Messages */\r\n.success-message, .error-message, .validation-error {\r\n  padding: 12px 16px;\r\n  border-radius: 6px;\r\n  margin-bottom: 15px;\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  border-color: #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  border-color: #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  border-color: #ffeaa7;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 60px 20px;\r\n  font-size: 20px;\r\n  color: #dc3545;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Loading States */\r\n.loading-state, .error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n  font-size: 16px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 6px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 10px 20px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  margin-top: 15px;\r\n  font-size: 14px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.retry-btn:hover {\r\n  background-color: #0056b3;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Utility Classes */\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.mb-2 {\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.validation-list {\r\n  margin: 8px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 80px;\r\n}\r\n\r\n/* Highlight/Search Results */\r\nmark {\r\n  background-color: #ffeb3b;\r\n  color: #333;\r\n  font-weight: 600;\r\n  padding: 2px 4px;\r\n  border-radius: 3px;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Responsive Adjustments for smaller screens within 1366x768 range */\r\n@media screen and (max-width: 1366px) {\r\n  .weekly-plan-container {\r\n    padding: 12px;\r\n    margin: 5px;\r\n    max-width: 1350px;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 240px;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    min-width: 1100px;\r\n  }\r\n  \r\n  .weekly-plan-th, .weekly-plan-td {\r\n    padding: 6px 4px;\r\n    font-size: 10px;\r\n  }\r\n  \r\n  .weekly-day-cell {\r\n    width: 100px;\r\n    min-width: 100px;\r\n    font-size: 11px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 1200px) {\r\n  .filter-container {\r\n    flex-direction: column;\r\n    align-items: stretch;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 100%;\r\n    max-width: 400px;\r\n    margin: 0 auto;\r\n  }\r\n  \r\n  .week-header {\r\n    flex-direction: column;\r\n    text-align: center;\r\n    gap: 15px;\r\n  }\r\n  \r\n  .week-title {\r\n    margin-bottom: 10px;\r\n  }\r\n}\r\n\r\n/* Print Styles */\r\n@media print {\r\n  .weekly-plan-container {\r\n    padding: 0;\r\n    background: white;\r\n    box-shadow: none;\r\n  }\r\n  \r\n  .action-btn, .week-nav-btn, .retry-btn {\r\n    display: none;\r\n  }\r\n  \r\n  .table-container {\r\n    overflow: visible;\r\n    max-height: none;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    font-size: 8px;\r\n  }\r\n}\r\n\r\n/* Make modal fit screen */\r\n.modal-dialog {\r\n  max-width: 95vw !important;\r\n  width: 95vw !important;\r\n  margin: auto !important;\r\n}\r\n\r\n/* Optional - if modal has container or wrapper */\r\n.modal-content {\r\n  overflow-x: auto;\r\n  max-height: calc(100vh - 60px);\r\n}\r\nbody.modal-open {\r\n  overflow: hidden;\r\n}\r\n\r\n.weekly-plan-modal {\r\n  max-width: 95vw;\r\n  width: 95vw;\r\n  margin: auto;\r\n}\r\n\r\n.weekly-plan-container {\r\n  max-width: 100%;\r\n  overflow-x: auto;\r\n} \r\n\r\n", "",{"version":3,"sources":["webpack://./src/components/WeeklyPlanDisplay.css"],"names":[],"mappings":"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","sourcesContent":["/* Container */\r\n.weekly-plan-container {\r\n  padding: 20px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin-top: 20px;\r\n  font-family: Arial, sans-serif;\r\n}\r\n\r\n.delete-btn {\r\n  background: linear-gradient(135deg, #ff4757 0%, #ff6348 100%);\r\n  color: white;\r\n}\r\n\r\n.delete-btn:hover {\r\n  background: linear-gradient(135deg, #ff3838 0%, #ff5733 100%);\r\n  transform: scale(1.05);\r\n}\r\n\r\n.delete-btn:disabled {\r\n  opacity: 0.5;\r\n  cursor: not-allowed;\r\n}\r\n\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 4px 8px;\r\n  font-size: 13px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 180px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.05);\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 5px rgba(0,123,255,0.4);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #999;\r\n  font-size: 12px;\r\n}\r\n\r\n\r\n.search-input {\r\n  padding: 6px 10px;\r\n  font-size: 14px;\r\n  border-radius: 4px;\r\n  border: 1px solid #ccc;\r\n  width: 250px;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  font-weight: bold;\r\n  padding: 0 2px;\r\n}\r\n\r\n\r\n/* Header */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\nmark {\r\n  background-color: yellow;\r\n  padding: 0 2px;\r\n  border-radius: 2px;\r\n}\r\n\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 18px;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Table styles */\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, #f8f9fa, transparent);\r\n  pointer-events: none;\r\n}\r\n.table-container {\r\n  position: relative;\r\n}\r\n\r\n\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f9fafc, #e9ecef);\r\n  border-bottom: 2px solid #ced4da;\r\n}\r\n\r\n\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 3;\r\n  background-color: #e9ecef;\r\n  border-right: 2px solid #dee2e6; \r\n  background-color: #e9ecef;\r\n  font-weight: 600;\r\n  color: #495057;\r\n  writing-mode: vertical-rl;\r\n  text-orientation: mixed;\r\n  width: 40px;\r\n  min-width: 40px;\r\n   font-weight: bold;\r\n  color: #212529;\r\n  background-color: #dce2e7;\r\n  font-size: 11px;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n/* .edit-input {\r\n  width: 100%;\r\n  padding: 2px 4px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 3px;\r\n  font-size: 10px;\r\n  text-align: center;\r\n} */\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n/* Buttons */\r\n.action-btn {\r\n  padding: 4px;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n  border: 1px solid;\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n/* Messages */\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #ffeaa7;\r\n}\r\n\r\n/* Loading & Error States */\r\n.loading-state,\r\n.error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 4px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 8px 16px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  margin-top: 10px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 120px;\r\n  padding: 4px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 6px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 100px;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 5px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 10px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.action-cell {\r\n  width: 50px;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n}\r\n\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 16px;\r\n  padding: 0 12px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.25rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #ccc;\r\n  padding: 6px 12px;\r\n  border-radius: 4px;\r\n  cursor: pointer;\r\n  font-weight: bold;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 40px;\r\n  font-size: 18px;\r\n  color: #dc3545;\r\n  font-weight: bold;\r\n}\r\n\r\n\r\n\r\n\r\n.action-btn {\r\n  border: none;\r\n  padding: 6px;\r\n  font-size: 12px;\r\n  border-radius: 4px;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.1);\r\n  background-color: #e2f0d9;\r\n}\r\n\r\n\r\n.save-btn {\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n}\r\n.mb-2 {\r\n  margin-bottom: 2px;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n\r\n.cancel-btn {\r\n  border: 1px solid #dc3545;\r\n  color: #dc3545;\r\n}\r\n.action-btn {\r\n  padding: 4px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin-right: 2px;\r\n}\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n.validation-list {\r\n  margin: 5px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  padding: 10px;\r\n  border-radius: 4px;\r\n  margin-bottom: 15px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  border-collapse: collapse;\r\n  font-size: 10px;\r\n  table-layout: fixed;\r\n}\r\n.weekly-plan-th {\r\n  background-color: #f1f3f5;\r\n  color: #343a40;\r\n  font-weight: 600;\r\n  padding: 6px 4px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\r\n  font-size: 10px;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.3;\r\n  padding: 4px 6px;\r\n  text-align: left;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 60px;\r\n}\r\n\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #6c757d;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);\r\n}\r\n\r\n\r\n.weekly-plan-td input,\r\n.weekly-plan-td select {\r\n  width: 100%;\r\n  display: block;\r\n}\r\n\r\n/* Base Container - Optimized for 1366x768 */\r\n.weekly-plan-container {\r\n  padding: 15px;\r\n  background-color: #f8f9fa;\r\n  border-radius: 8px;\r\n  margin: 10px auto;\r\n  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\r\n  max-width: 1340px; /* Fits within 1366px with margins */\r\n  min-height: calc(100vh - 100px);\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* Filter Section */\r\n.filter-container {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.search-input {\r\n  padding: 8px 12px;\r\n  font-size: 14px;\r\n  border-radius: 6px;\r\n  border: 1px solid #ccc;\r\n  width: 280px;\r\n  max-width: 100%;\r\n  transition: all 0.2s ease;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.search-input:focus {\r\n  outline: none;\r\n  border-color: #007bff;\r\n  box-shadow: 0 0 8px rgba(0,123,255,0.3);\r\n  transform: scale(1.02);\r\n}\r\n\r\n.search-input::placeholder {\r\n  color: #666;\r\n  font-size: 13px;\r\n}\r\n\r\n/* Header Section */\r\n.weekly-plan-header {\r\n  margin-bottom: 20px;\r\n  padding-bottom: 15px;\r\n  border-bottom: 2px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-title {\r\n  margin: 0;\r\n  color: #495057;\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  text-align: center;\r\n}\r\n\r\n.week-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  margin-bottom: 20px;\r\n  padding: 0 15px;\r\n  flex-wrap: wrap;\r\n  gap: 10px;\r\n}\r\n\r\n.week-title {\r\n  font-size: 1.4rem;\r\n  font-weight: bold;\r\n  color: #333;\r\n  flex: 1;\r\n  min-width: 200px;\r\n}\r\n\r\n.week-nav-btn {\r\n  background-color: white;\r\n  border: 1px solid #007bff;\r\n  color: #007bff;\r\n  padding: 8px 16px;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 80px;\r\n}\r\n\r\n.week-nav-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Table Container - Responsive Scrolling */\r\n.table-container {\r\n  position: relative;\r\n  overflow-x: auto;\r\n  overflow-y: auto;\r\n  max-height: calc(100vh - 250px); /* Prevents vertical overflow */\r\n  border: 1px solid #dee2e6;\r\n  border-radius: 8px;\r\n  background: white;\r\n  box-shadow: 0 4px 6px rgba(0,0,0,0.1);\r\n   max-height: 70vh;\r\n  overflow: auto;\r\n}\r\n\r\n.table-container::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  top: 0;\r\n  right: 0;\r\n  width: 20px;\r\n  height: 100%;\r\n  background: linear-gradient(to left, rgba(248,249,250,0.9), transparent);\r\n  pointer-events: none;\r\n  z-index: 1;\r\n}\r\n\r\n/* Table Styles - Optimized for 1366px width */\r\n.weekly-plan-table {\r\n  width: 100%;\r\n  min-width: 1200px; /* Ensures horizontal scroll on smaller screens */\r\n  border-collapse: collapse;\r\n  font-size: 12px;\r\n  table-layout: fixed;\r\n  background: white;\r\n}\r\n\r\n.table-container table {\r\n  border-collapse: separate;\r\n  border-spacing: 0;\r\n}\r\n\r\n.table-container thead th {\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\r\n}\r\n\r\n\r\n.weekly-plan-th {\r\n  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);\r\n  color: #343a40;\r\n  font-weight: 700;\r\n  padding: 10px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  white-space: nowrap;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 10;\r\n  font-size: 11px;\r\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\r\n  min-width: 80px;\r\n}\r\n\r\n.weekly-plan-th:first-child {\r\n  min-width: 120px; /* Day column */\r\n}\r\n\r\n.weekly-plan-th,\r\n.weekly-plan-td {\r\n  border-right: 1px solid #dee2e6;\r\n}\r\n\r\n.weekly-plan-th:last-child,\r\n.weekly-plan-td:last-child {\r\n  border-right: none;\r\n}\r\n\r\n.weekly-plan-td {\r\n  padding: 8px 6px;\r\n  text-align: center;\r\n  border: 1px solid #dee2e6;\r\n  font-size: 11px;\r\n  white-space: nowrap;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  min-width: 80px;\r\n  transition: all 0.1s ease;\r\n}\r\n\r\n.weekly-plan-td:hover {\r\n  background-color: #f8f9fa;\r\n}\r\n\r\n/* Day Cell - Sticky Left Column */\r\n.weekly-day-cell {\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 5;\r\n  background: linear-gradient(to right, #e9ecef, #dce2e7);\r\n  border-right: 2px solid #ced4da;\r\n  font-weight: 700;\r\n  color: #495057;\r\n  writing-mode: horizontal-tb; /* Better for 1366px width */\r\n  text-orientation: mixed;\r\n  width: 120px;\r\n  min-width: 120px;\r\n  font-size: 12px;\r\n  box-shadow: 2px 0 4px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Customer Cell */\r\n.customer-cell {\r\n  text-align: left;\r\n  padding-left: 10px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n  max-width: 150px;\r\n  min-width: 120px;\r\n}\r\n\r\n/* Action Cells */\r\n.action-cell {\r\n  width: 80px;\r\n  min-width: 80px;\r\n  padding: 4px;\r\n}\r\n\r\n.action-btn {\r\n  padding: 6px 8px;\r\n  border: 1px solid #28a745;\r\n  border-radius: 4px;\r\n  background: white;\r\n  cursor: pointer;\r\n  color: #28a745;\r\n  display: inline-flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  margin: 2px;\r\n  font-size: 11px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n  min-width: 30px;\r\n}\r\n\r\n.action-btn:hover {\r\n  transform: scale(1.05);\r\n  background-color: #28a745;\r\n  color: white;\r\n  box-shadow: 0 2px 4px rgba(40,167,69,0.3);\r\n}\r\n\r\n.save-btn {\r\n  border-color: #007bff;\r\n  color: #007bff;\r\n}\r\n\r\n.save-btn:hover {\r\n  background-color: #007bff;\r\n  color: white;\r\n}\r\n\r\n.cancel-btn {\r\n  border-color: #dc3545;\r\n  color: #dc3545;\r\n}\r\n\r\n.cancel-btn:hover {\r\n  background-color: #dc3545;\r\n  color: white;\r\n}\r\n\r\n/* Special Cells */\r\n.shift-cell {\r\n  white-space: normal;\r\n  word-break: break-word;\r\n  line-height: 1.4;\r\n  padding: 6px 8px;\r\n  text-align: left;\r\n  max-width: 200px;\r\n}\r\n\r\n.na-value {\r\n  color: #6c757d;\r\n  font-style: italic;\r\n  opacity: 0.7;\r\n}\r\n\r\n.editing-row {\r\n  background-color: #e3f2fd;\r\n  box-shadow: inset 0 0 0 2px #2196f3;\r\n}\r\n\r\n/* Form Elements */\r\n.edit-input, .edit-select {\r\n  font-size: 11px;\r\n  padding: 6px 8px;\r\n  border: 1px solid #007bff;\r\n  border-radius: 4px;\r\n  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);\r\n  width: 100%;\r\n  box-sizing: border-box;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.edit-input:focus, .edit-select:focus {\r\n  outline: none;\r\n  border-color: #0056b3;\r\n  box-shadow: 0 0 0 2px rgba(0,123,255,0.25);\r\n}\r\n\r\n.minwide-select {\r\n  min-width: 140px;\r\n  padding: 6px 8px;\r\n}\r\n\r\n/* Messages */\r\n.success-message, .error-message, .validation-error {\r\n  padding: 12px 16px;\r\n  border-radius: 6px;\r\n  margin-bottom: 15px;\r\n  font-size: 14px;\r\n  font-weight: 500;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.success-message {\r\n  background-color: #d4edda;\r\n  color: #155724;\r\n  border-color: #c3e6cb;\r\n}\r\n\r\n.error-message {\r\n  background-color: #f8d7da;\r\n  color: #721c24;\r\n  border-color: #f5c6cb;\r\n}\r\n\r\n.validation-error {\r\n  background-color: #fff3cd;\r\n  color: #856404;\r\n  border-color: #ffeaa7;\r\n}\r\n\r\n.no-plan-message {\r\n  text-align: center;\r\n  padding: 60px 20px;\r\n  font-size: 20px;\r\n  color: #dc3545;\r\n  font-weight: 600;\r\n}\r\n\r\n/* Loading States */\r\n.loading-state, .error-state {\r\n  text-align: center;\r\n  padding: 40px 20px;\r\n  font-size: 16px;\r\n}\r\n\r\n.error-state {\r\n  background-color: #f8d7da;\r\n  color: #dc3545;\r\n  border-radius: 6px;\r\n  border: 1px solid #f5c6cb;\r\n}\r\n\r\n.retry-btn {\r\n  padding: 10px 20px;\r\n  background-color: #007bff;\r\n  color: white;\r\n  border: none;\r\n  border-radius: 6px;\r\n  cursor: pointer;\r\n  margin-top: 15px;\r\n  font-size: 14px;\r\n  font-weight: 600;\r\n  transition: all 0.2s ease;\r\n}\r\n\r\n.retry-btn:hover {\r\n  background-color: #0056b3;\r\n  transform: translateY(-1px);\r\n  box-shadow: 0 4px 8px rgba(0,123,255,0.3);\r\n}\r\n\r\n/* Utility Classes */\r\n.max-ellipsis-90 {\r\n  max-width: 90px;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n}\r\n\r\n.max-90 {\r\n  max-width: 90px;\r\n}\r\n\r\n.pre-line {\r\n  white-space: pre-line;\r\n}\r\n\r\n.mb-2 {\r\n  margin-bottom: 8px;\r\n}\r\n\r\n.mb-10 {\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.large-icon {\r\n  font-size: 48px;\r\n}\r\n\r\n.validation-list {\r\n  margin: 8px 0;\r\n  padding-left: 20px;\r\n}\r\n\r\n.shift-edit-wrap {\r\n  display: inline-block;\r\n  margin-right: 8px;\r\n  min-width: 80px;\r\n}\r\n\r\n/* Highlight/Search Results */\r\nmark {\r\n  background-color: #ffeb3b;\r\n  color: #333;\r\n  font-weight: 600;\r\n  padding: 2px 4px;\r\n  border-radius: 3px;\r\n  box-shadow: 0 1px 2px rgba(0,0,0,0.1);\r\n}\r\n\r\n/* Responsive Adjustments for smaller screens within 1366x768 range */\r\n@media screen and (max-width: 1366px) {\r\n  .weekly-plan-container {\r\n    padding: 12px;\r\n    margin: 5px;\r\n    max-width: 1350px;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 240px;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    min-width: 1100px;\r\n  }\r\n  \r\n  .weekly-plan-th, .weekly-plan-td {\r\n    padding: 6px 4px;\r\n    font-size: 10px;\r\n  }\r\n  \r\n  .weekly-day-cell {\r\n    width: 100px;\r\n    min-width: 100px;\r\n    font-size: 11px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 1200px) {\r\n  .filter-container {\r\n    flex-direction: column;\r\n    align-items: stretch;\r\n  }\r\n  \r\n  .search-input {\r\n    width: 100%;\r\n    max-width: 400px;\r\n    margin: 0 auto;\r\n  }\r\n  \r\n  .week-header {\r\n    flex-direction: column;\r\n    text-align: center;\r\n    gap: 15px;\r\n  }\r\n  \r\n  .week-title {\r\n    margin-bottom: 10px;\r\n  }\r\n}\r\n\r\n/* Print Styles */\r\n@media print {\r\n  .weekly-plan-container {\r\n    padding: 0;\r\n    background: white;\r\n    box-shadow: none;\r\n  }\r\n  \r\n  .action-btn, .week-nav-btn, .retry-btn {\r\n    display: none;\r\n  }\r\n  \r\n  .table-container {\r\n    overflow: visible;\r\n    max-height: none;\r\n  }\r\n  \r\n  .weekly-plan-table {\r\n    font-size: 8px;\r\n  }\r\n}\r\n\r\n/* Make modal fit screen */\r\n.modal-dialog {\r\n  max-width: 95vw !important;\r\n  width: 95vw !important;\r\n  margin: auto !important;\r\n}\r\n\r\n/* Optional - if modal has container or wrapper */\r\n.modal-content {\r\n  overflow-x: auto;\r\n  max-height: calc(100vh - 60px);\r\n}\r\nbody.modal-open {\r\n  overflow: hidden;\r\n}\r\n\r\n.weekly-plan-modal {\r\n  max-width: 95vw;\r\n  width: 95vw;\r\n  margin: auto;\r\n}\r\n\r\n.weekly-plan-container {\r\n  max-width: 100%;\r\n  overflow-x: auto;\r\n} \r\n\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -66586,6 +67620,12 @@ function createIsCircular(areItemsEqual) {
     };
 }
 /**
+ * Get the `@@toStringTag` of the value, if it exists.
+ */
+function getShortTag(value) {
+    return value != null ? value[Symbol.toStringTag] : undefined;
+}
+/**
  * Get the properties to strictly examine, which include both own properties that are
  * not enumerable and symbol properties.
  */
@@ -66861,7 +67901,7 @@ var getTag = Object.prototype.toString.call.bind(Object.prototype.toString);
  * Create a comparator method based on the type-specific equality comparators passed.
  */
 function createEqualityComparator(_a) {
-    var areArraysEqual = _a.areArraysEqual, areDatesEqual = _a.areDatesEqual, areErrorsEqual = _a.areErrorsEqual, areFunctionsEqual = _a.areFunctionsEqual, areMapsEqual = _a.areMapsEqual, areNumbersEqual = _a.areNumbersEqual, areObjectsEqual = _a.areObjectsEqual, arePrimitiveWrappersEqual = _a.arePrimitiveWrappersEqual, areRegExpsEqual = _a.areRegExpsEqual, areSetsEqual = _a.areSetsEqual, areTypedArraysEqual = _a.areTypedArraysEqual, areUrlsEqual = _a.areUrlsEqual;
+    var areArraysEqual = _a.areArraysEqual, areDatesEqual = _a.areDatesEqual, areErrorsEqual = _a.areErrorsEqual, areFunctionsEqual = _a.areFunctionsEqual, areMapsEqual = _a.areMapsEqual, areNumbersEqual = _a.areNumbersEqual, areObjectsEqual = _a.areObjectsEqual, arePrimitiveWrappersEqual = _a.arePrimitiveWrappersEqual, areRegExpsEqual = _a.areRegExpsEqual, areSetsEqual = _a.areSetsEqual, areTypedArraysEqual = _a.areTypedArraysEqual, areUrlsEqual = _a.areUrlsEqual, unknownTagComparators = _a.unknownTagComparators;
     /**
      * compare the value of the two objects and return true if they are equivalent in values
      */
@@ -66981,6 +68021,20 @@ function createEqualityComparator(_a) {
         if (tag === BOOLEAN_TAG || tag === NUMBER_TAG || tag === STRING_TAG) {
             return arePrimitiveWrappersEqual(a, b, state);
         }
+        if (unknownTagComparators) {
+            var unknownTagComparator = unknownTagComparators[tag];
+            if (!unknownTagComparator) {
+                var shortTag = getShortTag(a);
+                if (shortTag) {
+                    unknownTagComparator = unknownTagComparators[shortTag];
+                }
+            }
+            // If the custom config has an unknown tag comparator that matches the captured tag or the
+            // @@toStringTag, it is the source of truth for whether the values are equal.
+            if (unknownTagComparator) {
+                return unknownTagComparator(a, b, state);
+            }
+        }
         // If not matching any tags that require a specific type of comparison, then we hard-code false because
         // the only thing remaining is strict equality, which has already been compared. This is for a few reasons:
         //   - Certain types that cannot be introspected (e.g., `WeakMap`). For these types, this is the only
@@ -67023,6 +68077,7 @@ function createEqualityComparatorConfig(_a) {
             ? areObjectsEqualStrict
             : areTypedArraysEqual,
         areUrlsEqual: areUrlsEqual,
+        unknownTagComparators: undefined,
     };
     if (createCustomConfig) {
         config = assign({}, config, createCustomConfig(config));
@@ -67401,4 +68456,4 @@ cs_web_components_base__WEBPACK_IMPORTED_MODULE_0__.Registry.registerComponent((
 /******/ })()
 ;
 });
-//# sourceMappingURL=kalyani-iot-ppc-forging.dev.030d48a9abd46b31e217.js.map
+//# sourceMappingURL=kalyani-iot-ppc-forging.dev.990a06e0776086601312.js.map
