@@ -10,7 +10,7 @@ import InventoryDashboard from "./ProductionDashboard/InventoryDashboard.jsx";
 import Diestatus from "./Diestatus.jsx";
 import AdminPanel from "./AdminPanel.jsx";
 import { X } from "lucide-react";
-
+import SimpleActivityLog from "./SimpleActivityLog.jsx"; // ✅ ADD THIS
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState("weekly");
@@ -167,6 +167,12 @@ const Dashboard = () => {
           }}
         >
           <button
+            onClick={() => setActiveView("activity_log")}
+            style={toggleButtonStyle(activeView === "activity_log")}
+          >
+            Activity Log
+          </button>
+          <button
             onClick={() => setActiveView("weekly")}
             style={toggleButtonStyle(activeView === "weekly")}
           >
@@ -306,6 +312,7 @@ const Dashboard = () => {
       )}
 
       {/* Component Views */}
+      {activeView === "activity_log" && <SimpleActivityLog />}
       {activeView === "weekly" && <WeeklyPlan />}
       {activeView === "summary" && <ProductionDashboard />}
       {activeView === "schedule_summary" && <ScheduleSummary />}

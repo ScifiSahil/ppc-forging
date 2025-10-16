@@ -1,0 +1,260 @@
+/* ActivityLog.css */
+
+.activity-log-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.activity-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.activity-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.activity-filter-select,
+.activity-search-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.activity-filter-select:hover,
+.activity-search-input:hover {
+  border-color: #667eea;
+}
+
+.activity-filter-select:focus,
+.activity-search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.activity-table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e1e5e9;
+  margin-top: 2rem;
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.activity-table thead th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.activity-table tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid #e1e5e9;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.activity-table tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.activity-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.activity-type-edit {
+  background: #dbeafe;
+  color: #667eea;
+}
+
+.activity-type-delete {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.activity-type-create {
+  background: #dcfce7;
+  color: #10b981;
+}
+
+.activity-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.activity-stat-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.activity-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.activity-stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.activity-stat-label {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.activity-empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+}
+
+.activity-empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.activity-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.activity-button-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.activity-button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.activity-button-danger {
+  background: #ef4444;
+  color: white;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.activity-button-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+}
+
+.activity-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.activity-changes-list {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.activity-changes-list li {
+  margin: 0.25rem 0;
+}
+
+.activity-count-badge {
+  display: inline-block;
+  background: #667eea;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .activity-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .activity-table {
+    font-size: 0.8rem;
+  }
+
+  .activity-table thead th,
+  .activity-table tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .activity-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .activity-filters {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .activity-filter-select,
+  .activity-search-input {
+    width: 100%;
+  }
+}

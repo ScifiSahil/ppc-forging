@@ -32584,7 +32584,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductionDashboard_InventoryDashboard_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductionDashboard/InventoryDashboard.jsx */ "./src/components/ProductionDashboard/InventoryDashboard.jsx");
 /* harmony import */ var _Diestatus_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Diestatus.jsx */ "./src/components/Diestatus.jsx");
 /* harmony import */ var _AdminPanel_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AdminPanel.jsx */ "./src/components/AdminPanel.jsx");
-/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/x.js");
+/* harmony import */ var _SimpleActivityLog_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SimpleActivityLog.jsx */ "./src/components/SimpleActivityLog.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -32608,6 +32609,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // import Dashboardd from "./Forging_Capacity_Management/Dashboardd.jsx";
 
 
+
+ // ✅ ADD THIS
 
 var Dashboard = function Dashboard() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("weekly"),
@@ -32766,6 +32769,11 @@ var Dashboard = function Dashboard() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick() {
+      return setActiveView("activity_log");
+    },
+    style: toggleButtonStyle(activeView === "activity_log")
+  }, "Activity Log"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
       return setActiveView("weekly");
     },
     style: toggleButtonStyle(activeView === "weekly")
@@ -32822,7 +32830,7 @@ var Dashboard = function Dashboard() {
       justifyContent: "center",
       padding: 0
     })
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_9__["default"], {
     size: 20
   })))), showPasswordModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     style: modalOverlayStyle
@@ -32867,7 +32875,7 @@ var Dashboard = function Dashboard() {
   }, "Access Admin Panel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: closePasswordModal,
     style: secondaryButtonStyle
-  }, "Cancel")))), activeView === "weekly" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WeeklyPlan_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), activeView === "summary" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductionDashboard_ProductionDashboard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), activeView === "schedule_summary" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_schedule_summary_schedule_summary_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null), activeView === "Inventory_Dashboard" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductionDashboard_InventoryDashboard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), activeView === "die_status" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Diestatus_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null), activeView === "admin_panel" && isAdminAuthenticated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AdminPanel_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null));
+  }, "Cancel")))), activeView === "activity_log" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SimpleActivityLog_jsx__WEBPACK_IMPORTED_MODULE_8__["default"], null), activeView === "weekly" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_WeeklyPlan_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null), activeView === "summary" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductionDashboard_ProductionDashboard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), activeView === "schedule_summary" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_schedule_summary_schedule_summary_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null), activeView === "Inventory_Dashboard" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ProductionDashboard_InventoryDashboard_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null), activeView === "die_status" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Diestatus_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null), activeView === "admin_panel" && isAdminAuthenticated && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AdminPanel_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
@@ -41757,6 +41765,573 @@ var ProductionDashboard = function ProductionDashboard() {
   }))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductionDashboard);
+
+/***/ }),
+
+/***/ "./src/components/SimpleActivityLog.jsx":
+/*!**********************************************!*\
+  !*** ./src/components/SimpleActivityLog.jsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/download.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/trash-2.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/funnel.js");
+/* harmony import */ var lucide_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide-react */ "./node_modules/lucide-react/dist/esm/icons/trending-up.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var SimpleActivityLog = function SimpleActivityLog() {
+  // Static sample data
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
+      id: 1,
+      type: "edit",
+      plant: "Plant001",
+      prodOrder: "P-00015",
+      dieNo: "1208",
+      user: "Rajesh Kumar",
+      timestamp: "2025-01-15 14:30:45",
+      changes: ["Shift1: 1000 → 1500", "Heat Code: ABC → XYZ"]
+    }, {
+      id: 2,
+      type: "delete",
+      plant: "Plant002",
+      prodOrder: "P-00018",
+      dieNo: "1215",
+      user: "Priya Singh",
+      timestamp: "2025-01-15 13:45:20",
+      changes: ["Record marked as deleted"]
+    }, {
+      id: 3,
+      type: "create",
+      plant: "Plant001",
+      prodOrder: "P-00020",
+      dieNo: "1220",
+      user: "Amit Patel",
+      timestamp: "2025-01-15 12:15:30",
+      changes: ["New Production Order", "Quantity: 500", "Customer: LINAMAR"]
+    }, {
+      id: 4,
+      type: "edit",
+      plant: "Plant003",
+      prodOrder: "P-00019",
+      dieNo: "1210",
+      user: "Sanjay Desai",
+      timestamp: "2025-01-15 11:30:15",
+      changes: ["Shift2: 800 → 900", "Remark: Updated"]
+    }, {
+      id: 5,
+      type: "edit",
+      plant: "Plant002",
+      prodOrder: "P-00017",
+      dieNo: "1212",
+      user: "Rajesh Kumar",
+      timestamp: "2025-01-15 10:45:00",
+      changes: ["Shift3: 600 → 750", "Net Weight: 3 → 3.5"]
+    }, {
+      id: 6,
+      type: "create",
+      plant: "Plant001",
+      prodOrder: "P-00021",
+      dieNo: "1225",
+      user: "Meera Nair",
+      timestamp: "2025-01-15 09:20:45",
+      changes: ["New Production Order", "Quantity: 1000", "Customer: DANA"]
+    }, {
+      id: 7,
+      type: "delete",
+      plant: "Plant003",
+      prodOrder: "P-00016",
+      dieNo: "1205",
+      user: "Vikram Singh",
+      timestamp: "2025-01-15 08:30:20",
+      changes: ["Record archived"]
+    }, {
+      id: 8,
+      type: "edit",
+      plant: "Plant001",
+      prodOrder: "P-00014",
+      dieNo: "1200",
+      user: "Rajesh Kumar",
+      timestamp: "2025-01-14 16:45:30",
+      changes: ["Section: 66 → 68", "Grade: 6061 → 6063"]
+    }]),
+    _useState2 = _slicedToArray(_useState, 1),
+    activities = _useState2[0];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("all"),
+    _useState4 = _slicedToArray(_useState3, 2),
+    filterType = _useState4[0],
+    setFilterType = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    searchText = _useState6[0],
+    setSearchText = _useState6[1];
+  var filteredActivities = activities.filter(function (activity) {
+    var matchesType = filterType === "all" || activity.type === filterType;
+    var matchesSearch = searchText === "" || activity.plant.toLowerCase().includes(searchText.toLowerCase()) || activity.prodOrder.toLowerCase().includes(searchText.toLowerCase()) || activity.user.toLowerCase().includes(searchText.toLowerCase());
+    return matchesType && matchesSearch;
+  });
+  var stats = {
+    total: activities.length,
+    edits: activities.filter(function (a) {
+      return a.type === "edit";
+    }).length,
+    deletes: activities.filter(function (a) {
+      return a.type === "delete";
+    }).length,
+    creates: activities.filter(function (a) {
+      return a.type === "create";
+    }).length
+  };
+  var getActivityIcon = function getActivityIcon(type) {
+    switch (type) {
+      case "edit":
+        return "✏️";
+      case "delete":
+        return "🗑️";
+      case "create":
+        return "➕";
+      default:
+        return "📝";
+    }
+  };
+  var getActivityColor = function getActivityColor(type) {
+    switch (type) {
+      case "edit":
+        return "#667eea";
+      case "delete":
+        return "#ef4444";
+      case "create":
+        return "#10b981";
+      default:
+        return "#6b7280";
+    }
+  };
+  var containerStyle = {
+    minHeight: "100vh",
+    background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+    padding: "2rem"
+  };
+  var cardStyle = {
+    background: "rgba(255, 255, 255, 0.95)",
+    backdropFilter: "blur(20px)",
+    borderRadius: "20px",
+    padding: "2.5rem",
+    boxShadow: "0 20px 60px rgba(0, 0, 0, 0.15)",
+    border: "1px solid rgba(255, 255, 255, 0.3)"
+  };
+  var headerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+    gap: "1rem"
+  };
+  var titleStyle = {
+    fontSize: "2.2rem",
+    fontWeight: "800",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+    letterSpacing: "-0.5px"
+  };
+  var statsContainerStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: "1.5rem",
+    marginBottom: "2.5rem"
+  };
+  var statCardStyle = function statCardStyle(bgColor) {
+    return {
+      background: "linear-gradient(135deg, ".concat(bgColor, "15 0%, ").concat(bgColor, "30 100%)"),
+      padding: "1.8rem",
+      borderRadius: "15px",
+      textAlign: "center",
+      border: "2px solid ".concat(bgColor),
+      transition: "all 0.3s ease",
+      cursor: "pointer",
+      "&:hover": {
+        transform: "translateY(-5px)"
+      }
+    };
+  };
+  var statValueStyle = function statValueStyle(color) {
+    return {
+      fontSize: "2.5rem",
+      fontWeight: "800",
+      color: color,
+      marginBottom: "0.5rem"
+    };
+  };
+  var statLabelStyle = {
+    fontSize: "0.9rem",
+    color: "#6b7280",
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    fontWeight: "700"
+  };
+  var filterContainerStyle = {
+    display: "flex",
+    gap: "1rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap",
+    alignItems: "center",
+    padding: "1.5rem",
+    background: "rgba(102, 126, 234, 0.05)",
+    borderRadius: "12px",
+    border: "1px solid rgba(102, 126, 234, 0.1)"
+  };
+  var selectStyle = {
+    padding: "0.8rem 1.2rem",
+    border: "2px solid #e1e5e9",
+    borderRadius: "10px",
+    fontSize: "14px",
+    fontWeight: "600",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    minWidth: "160px",
+    background: "white"
+  };
+  var searchStyle = {
+    padding: "0.8rem 1.2rem",
+    border: "2px solid #e1e5e9",
+    borderRadius: "10px",
+    fontSize: "14px",
+    fontWeight: "600",
+    flex: "1",
+    minWidth: "200px",
+    transition: "all 0.3s ease",
+    background: "white"
+  };
+  var tableContainerStyle = {
+    overflowX: "auto",
+    borderRadius: "15px",
+    border: "1px solid #e1e5e9",
+    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)"
+  };
+  var tableStyle = {
+    width: "100%",
+    borderCollapse: "collapse",
+    fontSize: "0.95rem"
+  };
+  var thStyle = {
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    color: "white",
+    padding: "1.2rem 1rem",
+    textAlign: "left",
+    fontWeight: "700",
+    textTransform: "uppercase",
+    fontSize: "0.8rem",
+    letterSpacing: "0.08em",
+    position: "sticky",
+    top: 0,
+    zIndex: 10
+  };
+  var tdStyle = {
+    padding: "1.2rem 1rem",
+    borderBottom: "1px solid #e1e5e9",
+    background: "white"
+  };
+  var rowHoverStyle = {
+    background: "rgba(102, 126, 234, 0.03)"
+  };
+  var activityTypeBadgeStyle = function activityTypeBadgeStyle(type) {
+    var colors = {
+      edit: {
+        bg: "#dbeafe",
+        color: "#667eea",
+        dark: "#1e40af"
+      },
+      "delete": {
+        bg: "#fee2e2",
+        color: "#ef4444",
+        dark: "#991b1b"
+      },
+      create: {
+        bg: "#dcfce7",
+        color: "#10b981",
+        dark: "#065f46"
+      }
+    };
+    return {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "0.6rem",
+      padding: "0.6rem 1rem",
+      borderRadius: "25px",
+      fontSize: "0.85rem",
+      fontWeight: "700",
+      textTransform: "uppercase",
+      letterSpacing: "0.03em",
+      background: colors[type].bg,
+      color: colors[type].color,
+      border: "2px solid ".concat(colors[type].color)
+    };
+  };
+  var timestampStyle = {
+    fontSize: "0.85rem",
+    color: "#9ca3af",
+    fontWeight: "600"
+  };
+  var changesListStyle = {
+    fontSize: "0.9rem",
+    lineHeight: "1.6",
+    color: "#4b5563"
+  };
+  var changeItemStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    marginBottom: "0.4rem"
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: containerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: cardStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: headerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", {
+    style: titleStyle
+  }, "\uD83D\uDCCA Activity Log & Audit Trail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      display: "flex",
+      gap: "0.8rem"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    style: {
+      padding: "0.8rem 1.5rem",
+      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      color: "white",
+      border: "none",
+      borderRadius: "10px",
+      fontSize: "14px",
+      fontWeight: "700",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+      transition: "all 0.3s ease",
+      boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)"
+    },
+    onMouseOver: function onMouseOver(e) {
+      return e.target.style.transform = "translateY(-2px)";
+    },
+    onMouseOut: function onMouseOut(e) {
+      return e.target.style.transform = "translateY(0)";
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    size: 16
+  }), " Export"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    style: {
+      padding: "0.8rem 1.5rem",
+      background: "#ef4444",
+      color: "white",
+      border: "none",
+      borderRadius: "10px",
+      fontSize: "14px",
+      fontWeight: "700",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      gap: "0.5rem",
+      transition: "all 0.3s ease",
+      boxShadow: "0 4px 15px rgba(239, 68, 68, 0.4)"
+    },
+    onMouseOver: function onMouseOver(e) {
+      return e.target.style.transform = "translateY(-2px)";
+    },
+    onMouseOut: function onMouseOut(e) {
+      return e.target.style.transform = "translateY(0)";
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    size: 16
+  }), " Clear"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statsContainerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statCardStyle("#667eea")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statValueStyle("#667eea")
+  }, stats.total), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statLabelStyle
+  }, "Total Activities")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statCardStyle("#667eea")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statValueStyle("#667eea")
+  }, stats.edits), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statLabelStyle
+  }, "Edits")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statCardStyle("#ef4444")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statValueStyle("#ef4444")
+  }, stats.deletes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statLabelStyle
+  }, "Deletes")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statCardStyle("#10b981")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statValueStyle("#10b981")
+  }, stats.creates), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: statLabelStyle
+  }, "Creates"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: filterContainerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    size: 20,
+    color: "#667eea"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", {
+    type: "text",
+    placeholder: "\uD83D\uDD0D Search by Plant, Order, or User...",
+    value: searchText,
+    onChange: function onChange(e) {
+      return setSearchText(e.target.value);
+    },
+    style: searchStyle,
+    onFocus: function onFocus(e) {
+      return e.target.style.borderColor = "#667eea";
+    },
+    onBlur: function onBlur(e) {
+      return e.target.style.borderColor = "#e1e5e9";
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("select", {
+    value: filterType,
+    onChange: function onChange(e) {
+      return setFilterType(e.target.value);
+    },
+    style: selectStyle,
+    onFocus: function onFocus(e) {
+      return e.target.style.borderColor = "#667eea";
+    },
+    onBlur: function onBlur(e) {
+      return e.target.style.borderColor = "#e1e5e9";
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "all"
+  }, "All Activities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "edit"
+  }, "\u270F\uFE0F Edits Only"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "delete"
+  }, "\uD83D\uDDD1\uFE0F Deletes Only"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("option", {
+    value: "create"
+  }, "\u2795 Creates Only"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: tableContainerStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("table", {
+    style: tableStyle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Plant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Production Order"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Die No"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Changes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "User"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("th", {
+    style: thStyle
+  }, "Timestamp"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tbody", null, filteredActivities.map(function (activity) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("tr", {
+      key: activity.id,
+      onMouseOver: function onMouseOver(e) {
+        return e.currentTarget.style.background = "rgba(102, 126, 234, 0.05)";
+      },
+      onMouseOut: function onMouseOut(e) {
+        return e.currentTarget.style.background = "white";
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: activityTypeBadgeStyle(activity.type)
+    }, getActivityIcon(activity.type), " ", activity.type)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("strong", {
+      style: {
+        color: "#667eea",
+        fontSize: "1rem"
+      }
+    }, activity.plant)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      style: {
+        fontWeight: "600",
+        color: "#2d3748",
+        background: "#f3f4f6",
+        padding: "0.4rem 0.8rem",
+        borderRadius: "6px"
+      }
+    }, activity.prodOrder)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      style: {
+        fontWeight: "600",
+        color: "#764ba2"
+      }
+    }, activity.dieNo)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+      style: changesListStyle
+    }, activity.changes.map(function (change, idx) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+        key: idx,
+        style: changeItemStyle
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+        style: {
+          color: "#667eea",
+          fontWeight: "700"
+        }
+      }, "\u2022"), change);
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: tdStyle
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+      style: {
+        fontWeight: "600",
+        color: "#4b5563",
+        background: "#f0f1f5",
+        padding: "0.4rem 0.8rem",
+        borderRadius: "6px"
+      }
+    }, activity.user)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("td", {
+      style: _objectSpread(_objectSpread({}, tdStyle), timestampStyle)
+    }, activity.timestamp));
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    style: {
+      marginTop: "2rem",
+      padding: "1.2rem",
+      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      borderRadius: "12px",
+      color: "white",
+      textAlign: "center",
+      fontWeight: "700",
+      fontSize: "0.9rem",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "0.5rem"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(lucide_react__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    size: 18
+  }), " Showing ", filteredActivities.length, " of", " ", activities.length, " activities")));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SimpleActivityLog);
 
 /***/ }),
 
@@ -68491,4 +69066,4 @@ cs_web_components_base__WEBPACK_IMPORTED_MODULE_0__.Registry.registerComponent((
 /******/ })()
 ;
 });
-//# sourceMappingURL=kalyani-iot-ppc-forging.dev.eb866ff4f55f72c7f36b.js.map
+//# sourceMappingURL=kalyani-iot-ppc-forging.dev.e63deecce7197a848d9b.js.map
