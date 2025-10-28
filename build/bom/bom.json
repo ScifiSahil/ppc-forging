@@ -3,9 +3,9 @@
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
   "version": 1,
-  "serialNumber": "urn:uuid:76c8c163-755b-48d3-bb91-441d8fcc279b",
+  "serialNumber": "urn:uuid:2266e256-0e5d-4501-ba53-8bc24fa5058c",
   "metadata": {
-    "timestamp": "2025-10-16T09:25:54.986Z",
+    "timestamp": "2025-10-28T07:16:19.111Z",
     "tools": [
       {
         "vendor": "@cyclonedx",
@@ -129,39 +129,6 @@
         },
         {
           "url": "https://github.com/webpack-contrib/style-loader/issues",
-          "type": "issue-tracker",
-          "comment": "as detected from PackageJson property \"bugs.url\""
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "name": "axios",
-      "version": "1.12.2",
-      "bom-ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
-      "author": "Matt Zabriskie",
-      "description": "Promise based HTTP client for the browser and node.js",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "purl": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
-      "externalReferences": [
-        {
-          "url": "git+https://github.com/axios/axios.git",
-          "type": "vcs",
-          "comment": "as detected from PackageJson property \"repository.url\""
-        },
-        {
-          "url": "https://axios-http.com",
-          "type": "website",
-          "comment": "as detected from PackageJson property \"homepage\""
-        },
-        {
-          "url": "https://github.com/axios/axios/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -367,39 +334,6 @@
     },
     {
       "type": "library",
-      "name": "buffer",
-      "version": "6.0.3",
-      "bom-ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
-      "author": "Feross Aboukhadijeh",
-      "description": "Node.js Buffer API, for the browser",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "purl": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
-      "externalReferences": [
-        {
-          "url": "git://github.com/feross/buffer.git",
-          "type": "vcs",
-          "comment": "as detected from PackageJson property \"repository.url\""
-        },
-        {
-          "url": "https://github.com/feross/buffer",
-          "type": "website",
-          "comment": "as detected from PackageJson property \"homepage\""
-        },
-        {
-          "url": "https://github.com/feross/buffer/issues",
-          "type": "issue-tracker",
-          "comment": "as detected from PackageJson property \"bugs.url\""
-        }
-      ]
-    },
-    {
-      "type": "library",
       "name": "react-is",
       "version": "18.3.1",
       "bom-ref": "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is",
@@ -524,72 +458,6 @@
         },
         {
           "url": "https://github.com/d3/d3-scale/issues",
-          "type": "issue-tracker",
-          "comment": "as detected from PackageJson property \"bugs.url\""
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "name": "base64-js",
-      "version": "1.5.1",
-      "bom-ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
-      "author": "T. Jameson Little",
-      "description": "Base64 encoding/decoding in pure JS",
-      "licenses": [
-        {
-          "license": {
-            "id": "MIT"
-          }
-        }
-      ],
-      "purl": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
-      "externalReferences": [
-        {
-          "url": "git://github.com/beatgammit/base64-js.git",
-          "type": "vcs",
-          "comment": "as detected from PackageJson property \"repository.url\""
-        },
-        {
-          "url": "https://github.com/beatgammit/base64-js",
-          "type": "website",
-          "comment": "as detected from PackageJson property \"homepage\""
-        },
-        {
-          "url": "https://github.com/beatgammit/base64-js/issues",
-          "type": "issue-tracker",
-          "comment": "as detected from PackageJson property \"bugs.url\""
-        }
-      ]
-    },
-    {
-      "type": "library",
-      "name": "ieee754",
-      "version": "1.2.1",
-      "bom-ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
-      "author": "Feross Aboukhadijeh",
-      "description": "Read/write IEEE754 floating point numbers from/to a Buffer or array-like object",
-      "licenses": [
-        {
-          "license": {
-            "id": "BSD-3-Clause"
-          }
-        }
-      ],
-      "purl": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
-      "externalReferences": [
-        {
-          "url": "git://github.com/feross/ieee754.git",
-          "type": "vcs",
-          "comment": "as detected from PackageJson property \"repository.url\""
-        },
-        {
-          "url": "https://github.com/feross/ieee754#readme",
-          "type": "website",
-          "comment": "as detected from PackageJson property \"homepage\""
-        },
-        {
-          "url": "https://github.com/feross/ieee754/issues",
           "type": "issue-tracker",
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
@@ -1119,6 +987,138 @@
           "comment": "as detected from PackageJson property \"bugs.url\""
         }
       ]
+    },
+    {
+      "type": "library",
+      "name": "axios",
+      "version": "1.12.2",
+      "bom-ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "author": "Matt Zabriskie",
+      "description": "Promise based HTTP client for the browser and node.js",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "externalReferences": [
+        {
+          "url": "git+https://github.com/axios/axios.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://axios-http.com",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/axios/axios/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "buffer",
+      "version": "6.0.3",
+      "bom-ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "author": "Feross Aboukhadijeh",
+      "description": "Node.js Buffer API, for the browser",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/feross/buffer.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/feross/buffer",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/feross/buffer/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "base64-js",
+      "version": "1.5.1",
+      "bom-ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+      "author": "T. Jameson Little",
+      "description": "Base64 encoding/decoding in pure JS",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "purl": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/beatgammit/base64-js.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/beatgammit/base64-js/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "ieee754",
+      "version": "1.2.1",
+      "bom-ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
+      "author": "Feross Aboukhadijeh",
+      "description": "Read/write IEEE754 floating point numbers from/to a Buffer or array-like object",
+      "licenses": [
+        {
+          "license": {
+            "id": "BSD-3-Clause"
+          }
+        }
+      ],
+      "purl": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git",
+      "externalReferences": [
+        {
+          "url": "git://github.com/feross/ieee754.git",
+          "type": "vcs",
+          "comment": "as detected from PackageJson property \"repository.url\""
+        },
+        {
+          "url": "https://github.com/feross/ieee754#readme",
+          "type": "website",
+          "comment": "as detected from PackageJson property \"homepage\""
+        },
+        {
+          "url": "https://github.com/feross/ieee754/issues",
+          "type": "issue-tracker",
+          "comment": "as detected from PackageJson property \"bugs.url\""
+        }
+      ]
     }
   ],
   "dependencies": [
@@ -1127,9 +1127,9 @@
       "dependsOn": [
         "pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react",
         "pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git",
-        "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
         "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
-        "pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"
+        "pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git",
+        "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git"
       ]
     },
     {
@@ -1137,12 +1137,6 @@
     },
     {
       "ref": "pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"
-    },
-    {
-      "ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
-      "dependsOn": [
-        "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"
-      ]
     },
     {
       "ref": "pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git",
@@ -1181,13 +1175,6 @@
       "ref": "pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"
     },
     {
-      "ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
-      "dependsOn": [
-        "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
-        "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
-      ]
-    },
-    {
       "ref": "pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"
     },
     {
@@ -1212,12 +1199,6 @@
         "pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git",
         "pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git"
       ]
-    },
-    {
-      "ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"
-    },
-    {
-      "ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
     },
     {
       "ref": "pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git",
@@ -1286,6 +1267,25 @@
     },
     {
       "ref": "pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"
+    },
+    {
+      "ref": "pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git",
+      "dependsOn": [
+        "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git",
+      "dependsOn": [
+        "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git",
+        "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
+      ]
+    },
+    {
+      "ref": "pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"
+    },
+    {
+      "ref": "pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"
     }
   ]
 }

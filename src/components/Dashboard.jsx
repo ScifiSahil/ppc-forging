@@ -166,12 +166,12 @@ const Dashboard = () => {
             borderRadius: "50px",
           }}
         >
-          <button
+          {/* <button
             onClick={() => setActiveView("activity_log")}
             style={toggleButtonStyle(activeView === "activity_log")}
           >
             Activity Log
-          </button>
+          </button> */}
           <button
             onClick={() => setActiveView("weekly")}
             style={toggleButtonStyle(activeView === "weekly")}

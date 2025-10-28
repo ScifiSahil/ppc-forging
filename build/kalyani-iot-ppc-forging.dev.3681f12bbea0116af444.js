@@ -30600,7 +30600,7 @@ var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
           contentType = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
           credentials = btoa("kalyaniadmin:kalyaniadmin@7001"); // Step 1: Trigger cookie set
           _context.next = 5;
-          return fetch("http://localhost:8080/internal/weekly_entry", {
+          return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
             method: "GET",
             headers: {
               Authorization: "Basic ".concat(credentials)
@@ -30681,11 +30681,11 @@ var AdminPanel = function AdminPanel() {
 
   // ✅ UPDATED - Using internal APIs like in WeeklyPlan
   var APIs = {
-    master_data: "http://localhost:8080/internal/kln_master_data",
-    machine_capacity: "http://localhost:8080/internal/kln_ppc_machine_capacity",
-    month: "http://localhost:8080/internal/kln_ppc_month",
-    week: "http://localhost:8080/internal/kln_ppc_week",
-    schedule: "http://localhost:8080/internal/kln_prod_schedule"
+    master_data: "https://ktflceprd.kalyanicorp.com/internal/kln_master_data",
+    machine_capacity: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_machine_capacity",
+    month: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_month",
+    week: "https://ktflceprd.kalyanicorp.com/internal/kln_ppc_week",
+    schedule: "https://ktflceprd.kalyanicorp.com/internal/kln_prod_schedule"
   };
 
   // Column configurations for each tab
@@ -30785,7 +30785,7 @@ var AdminPanel = function AdminPanel() {
             // For api/v1/collection endpoints, try basic auth first like WeeklyPlan
             basicAuthHeaders = {
               "Content-Type": "application/json",
-              Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+              Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
             }; // Get CSRF token for some APIs that might need it
             _context2.prev = 3;
             _context2.next = 6;
@@ -32769,11 +32769,6 @@ var Dashboard = function Dashboard() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
     onClick: function onClick() {
-      return setActiveView("activity_log");
-    },
-    style: toggleButtonStyle(activeView === "activity_log")
-  }, "Activity Log"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: function onClick() {
       return setActiveView("weekly");
     },
     style: toggleButtonStyle(activeView === "weekly")
@@ -32976,7 +32971,7 @@ var Diestatus = function Diestatus() {
             setError(null);
             _context.prev = 2;
             _context.next = 5;
-            return fetch("http://localhost:8080/internal/kln_dms_dieactual");
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual");
           case 5:
             response = _context.sent;
             if (response.ok) {
@@ -42602,7 +42597,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 8;
             _context.next = 11;
-            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan");
+            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
           case 11:
             res = _context.sent;
             _context.next = 14;
@@ -42708,7 +42703,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 38;
             _context.next = 41;
-            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan", {
+            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json"
@@ -42758,7 +42753,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }
             _context.prev = 58;
             _context.next = 61;
-            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan");
+            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan");
           case 61:
             _res2 = _context.sent;
             _context.next = 64;
@@ -42840,7 +42835,7 @@ var SmartWeeklyPlanChatbot = function SmartWeeklyPlanChatbot() {
             }, currentField, userInput);
             _context.prev = 81;
             _context.next = 84;
-            return fetch("http://localhost:8080/http://localhost:8080/internal/weekly_plan", {
+            return fetch("https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
               method: "PATCH",
               headers: {
                 "Content-Type": "application/json"
@@ -43011,7 +43006,7 @@ var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
           contentType = _args.length > 1 && _args[1] !== undefined ? _args[1] : true;
           credentials = btoa("kalyaniadmin:kalyaniadmin@7001"); // Step 1: Trigger cookie set
           _context.next = 5;
-          return fetch("http://localhost:8080/internal/weekly_entry", {
+          return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
             method: "GET",
             headers: {
               Authorization: "Basic ".concat(credentials)
@@ -43088,11 +43083,11 @@ var apiService = {
           case 0:
             _context2.prev = 0;
             _context2.next = 3;
-            return fetch("http://localhost:8080/internal/weekly_entry?die_no=".concat(dieNumber), {
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=".concat(dieNumber), {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+                Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
               }
             });
           case 3:
@@ -43127,11 +43122,11 @@ var apiService = {
             console.log("Calling Forge Lines API 🚀");
             _context3.prev = 1;
             _context3.next = 4;
-            return fetch("http://localhost:8080/internal/forge_lines", {
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+                Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
               }
             });
           case 4:
@@ -43230,7 +43225,7 @@ var apiService = {
           case 6:
             authOptions = _context5.sent;
             _context5.next = 9;
-            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify(payload)
@@ -43332,7 +43327,7 @@ var apiService = {
             });
             _context8.prev = 1;
             // ✅ Construct URL with proper encoding
-            baseUrl = "http://localhost:8080/internal/kln_dms_dieactual";
+            baseUrl = "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual";
             params = new URLSearchParams({
               plant_code: plantCode,
               die_no: dieNo
@@ -43344,7 +43339,7 @@ var apiService = {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+                Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
               }
             });
           case 8:
@@ -43463,7 +43458,7 @@ var apiService = {
           case 3:
             authOptions = _context10.sent;
             _context10.next = 6;
-            return fetch("http://localhost:8080/internal/production_order", _objectSpread(_objectSpread({
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/production_order", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify({
@@ -43522,7 +43517,7 @@ var apiService = {
           case 3:
             authConfig = _context11.sent;
             _context11.next = 6;
-            return fetch("http://localhost:8080/internal/production_report", _objectSpread({
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/production_report", _objectSpread({
               method: "GET"
             }, authConfig));
           case 6:
@@ -44103,7 +44098,7 @@ var WeeklyPlan = function WeeklyPlan() {
           case 7:
             authConfig = _context13.sent;
             _context13.next = 10;
-            return fetch("http://localhost:8080/internal/monthly_report", // ✅ NEW URL
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/monthly_report", // ✅ NEW URL
             _objectSpread({
               method: "GET"
             }, authConfig));
@@ -45116,7 +45111,7 @@ var WeeklyPlan = function WeeklyPlan() {
             };
             console.log("📦 Sending payload:", payload);
             _context17.next = 5;
-            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("http://localhost:8080/internal/production_order", payload);
+            return axios__WEBPACK_IMPORTED_MODULE_5__["default"].post("https://ktflceprd.kalyanicorp.com/internal/production_order", payload);
           case 5:
             response = _context17.sent;
             if (!(response.data && response.data.error)) {
@@ -45184,7 +45179,7 @@ var WeeklyPlan = function WeeklyPlan() {
 
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
   //     const response = await fetch(
-  //       "http://localhost:8080/internal/weekly_plan",
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions,
@@ -45511,7 +45506,7 @@ var WeeklyPlan = function WeeklyPlan() {
           case 51:
             authOptions = _context18.sent;
             _context18.next = 54;
-            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({
               method: "POST"
             }, authOptions), {}, {
               body: JSON.stringify(payload)
@@ -45633,7 +45628,7 @@ var WeeklyPlan = function WeeklyPlan() {
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
 
   //     const response = await fetch(
-  //       "http://localhost:8080/internal/weekly_plan",
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions, // This includes headers with CSRF token and credentials
@@ -47042,7 +47037,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
             };
             console.log("🗑️ Marking as deleted:", deleteData);
             _context.next = 9;
-            return fetch("http://localhost:8080/internal/weekly_plan", {
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json"
@@ -47116,16 +47111,60 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
     return " ⇅"; // Both arrows when reset
   };
 
+  // const getCookie = (name) => {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop().split(";").shift();
+  // };
+
+  // const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
+  //   const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
+  //   console.log("📡 Fetching CSRF token with credentials:", credentials);
+
+  //   // Step 1: Trigger cookie set
+  //   await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Basic ${credentials}`,
+  //     },
+  //     credentials: "include",
+  //   });
+
+  //   const csrfToken = getCookie("CSRFToken");
+  //   console.log("Fetched CSRF Token from cookie:", csrfToken);
+
+  //   if (!csrfToken) {
+  //     throw new Error("CSRF token not found in cookies.");
+  //   }
+
+  //   const headers = {
+  //     Authorization: `Basic ${credentials}`,
+  //     "X-CSRF-Token": csrfToken,
+  //   };
+
+  //   if (contentType) {
+  //     headers["Content-Type"] = "application/json";
+  //   }
+
+  //   return {
+  //     headers,
+  //     credentials: "include",
+  //   };
+  // };
+
   var getCookie = function getCookie(name) {
     var value = "; ".concat(document.cookie);
     var parts = value.split("; ".concat(name, "="));
     if (parts.length === 2) return parts.pop().split(";").shift();
+    return null; // ✅ explicitly return null if not found
   };
+
   var getAuthHeadersWithCSRF = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
       var method,
         contentType,
         credentials,
+        initResponse,
         csrfToken,
         headers,
         _args2 = arguments;
@@ -47136,25 +47175,36 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
             contentType = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : true;
             credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
             console.log("📡 Fetching CSRF token with credentials:", credentials);
-
-            // Step 1: Trigger cookie set
-            _context2.next = 6;
-            return fetch("http://localhost:8080/internal/weekly_plan", {
+            _context2.prev = 4;
+            _context2.next = 7;
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
               method: "GET",
               headers: {
                 Authorization: "Basic ".concat(credentials)
               },
               credentials: "include"
             });
-          case 6:
+          case 7:
+            initResponse = _context2.sent;
+            console.log("✅ Initial request completed, status:", initResponse.status);
+
+            // Step 2: Wait a bit for cookie to be set
+            _context2.next = 11;
+            return new Promise(function (resolve) {
+              return setTimeout(resolve, 100);
+            });
+          case 11:
+            // Step 3: Get CSRF token from cookie
             csrfToken = getCookie("CSRFToken");
-            console.log("Fetched CSRF Token from cookie:", csrfToken);
+            console.log("🔍 Fetched CSRF Token from cookie:", csrfToken);
             if (csrfToken) {
-              _context2.next = 10;
+              _context2.next = 17;
               break;
             }
+            console.error("❌ CSRF token not found in cookies");
+            console.log("📋 All cookies:", document.cookie);
             throw new Error("CSRF token not found in cookies.");
-          case 10:
+          case 17:
             headers = {
               Authorization: "Basic ".concat(credentials),
               "X-CSRF-Token": csrfToken
@@ -47166,11 +47216,16 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
               headers: headers,
               credentials: "include"
             });
-          case 13:
+          case 22:
+            _context2.prev = 22;
+            _context2.t0 = _context2["catch"](4);
+            console.error("❌ Error in getAuthHeadersWithCSRF:", _context2.t0);
+            throw _context2.t0;
+          case 26:
           case "end":
             return _context2.stop();
         }
-      }, _callee2);
+      }, _callee2, null, [[4, 22]]);
     }));
     return function getAuthHeadersWithCSRF() {
       return _ref3.apply(this, arguments);
@@ -47246,7 +47301,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
             formattedStart = formatDate(start);
             formattedEnd = formatDate(end);
             query = "start_date=".concat(formattedStart, "&end_date=").concat(formattedEnd);
-            apiUrl = "http://localhost:8080/internal/weekly_plan?".concat(query);
+            apiUrl = "https://ktflceprd.kalyanicorp.com/internal/weekly_plan?".concat(query);
             console.log("📡 API Call →", apiUrl);
             console.log("📅 Date Range:", formattedStart, "to", formattedEnd);
             _context3.next = 15;
@@ -47254,7 +47309,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
-                Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+                Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
               }
             });
           case 15:
@@ -47330,29 +47385,92 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
     d.setDate(d.getDate() + diff);
     return d;
   };
+
+  // const handleWeekChange = (direction) => {
+  //   try {
+  //     // ✅ Ensure startDate is a valid Date object
+  //     const currentStart =
+  //       startDate instanceof Date ? startDate : new Date(startDate);
+
+  //     if (isNaN(currentStart.getTime())) {
+  //       console.error("❌ Invalid startDate:", startDate);
+  //       // Reset to current week if date is invalid
+  //       const today = new Date();
+  //       const [monday, saturday] = getWeekRange(today);
+  //       setStartDate(monday);
+  //       setEndDate(saturday);
+  //       fetchWeeklyPlan(monday, saturday);
+  //       return;
+  //     }
+
+  //     const baseDate = new Date(currentStart);
+  //     baseDate.setDate(baseDate.getDate() + direction * 7); // +7 days for next, -7 for prev
+
+  //     const newStart = getMonday(baseDate);
+  //     const newEnd = new Date(newStart);
+  //     newEnd.setDate(newStart.getDate() + 5); // Monday + 5 = Saturday
+
+  //     console.log("📅 Week navigation:", {
+  //       direction,
+  //       currentStart: currentStart.toISOString(),
+  //       newStart: newStart.toISOString(),
+  //       newEnd: newEnd.toISOString(),
+  //     });
+
+  //     setStartDate(newStart);
+  //     setEndDate(newEnd);
+
+  //     fetchWeeklyPlan(newStart, newEnd);
+  //   } catch (error) {
+  //     console.error("❌ Error in handleWeekChange:", error);
+  //     setError(`Failed to change week: ${error.message}`);
+  //   }
+  // };
+
+  // const getWeekRange = (date) => {
+  //   if (!date) {
+  //     console.error("❌ getWeekRange: date is null/undefined");
+  //     const today = new Date();
+  //     return [today, today];
+  //   }
+
+  //   const d = new Date(date);
+
+  //   if (isNaN(d.getTime())) {
+  //     console.error("❌ getWeekRange: invalid date:", date);
+  //     const today = new Date();
+  //     return [today, today];
+  //   }
+
+  //   const day = d.getDay();
+  //   const diffToMonday = day === 0 ? -6 : 1 - day;
+  //   const monday = new Date(d);
+  //   monday.setDate(d.getDate() + diffToMonday);
+  //   const saturday = new Date(monday);
+  //   saturday.setDate(monday.getDate() + 5);
+  //   return [monday, saturday];
+  // };
+
   var handleWeekChange = function handleWeekChange(direction) {
     try {
-      // ✅ Ensure startDate is a valid Date object
       var currentStart = startDate instanceof Date ? startDate : new Date(startDate);
       if (isNaN(currentStart.getTime())) {
         console.error("❌ Invalid startDate:", startDate);
-        // Reset to current week if date is invalid
         var today = new Date();
         var _getWeekRange = getWeekRange(today),
           _getWeekRange2 = _slicedToArray(_getWeekRange, 2),
           monday = _getWeekRange2[0],
-          saturday = _getWeekRange2[1];
+          sunday = _getWeekRange2[1]; // ✅ sunday variable name
         setStartDate(monday);
-        setEndDate(saturday);
-        fetchWeeklyPlan(monday, saturday);
+        setEndDate(sunday); // ✅ sunday set karo
+        fetchWeeklyPlan(monday, sunday);
         return;
       }
       var baseDate = new Date(currentStart);
-      baseDate.setDate(baseDate.getDate() + direction * 7); // +7 days for next, -7 for prev
-
+      baseDate.setDate(baseDate.getDate() + direction * 7);
       var newStart = getMonday(baseDate);
       var newEnd = new Date(newStart);
-      newEnd.setDate(newStart.getDate() + 5); // Monday + 5 = Saturday
+      newEnd.setDate(newStart.getDate() + 6); // ✅ Monday + 6 = Sunday
 
       console.log("📅 Week navigation:", {
         direction: direction,
@@ -47384,10 +47502,55 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
     var diffToMonday = day === 0 ? -6 : 1 - day;
     var monday = new Date(d);
     monday.setDate(d.getDate() + diffToMonday);
-    var saturday = new Date(monday);
-    saturday.setDate(monday.getDate() + 5);
-    return [monday, saturday];
+
+    // ✅ CHANGE: Saturday se Sunday tak
+    var sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6); // Monday + 6 = Sunday
+
+    return [monday, sunday]; // ✅ Saturday ki jagah Sunday return karo
   };
+
+  // useEffect(() => {
+  //   const fetchForgeLines = async () => {
+  //     try {
+  //       const res = await fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           // Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
+  //         },
+  //       });
+
+  //       const data = await res.json();
+  //       if (Array.isArray(data) && data.length > 0) {
+  //         setForgeLines(data[0].forge_lines || []);
+  //         console.log("✅ Forge lines loaded:", data[0].forge_lines);
+  //       }
+  //     } catch (err) {
+  //       console.error("❌ Failed to fetch forge lines:", err);
+  //     }
+  //   };
+
+  //   try {
+  //     const today = new Date();
+  //     console.log("📅 Initializing with today:", today.toISOString());
+
+  //     const [monday, saturday] = getWeekRange(today);
+  //     console.log("📅 Initial week range:", {
+  //       monday: monday.toISOString(),
+  //       saturday: saturday.toISOString(),
+  //     });
+
+  //     setStartDate(monday);
+  //     setEndDate(saturday);
+  //     fetchWeeklyPlan(monday, saturday);
+  //     fetchForgeLines(); // 👈 Add this call
+  //   } catch (error) {
+  //     console.error("Error in useEffect initialization:", error);
+  //     setError(`Failed to initialize: ${error.message}`);
+  //   }
+  // }, []);
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var fetchForgeLines = /*#__PURE__*/function () {
       var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
@@ -47397,11 +47560,10 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return fetch("http://localhost:8080/internal/forge_lines", {
+              return fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json"
-                  // Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
                 }
               });
             case 3:
@@ -47436,29 +47598,39 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
       var _getWeekRange3 = getWeekRange(today),
         _getWeekRange4 = _slicedToArray(_getWeekRange3, 2),
         monday = _getWeekRange4[0],
-        saturday = _getWeekRange4[1];
+        sunday = _getWeekRange4[1]; // ✅ sunday variable
       console.log("📅 Initial week range:", {
         monday: monday.toISOString(),
-        saturday: saturday.toISOString()
+        sunday: sunday.toISOString() // ✅ log sunday
       });
+
       setStartDate(monday);
-      setEndDate(saturday);
-      fetchWeeklyPlan(monday, saturday);
-      fetchForgeLines(); // 👈 Add this call
+      setEndDate(sunday); // ✅ sunday set karo
+      fetchWeeklyPlan(monday, sunday);
+      fetchForgeLines();
     } catch (error) {
       console.error("Error in useEffect initialization:", error);
       setError("Failed to initialize: ".concat(error.message));
     }
   }, []);
+
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const [monday, saturday] = getWeekRange(today);
+  //   setStartDate(monday);
+  //   setEndDate(saturday);
+  //   fetchWeeklyPlan(monday, saturday);
+  // }, []);
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var today = new Date();
     var _getWeekRange5 = getWeekRange(today),
       _getWeekRange6 = _slicedToArray(_getWeekRange5, 2),
       monday = _getWeekRange6[0],
-      saturday = _getWeekRange6[1];
+      sunday = _getWeekRange6[1]; // ✅ sunday variable
     setStartDate(monday);
-    setEndDate(saturday);
-    fetchWeeklyPlan(monday, saturday);
+    setEndDate(sunday); // ✅ sunday set karo
+    fetchWeeklyPlan(monday, sunday);
   }, []);
 
   // Handle edit button click
@@ -47616,7 +47788,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
           case 13:
             options = _context5.sent;
             _context5.next = 16;
-            return fetch("http://localhost:8080/internal/weekly_plan", _objectSpread(_objectSpread({}, options), {}, {
+            return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", _objectSpread(_objectSpread({}, options), {}, {
               method: "PUT",
               body: JSON.stringify(updateData)
             }));
@@ -47698,7 +47870,7 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
   //   const fetchDieDetails = async () => {
   //     try {
   //       const res = await fetch(
-  //         `http://localhost:8080/http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`
   //       );
@@ -47754,14 +47926,14 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
   //       console.log("📡 Fetching die details for:", dieNo);
 
   //       const res = await fetch(
-  //         `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`,
   //         {
   //           method: "GET",
   //           headers: {
   //             "Content-Type": "application/json",
-  //             Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+  //             Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
   //           },
   //         }
   //       );
@@ -47898,11 +48070,11 @@ var WeeklyPlanDisplay = function WeeklyPlanDisplay(_ref) {
               _context6.prev = 0;
               console.log("📡 Fetching die details for:", dieNo);
               _context6.next = 4;
-              return fetch("http://localhost:8080/internal/weekly_entry?die_no=".concat(encodeURIComponent(dieNo)), {
+              return fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=".concat(encodeURIComponent(dieNo)), {
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: "Basic ".concat(btoa("ktfladm:Ktfl_Admin@2024"))
+                  Authorization: "Basic ".concat(btoa("kalyaniadmin:kalyaniadmin@7001"))
                 }
               });
             case 4:
@@ -54418,79 +54590,124 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * Known adapters mapping.
+ * Provides environment-specific adapters for Axios:
+ * - `http` for Node.js
+ * - `xhr` for browsers
+ * - `fetch` for fetch API-based requests
+ * 
+ * @type {Object<string, Function|Object>}
+ */
 const knownAdapters = {
   http: _http_js__WEBPACK_IMPORTED_MODULE_0__["default"],
   xhr: _xhr_js__WEBPACK_IMPORTED_MODULE_1__["default"],
   fetch: {
     get: _fetch_js__WEBPACK_IMPORTED_MODULE_2__.getFetch,
   }
-}
+};
 
+// Assign adapter names for easier debugging and identification
 _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].forEach(knownAdapters, (fn, value) => {
   if (fn) {
     try {
-      Object.defineProperty(fn, 'name', {value});
+      Object.defineProperty(fn, 'name', { value });
     } catch (e) {
       // eslint-disable-next-line no-empty
     }
-    Object.defineProperty(fn, 'adapterName', {value});
+    Object.defineProperty(fn, 'adapterName', { value });
   }
 });
 
+/**
+ * Render a rejection reason string for unknown or unsupported adapters
+ * 
+ * @param {string} reason
+ * @returns {string}
+ */
 const renderReason = (reason) => `- ${reason}`;
 
+/**
+ * Check if the adapter is resolved (function, null, or false)
+ * 
+ * @param {Function|null|false} adapter
+ * @returns {boolean}
+ */
 const isResolvedHandle = (adapter) => _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(adapter) || adapter === null || adapter === false;
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getAdapter: (adapters, config) => {
-    adapters = _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isArray(adapters) ? adapters : [adapters];
+/**
+ * Get the first suitable adapter from the provided list.
+ * Tries each adapter in order until a supported one is found.
+ * Throws an AxiosError if no adapter is suitable.
+ * 
+ * @param {Array<string|Function>|string|Function} adapters - Adapter(s) by name or function.
+ * @param {Object} config - Axios request configuration
+ * @throws {AxiosError} If no suitable adapter is available
+ * @returns {Function} The resolved adapter function
+ */
+function getAdapter(adapters, config) {
+  adapters = _utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isArray(adapters) ? adapters : [adapters];
 
-    const {length} = adapters;
-    let nameOrAdapter;
-    let adapter;
+  const { length } = adapters;
+  let nameOrAdapter;
+  let adapter;
 
-    const rejectedReasons = {};
+  const rejectedReasons = {};
 
-    for (let i = 0; i < length; i++) {
-      nameOrAdapter = adapters[i];
-      let id;
+  for (let i = 0; i < length; i++) {
+    nameOrAdapter = adapters[i];
+    let id;
 
-      adapter = nameOrAdapter;
+    adapter = nameOrAdapter;
 
-      if (!isResolvedHandle(nameOrAdapter)) {
-        adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
+    if (!isResolvedHandle(nameOrAdapter)) {
+      adapter = knownAdapters[(id = String(nameOrAdapter)).toLowerCase()];
 
-        if (adapter === undefined) {
-          throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](`Unknown adapter '${id}'`);
-        }
+      if (adapter === undefined) {
+        throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](`Unknown adapter '${id}'`);
       }
-
-      if (adapter && (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(adapter) || (adapter = adapter.get(config)))) {
-        break;
-      }
-
-      rejectedReasons[id || '#' + i] = adapter;
     }
 
-    if (!adapter) {
+    if (adapter && (_utils_js__WEBPACK_IMPORTED_MODULE_3__["default"].isFunction(adapter) || (adapter = adapter.get(config)))) {
+      break;
+    }
 
-      const reasons = Object.entries(rejectedReasons)
-        .map(([id, state]) => `adapter ${id} ` +
-          (state === false ? 'is not supported by the environment' : 'is not available in the build')
-        );
+    rejectedReasons[id || '#' + i] = adapter;
+  }
 
-      let s = length ?
-        (reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0])) :
-        'as no adapter specified';
-
-      throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](
-        `There is no suitable adapter to dispatch the request ` + s,
-        'ERR_NOT_SUPPORT'
+  if (!adapter) {
+    const reasons = Object.entries(rejectedReasons)
+      .map(([id, state]) => `adapter ${id} ` +
+        (state === false ? 'is not supported by the environment' : 'is not available in the build')
       );
-    }
 
-    return adapter;
-  },
+    let s = length ?
+      (reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0])) :
+      'as no adapter specified';
+
+    throw new _core_AxiosError_js__WEBPACK_IMPORTED_MODULE_4__["default"](
+      `There is no suitable adapter to dispatch the request ` + s,
+      'ERR_NOT_SUPPORT'
+    );
+  }
+
+  return adapter;
+}
+
+/**
+ * Exports Axios adapters and utility to resolve an adapter
+ */
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  /**
+   * Resolve an adapter from a list of adapter names or functions.
+   * @type {Function}
+   */
+  getAdapter,
+
+  /**
+   * Exposes all known adapters
+   * @type {Object<string, Function|Object>}
+   */
   adapters: knownAdapters
 });
 
@@ -54782,7 +54999,7 @@ const factory = (env) => {
 const seedCache = new Map();
 
 const getFetch = (config) => {
-  let env = config ? config.env : {};
+  let env = (config && config.env) || {};
   const {fetch, Request, Response} = env;
   const seeds = [
     Request, Response, fetch
@@ -56133,7 +56350,7 @@ class InterceptorManager {
    *
    * @param {Number} id The ID that was returned by `use`
    *
-   * @returns {Boolean} `true` if the interceptor was removed, `false` otherwise
+   * @returns {void}
    */
   eject(id) {
     if (this.handlers[id]) {
@@ -56363,11 +56580,11 @@ function mergeConfig(config1, config2) {
   }
 
   // eslint-disable-next-line consistent-return
-  function mergeDeepProperties(a, b, prop , caseless) {
+  function mergeDeepProperties(a, b, prop, caseless) {
     if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(b)) {
-      return getMergedValue(a, b, prop , caseless);
+      return getMergedValue(a, b, prop, caseless);
     } else if (!_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isUndefined(a)) {
-      return getMergedValue(undefined, a, prop , caseless);
+      return getMergedValue(undefined, a, prop, caseless);
     }
   }
 
@@ -56425,7 +56642,7 @@ function mergeConfig(config1, config2) {
     socketPath: defaultToConfig2,
     responseEncoding: defaultToConfig2,
     validateStatus: mergeDirectKeys,
-    headers: (a, b , prop) => mergeDeepProperties(headersToObject(a), headersToObject(b),prop, true)
+    headers: (a, b, prop) => mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true)
   };
 
   _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEach(Object.keys({...config1, ...config2}), function computeConfigValue(prop) {
@@ -56745,7 +56962,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "VERSION": () => (/* binding */ VERSION)
 /* harmony export */ });
-const VERSION = "1.12.2";
+const VERSION = "1.13.0";
 
 /***/ }),
 
@@ -56898,6 +57115,12 @@ const HttpStatusCode = {
   LoopDetected: 508,
   NotExtended: 510,
   NetworkAuthenticationRequired: 511,
+  WebServerIsDown: 521,
+  ConnectionTimedOut: 522,
+  OriginIsUnreachable: 523,
+  TimeoutOccurred: 524,
+  SslHandshakeFailed: 525,
+  InvalidSslCertificate: 526,
 };
 
 Object.entries(HttpStatusCode).forEach(([key, value]) => {
@@ -56922,6 +57145,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 
 
+/**
+ * Create a bound version of a function with a specified `this` context
+ *
+ * @param {Function} fn - The function to bind
+ * @param {*} thisArg - The value to be passed as the `this` parameter
+ * @returns {Function} A new function that will call the original function with the specified `this` context
+ */
 function bind(fn, thisArg) {
   return function wrap() {
     return fn.apply(thisArg, arguments);
@@ -57131,27 +57361,38 @@ __webpack_require__.r(__webpack_exports__);
 
   // Standard browser envs support document.cookie
   {
-    write(name, value, expires, path, domain, secure) {
-      const cookie = [name + '=' + encodeURIComponent(value)];
+    write(name, value, expires, path, domain, secure, sameSite) {
+      if (typeof document === 'undefined') return;
 
-      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNumber(expires) && cookie.push('expires=' + new Date(expires).toGMTString());
+      const cookie = [`${name}=${encodeURIComponent(value)}`];
 
-      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(path) && cookie.push('path=' + path);
-
-      _utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(domain) && cookie.push('domain=' + domain);
-
-      secure === true && cookie.push('secure');
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isNumber(expires)) {
+        cookie.push(`expires=${new Date(expires).toUTCString()}`);
+      }
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(path)) {
+        cookie.push(`path=${path}`);
+      }
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(domain)) {
+        cookie.push(`domain=${domain}`);
+      }
+      if (secure === true) {
+        cookie.push('secure');
+      }
+      if (_utils_js__WEBPACK_IMPORTED_MODULE_1__["default"].isString(sameSite)) {
+        cookie.push(`SameSite=${sameSite}`);
+      }
 
       document.cookie = cookie.join('; ');
     },
 
     read(name) {
-      const match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
-      return (match ? decodeURIComponent(match[3]) : null);
+      if (typeof document === 'undefined') return null;
+      const match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return match ? decodeURIComponent(match[1]) : null;
     },
 
     remove(name) {
-      this.write(name, '', Date.now() - 86400000);
+      this.write(name, '', Date.now() - 86400000, '/');
     }
   }
 
@@ -69066,4 +69307,4 @@ cs_web_components_base__WEBPACK_IMPORTED_MODULE_0__.Registry.registerComponent((
 /******/ })()
 ;
 });
-//# sourceMappingURL=kalyani-iot-ppc-forging.dev.e63deecce7197a848d9b.js.map
+//# sourceMappingURL=kalyani-iot-ppc-forging.dev.3681f12bbea0116af444.js.map

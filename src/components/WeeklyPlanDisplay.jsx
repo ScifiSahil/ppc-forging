@@ -404,7 +404,7 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
       console.log("🗑️ Marking as deleted:", deleteData);
 
       const response = await fetch(
-        "http://localhost:8080/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           method: "PUT",
           headers: {
@@ -454,45 +454,103 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
     return " ⇅"; // Both arrows when reset
   };
 
+  // const getCookie = (name) => {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop().split(";").shift();
+  // };
+
+  // const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
+  //   const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
+  //   console.log("📡 Fetching CSRF token with credentials:", credentials);
+
+  //   // Step 1: Trigger cookie set
+  //   await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_plan", {
+  //     method: "GET",
+  //     headers: {
+  //       Authorization: `Basic ${credentials}`,
+  //     },
+  //     credentials: "include",
+  //   });
+
+  //   const csrfToken = getCookie("CSRFToken");
+  //   console.log("Fetched CSRF Token from cookie:", csrfToken);
+
+  //   if (!csrfToken) {
+  //     throw new Error("CSRF token not found in cookies.");
+  //   }
+
+  //   const headers = {
+  //     Authorization: `Basic ${credentials}`,
+  //     "X-CSRF-Token": csrfToken,
+  //   };
+
+  //   if (contentType) {
+  //     headers["Content-Type"] = "application/json";
+  //   }
+
+  //   return {
+  //     headers,
+  //     credentials: "include",
+  //   };
+  // };
+
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
+    return null; // ✅ explicitly return null if not found
   };
 
   const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
     const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
     console.log("📡 Fetching CSRF token with credentials:", credentials);
 
-    // Step 1: Trigger cookie set
-    await fetch("http://localhost:8080/internal/weekly_plan", {
-      method: "GET",
-      headers: {
+    try {
+      // Step 1: First GET request to trigger cookie set
+      const initResponse = await fetch(
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Basic ${credentials}`,
+          },
+          credentials: "include",
+        }
+      );
+
+      console.log("✅ Initial request completed, status:", initResponse.status);
+
+      // Step 2: Wait a bit for cookie to be set
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      // Step 3: Get CSRF token from cookie
+      const csrfToken = getCookie("CSRFToken");
+      console.log("🔍 Fetched CSRF Token from cookie:", csrfToken);
+
+      if (!csrfToken) {
+        console.error("❌ CSRF token not found in cookies");
+        console.log("📋 All cookies:", document.cookie);
+        throw new Error("CSRF token not found in cookies.");
+      }
+
+      const headers = {
         Authorization: `Basic ${credentials}`,
-      },
-      credentials: "include",
-    });
+        "X-CSRF-Token": csrfToken,
+      };
 
-    const csrfToken = getCookie("CSRFToken");
-    console.log("Fetched CSRF Token from cookie:", csrfToken);
+      if (contentType) {
+        headers["Content-Type"] = "application/json";
+      }
 
-    if (!csrfToken) {
-      throw new Error("CSRF token not found in cookies.");
+      return {
+        headers,
+        credentials: "include",
+      };
+    } catch (error) {
+      console.error("❌ Error in getAuthHeadersWithCSRF:", error);
+      throw error;
     }
-
-    const headers = {
-      Authorization: `Basic ${credentials}`,
-      "X-CSRF-Token": csrfToken,
-    };
-
-    if (contentType) {
-      headers["Content-Type"] = "application/json";
-    }
-
-    return {
-      headers,
-      credentials: "include",
-    };
   };
 
   const containerStyle = {
@@ -563,7 +621,7 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
       const formattedEnd = formatDate(end);
 
       const query = `start_date=${formattedStart}&end_date=${formattedEnd}`;
-      const apiUrl = `http://localhost:8080/internal/weekly_plan?${query}`;
+      const apiUrl = `https://ktflceprd.kalyanicorp.com/internal/weekly_plan?${query}`;
 
       console.log("📡 API Call →", apiUrl);
       console.log("📅 Date Range:", formattedStart, "to", formattedEnd);
@@ -572,7 +630,7 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+          Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
         },
       });
 
@@ -634,29 +692,92 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
     return d;
   };
 
+  // const handleWeekChange = (direction) => {
+  //   try {
+  //     // ✅ Ensure startDate is a valid Date object
+  //     const currentStart =
+  //       startDate instanceof Date ? startDate : new Date(startDate);
+
+  //     if (isNaN(currentStart.getTime())) {
+  //       console.error("❌ Invalid startDate:", startDate);
+  //       // Reset to current week if date is invalid
+  //       const today = new Date();
+  //       const [monday, saturday] = getWeekRange(today);
+  //       setStartDate(monday);
+  //       setEndDate(saturday);
+  //       fetchWeeklyPlan(monday, saturday);
+  //       return;
+  //     }
+
+  //     const baseDate = new Date(currentStart);
+  //     baseDate.setDate(baseDate.getDate() + direction * 7); // +7 days for next, -7 for prev
+
+  //     const newStart = getMonday(baseDate);
+  //     const newEnd = new Date(newStart);
+  //     newEnd.setDate(newStart.getDate() + 5); // Monday + 5 = Saturday
+
+  //     console.log("📅 Week navigation:", {
+  //       direction,
+  //       currentStart: currentStart.toISOString(),
+  //       newStart: newStart.toISOString(),
+  //       newEnd: newEnd.toISOString(),
+  //     });
+
+  //     setStartDate(newStart);
+  //     setEndDate(newEnd);
+
+  //     fetchWeeklyPlan(newStart, newEnd);
+  //   } catch (error) {
+  //     console.error("❌ Error in handleWeekChange:", error);
+  //     setError(`Failed to change week: ${error.message}`);
+  //   }
+  // };
+
+  // const getWeekRange = (date) => {
+  //   if (!date) {
+  //     console.error("❌ getWeekRange: date is null/undefined");
+  //     const today = new Date();
+  //     return [today, today];
+  //   }
+
+  //   const d = new Date(date);
+
+  //   if (isNaN(d.getTime())) {
+  //     console.error("❌ getWeekRange: invalid date:", date);
+  //     const today = new Date();
+  //     return [today, today];
+  //   }
+
+  //   const day = d.getDay();
+  //   const diffToMonday = day === 0 ? -6 : 1 - day;
+  //   const monday = new Date(d);
+  //   monday.setDate(d.getDate() + diffToMonday);
+  //   const saturday = new Date(monday);
+  //   saturday.setDate(monday.getDate() + 5);
+  //   return [monday, saturday];
+  // };
+
   const handleWeekChange = (direction) => {
     try {
-      // ✅ Ensure startDate is a valid Date object
       const currentStart =
         startDate instanceof Date ? startDate : new Date(startDate);
 
       if (isNaN(currentStart.getTime())) {
         console.error("❌ Invalid startDate:", startDate);
-        // Reset to current week if date is invalid
         const today = new Date();
-        const [monday, saturday] = getWeekRange(today);
+        const [monday, sunday] = getWeekRange(today); // ✅ sunday variable name
         setStartDate(monday);
-        setEndDate(saturday);
-        fetchWeeklyPlan(monday, saturday);
+        setEndDate(sunday); // ✅ sunday set karo
+        fetchWeeklyPlan(monday, sunday);
         return;
       }
 
       const baseDate = new Date(currentStart);
-      baseDate.setDate(baseDate.getDate() + direction * 7); // +7 days for next, -7 for prev
+      baseDate.setDate(baseDate.getDate() + direction * 7);
 
       const newStart = getMonday(baseDate);
       const newEnd = new Date(newStart);
-      newEnd.setDate(newStart.getDate() + 5); // Monday + 5 = Saturday
+      newEnd.setDate(newStart.getDate() + 6); // ✅ Monday + 6 = Sunday
 
       console.log("📅 Week navigation:", {
         direction,
@@ -694,19 +815,62 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
     const diffToMonday = day === 0 ? -6 : 1 - day;
     const monday = new Date(d);
     monday.setDate(d.getDate() + diffToMonday);
-    const saturday = new Date(monday);
-    saturday.setDate(monday.getDate() + 5);
-    return [monday, saturday];
+
+    // ✅ CHANGE: Saturday se Sunday tak
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6); // Monday + 6 = Sunday
+
+    return [monday, sunday]; // ✅ Saturday ki jagah Sunday return karo
   };
+
+  // useEffect(() => {
+  //   const fetchForgeLines = async () => {
+  //     try {
+  //       const res = await fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           // Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
+  //         },
+  //       });
+
+  //       const data = await res.json();
+  //       if (Array.isArray(data) && data.length > 0) {
+  //         setForgeLines(data[0].forge_lines || []);
+  //         console.log("✅ Forge lines loaded:", data[0].forge_lines);
+  //       }
+  //     } catch (err) {
+  //       console.error("❌ Failed to fetch forge lines:", err);
+  //     }
+  //   };
+
+  //   try {
+  //     const today = new Date();
+  //     console.log("📅 Initializing with today:", today.toISOString());
+
+  //     const [monday, saturday] = getWeekRange(today);
+  //     console.log("📅 Initial week range:", {
+  //       monday: monday.toISOString(),
+  //       saturday: saturday.toISOString(),
+  //     });
+
+  //     setStartDate(monday);
+  //     setEndDate(saturday);
+  //     fetchWeeklyPlan(monday, saturday);
+  //     fetchForgeLines(); // 👈 Add this call
+  //   } catch (error) {
+  //     console.error("Error in useEffect initialization:", error);
+  //     setError(`Failed to initialize: ${error.message}`);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const fetchForgeLines = async () => {
       try {
-        const res = await fetch("http://localhost:8080/internal/forge_lines", {
+        const res = await fetch("https://ktflceprd.kalyanicorp.com/internal/forge_lines", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
           },
         });
 
@@ -724,28 +888,36 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
       const today = new Date();
       console.log("📅 Initializing with today:", today.toISOString());
 
-      const [monday, saturday] = getWeekRange(today);
+      const [monday, sunday] = getWeekRange(today); // ✅ sunday variable
       console.log("📅 Initial week range:", {
         monday: monday.toISOString(),
-        saturday: saturday.toISOString(),
+        sunday: sunday.toISOString(), // ✅ log sunday
       });
 
       setStartDate(monday);
-      setEndDate(saturday);
-      fetchWeeklyPlan(monday, saturday);
-      fetchForgeLines(); // 👈 Add this call
+      setEndDate(sunday); // ✅ sunday set karo
+      fetchWeeklyPlan(monday, sunday);
+      fetchForgeLines();
     } catch (error) {
       console.error("Error in useEffect initialization:", error);
       setError(`Failed to initialize: ${error.message}`);
     }
   }, []);
 
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const [monday, saturday] = getWeekRange(today);
+  //   setStartDate(monday);
+  //   setEndDate(saturday);
+  //   fetchWeeklyPlan(monday, saturday);
+  // }, []);
+
   useEffect(() => {
     const today = new Date();
-    const [monday, saturday] = getWeekRange(today);
+    const [monday, sunday] = getWeekRange(today); // ✅ sunday variable
     setStartDate(monday);
-    setEndDate(saturday);
-    fetchWeeklyPlan(monday, saturday);
+    setEndDate(sunday); // ✅ sunday set karo
+    fetchWeeklyPlan(monday, sunday);
   }, []);
 
   // Handle edit button click
@@ -918,7 +1090,7 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
 
       // Make API call to update
       const response = await fetch(
-        "http://localhost:8080/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           ...options,
           method: "PUT",
@@ -986,7 +1158,7 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
   //   const fetchDieDetails = async () => {
   //     try {
   //       const res = await fetch(
-  //         `http://localhost:8080/http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `https://ktflceprd.kalyanicorp.com/https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`
   //       );
@@ -1042,14 +1214,14 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
   //       console.log("📡 Fetching die details for:", dieNo);
 
   //       const res = await fetch(
-  //         `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+  //         `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
   //           dieNo
   //         )}`,
   //         {
   //           method: "GET",
   //           headers: {
   //             "Content-Type": "application/json",
-  //             Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+  //             Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
   //           },
   //         }
   //       );
@@ -1184,14 +1356,14 @@ const WeeklyPlanDisplay = ({ onDailyTonnageUpdate }) => {
         console.log("📡 Fetching die details for:", dieNo);
 
         const res = await fetch(
-          `http://localhost:8080/internal/weekly_entry?die_no=${encodeURIComponent(
+          `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${encodeURIComponent(
             dieNo
           )}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+              Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
             },
           }
         );

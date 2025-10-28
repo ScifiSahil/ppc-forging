@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1" serialNumber="urn:uuid:76c8c163-755b-48d3-bb91-441d8fcc279b">
+<bom xmlns="http://cyclonedx.org/schema/bom/1.4" version="1" serialNumber="urn:uuid:2266e256-0e5d-4501-ba53-8bc24fa5058c">
   <metadata>
-    <timestamp>2025-10-16T09:25:54.986Z</timestamp>
+    <timestamp>2025-10-28T07:16:19.111Z</timestamp>
     <tools>
       <tool>
         <vendor>@cyclonedx</vendor>
@@ -102,32 +102,6 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/webpack-contrib/style-loader/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
-      <author>Matt Zabriskie</author>
-      <name>axios</name>
-      <version>1.12.2</version>
-      <description>Promise based HTTP client for the browser and node.js</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git+https://github.com/axios/axios.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://axios-http.com</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/axios/axios/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -288,32 +262,6 @@
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git">
-      <author>Feross Aboukhadijeh</author>
-      <name>buffer</name>
-      <version>6.0.3</version>
-      <description>Node.js Buffer API, for the browser</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git://github.com/feross/buffer.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/feross/buffer</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/feross/buffer/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
     <component type="library" bom-ref="pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is">
       <name>react-is</name>
       <version>18.3.1</version>
@@ -413,58 +361,6 @@
         </reference>
         <reference type="issue-tracker">
           <url>https://github.com/d3/d3-scale/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git">
-      <author>T. Jameson Little</author>
-      <name>base64-js</name>
-      <version>1.5.1</version>
-      <description>Base64 encoding/decoding in pure JS</description>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git://github.com/beatgammit/base64-js.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/beatgammit/base64-js</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/beatgammit/base64-js/issues</url>
-          <comment>as detected from PackageJson property "bugs.url"</comment>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git">
-      <author>Feross Aboukhadijeh</author>
-      <name>ieee754</name>
-      <version>1.2.1</version>
-      <description>Read/write IEEE754 floating point numbers from/to a Buffer or array-like object</description>
-      <licenses>
-        <license>
-          <id>BSD-3-Clause</id>
-        </license>
-      </licenses>
-      <purl>pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git</purl>
-      <externalReferences>
-        <reference type="vcs">
-          <url>git://github.com/feross/ieee754.git</url>
-          <comment>as detected from PackageJson property "repository.url"</comment>
-        </reference>
-        <reference type="website">
-          <url>https://github.com/feross/ieee754#readme</url>
-          <comment>as detected from PackageJson property "homepage"</comment>
-        </reference>
-        <reference type="issue-tracker">
-          <url>https://github.com/feross/ieee754/issues</url>
           <comment>as detected from PackageJson property "bugs.url"</comment>
         </reference>
       </externalReferences>
@@ -882,20 +778,121 @@
         </reference>
       </externalReferences>
     </component>
+    <component type="library" bom-ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
+      <author>Matt Zabriskie</author>
+      <name>axios</name>
+      <version>1.12.2</version>
+      <description>Promise based HTTP client for the browser and node.js</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git+https://github.com/axios/axios.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://axios-http.com</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/axios/axios/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git">
+      <author>Feross Aboukhadijeh</author>
+      <name>buffer</name>
+      <version>6.0.3</version>
+      <description>Node.js Buffer API, for the browser</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git://github.com/feross/buffer.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/feross/buffer</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/feross/buffer/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git">
+      <author>T. Jameson Little</author>
+      <name>base64-js</name>
+      <version>1.5.1</version>
+      <description>Base64 encoding/decoding in pure JS</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git://github.com/beatgammit/base64-js.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/beatgammit/base64-js</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/beatgammit/base64-js/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git">
+      <author>Feross Aboukhadijeh</author>
+      <name>ieee754</name>
+      <version>1.2.1</version>
+      <description>Read/write IEEE754 floating point numbers from/to a Buffer or array-like object</description>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+      <purl>pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>git://github.com/feross/ieee754.git</url>
+          <comment>as detected from PackageJson property "repository.url"</comment>
+        </reference>
+        <reference type="website">
+          <url>https://github.com/feross/ieee754#readme</url>
+          <comment>as detected from PackageJson property "homepage"</comment>
+        </reference>
+        <reference type="issue-tracker">
+          <url>https://github.com/feross/ieee754/issues</url>
+          <comment>as detected from PackageJson property "bugs.url"</comment>
+        </reference>
+      </externalReferences>
+    </component>
   </components>
   <dependencies>
     <dependency ref="pkg:npm/kalyani-iot-ppc-forging@0.0.1">
       <dependency ref="pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react"/>
       <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
-      <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git"/>
       <dependency ref="pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git"/>
       <dependency ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"/>
+      <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git"/>
     </dependency>
     <dependency ref="pkg:npm/lucide-react@0.525.0?vcs_url=git%2Bhttps%3A//github.com/lucide-icons/lucide.git#packages/lucide-react"/>
     <dependency ref="pkg:npm/style-loader@3.3.2?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/style-loader.git"/>
-    <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
-      <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"/>
-    </dependency>
     <dependency ref="pkg:npm/recharts@2.15.4?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts.git">
       <dependency ref="pkg:npm/clsx@2.1.1?vcs_url=git%2Bhttps%3A//github.com/lukeed/clsx.git"/>
       <dependency ref="pkg:npm/lodash@4.17.21?vcs_url=git%2Bhttps%3A//github.com/lodash/lodash.git"/>
@@ -917,10 +914,6 @@
       <dependency ref="pkg:npm/react-transition-group@4.4.5?vcs_url=git%2Bhttps%3A//github.com/reactjs/react-transition-group.git"/>
     </dependency>
     <dependency ref="pkg:npm/css-loader@6.7.3?vcs_url=git%2Bhttps%3A//github.com/webpack-contrib/css-loader.git"/>
-    <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git">
-      <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
-      <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
-    </dependency>
     <dependency ref="pkg:npm/react-is@18.3.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
     <dependency ref="pkg:npm/recharts-scale@0.4.5?vcs_url=git%2Bhttps%3A//github.com/recharts/recharts-scale.git">
       <dependency ref="pkg:npm/decimal.js-light@2.5.1?vcs_url=git%2Bhttps%3A//github.com/MikeMcl/decimal.js-light.git"/>
@@ -936,8 +929,6 @@
       <dependency ref="pkg:npm/d3-time-format@4.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-time-format.git"/>
       <dependency ref="pkg:npm/d3-interpolate@3.0.1?vcs_url=git%2Bhttps%3A//github.com/d3/d3-interpolate.git"/>
     </dependency>
-    <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
-    <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
     <dependency ref="pkg:npm/prop-types@15.8.1?vcs_url=git%2Bhttps%3A//github.com/facebook/prop-types.git">
       <dependency ref="pkg:npm/react-is@16.13.1?vcs_url=git%2Bhttps%3A//github.com/facebook/react.git#packages/react-is"/>
       <dependency ref="pkg:npm/object-assign@4.1.1?vcs_url=git%2Bhttps%3A//github.com/sindresorhus/object-assign.git"/>
@@ -968,5 +959,14 @@
     <dependency ref="pkg:npm/dom-helpers@5.2.1?vcs_url=git%2Bhttps%3A//github.com/react-bootstrap/dom-helpers.git"/>
     <dependency ref="pkg:npm/internmap@2.0.3?vcs_url=git%2Bhttps%3A//github.com/mbostock/internmap.git"/>
     <dependency ref="pkg:npm/d3-color@3.1.0?vcs_url=git%2Bhttps%3A//github.com/d3/d3-color.git"/>
+    <dependency ref="pkg:npm/axios@1.12.2?vcs_url=git%2Bhttps%3A//github.com/axios/axios.git">
+      <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git"/>
+    </dependency>
+    <dependency ref="pkg:npm/buffer@6.0.3?vcs_url=git%3A//github.com/feross/buffer.git">
+      <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
+      <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
+    </dependency>
+    <dependency ref="pkg:npm/base64-js@1.5.1?vcs_url=git%3A//github.com/beatgammit/base64-js.git"/>
+    <dependency ref="pkg:npm/ieee754@1.2.1?vcs_url=git%3A//github.com/feross/ieee754.git"/>
   </dependencies>
 </bom>

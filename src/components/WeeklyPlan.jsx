@@ -8,13 +8,12 @@ import {
   Save,
   Edit,
   Trash2,
-  Mail, // Added Mail icon for Send Email button
+  Mail,
 } from "lucide-react";
 import WeeklyPlanDisplay from "./WeeklyPlanDisplay";
 import "./WeeklyPlanModal.css";
 import SmartWeeklyPlanChatbot from "./SmartWeeklyPlanChatbot";
 import axios from "axios";
-
 
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
@@ -26,7 +25,7 @@ const getAuthHeadersWithCSRF = async (method = "GET", contentType = true) => {
   const credentials = btoa("kalyaniadmin:kalyaniadmin@7001");
 
   // Step 1: Trigger cookie set
-  await fetch("http://localhost:8080/internal/weekly_entry", {
+  await fetch("https://ktflceprd.kalyanicorp.com/internal/weekly_entry", {
     method: "GET",
     headers: {
       Authorization: `Basic ${credentials}`,
@@ -89,12 +88,12 @@ const apiService = {
   getKlnMasterDataByDie: async (dieNumber) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/internal/weekly_entry?die_no=${dieNumber}`,
+        `https://ktflceprd.kalyanicorp.com/internal/weekly_entry?die_no=${dieNumber}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+            Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
           },
         }
       );
@@ -110,12 +109,12 @@ const apiService = {
     console.log("Calling Forge Lines API 🚀");
     try {
       const response = await fetch(
-        "http://localhost:8080/internal/forge_lines",
+        "https://ktflceprd.kalyanicorp.com/internal/forge_lines",
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+            Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
           },
         }
       );
@@ -182,7 +181,7 @@ const apiService = {
       const authOptions = await getAuthHeadersWithCSRF("POST");
 
       const response = await fetch(
-        "http://localhost:8080/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           method: "POST",
           ...authOptions,
@@ -229,7 +228,7 @@ const apiService = {
 
     try {
       // ✅ Construct URL with proper encoding
-      const baseUrl = "http://localhost:8080/internal/kln_dms_dieactual";
+      const baseUrl = "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual";
       const params = new URLSearchParams({
         plant_code: plantCode,
         die_no: dieNo,
@@ -242,7 +241,7 @@ const apiService = {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Basic ${btoa("ktfladm:Ktfl_Admin@2024")}`,
+          Authorization: `Basic ${btoa("kalyaniadmin:kalyaniadmin@7001")}`,
         },
       });
 
@@ -310,7 +309,7 @@ const apiService = {
     try {
       const authOptions = await getAuthHeadersWithCSRF("POST");
       const response = await fetch(
-        "http://localhost:8080/internal/production_order",
+        "https://ktflceprd.kalyanicorp.com/internal/production_order",
         {
           method: "POST",
           ...authOptions,
@@ -340,7 +339,7 @@ const apiService = {
       const authConfig = await getAuthHeadersWithCSRF("GET", false);
 
       const response = await fetch(
-        "http://localhost:8080/internal/production_report",
+        "https://ktflceprd.kalyanicorp.com/internal/production_report",
         {
           method: "GET",
           ...authConfig, // Spread the headers and credentials
@@ -846,7 +845,7 @@ const WeeklyPlan = () => {
       const authConfig = await getAuthHeadersWithCSRF("GET", false);
 
       const response = await fetch(
-        "http://localhost:8080/internal/monthly_report", // ✅ NEW URL
+        "https://ktflceprd.kalyanicorp.com/internal/monthly_report", // ✅ NEW URL
         {
           method: "GET",
           ...authConfig,
@@ -1812,7 +1811,7 @@ const WeeklyPlan = () => {
       console.log("📦 Sending payload:", payload);
 
       const response = await axios.post(
-        "http://localhost:8080/internal/production_order",
+        "https://ktflceprd.kalyanicorp.com/internal/production_order",
         payload
       );
 
@@ -1866,7 +1865,7 @@ const WeeklyPlan = () => {
 
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
   //     const response = await fetch(
-  //       "http://localhost:8080/internal/weekly_plan",
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions,
@@ -2202,7 +2201,7 @@ const WeeklyPlan = () => {
       // ✅ API call remains the same
       const authOptions = await getAuthHeadersWithCSRF("POST");
       const response = await fetch(
-        "http://localhost:8080/internal/weekly_plan",
+        "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
         {
           method: "POST",
           ...authOptions,
@@ -2306,7 +2305,7 @@ const WeeklyPlan = () => {
   //     const authOptions = await getAuthHeadersWithCSRF("POST");
 
   //     const response = await fetch(
-  //       "http://localhost:8080/internal/weekly_plan",
+  //       "https://ktflceprd.kalyanicorp.com/internal/weekly_plan",
   //       {
   //         method: "POST",
   //         ...authOptions, // This includes headers with CSRF token and credentials

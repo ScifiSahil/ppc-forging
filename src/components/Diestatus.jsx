@@ -41,7 +41,7 @@ const Diestatus = () => {
     setError(null);
     try {
       const response = await fetch(
-        "http://localhost:8080/internal/kln_dms_dieactual"
+        "https://ktflceprd.kalyanicorp.com/internal/kln_dms_dieactual"
       );
 
       if (!response.ok) {
